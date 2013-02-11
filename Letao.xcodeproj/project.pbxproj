@@ -23,7 +23,7 @@
 		C63B7A8816BACEA40072A4D2 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C63B7A7D16BACEA30072A4D2 /* whiteArrow@2x.png */; };
 		C63B7B8D16BD43270072A4D2 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B7B8C16BD43270072A4D2 /* ItemService.m */; };
 		C63B7B9116BD55120072A4D2 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B7B9016BD55120072A4D2 /* NetworkRequest.m */; };
-		C63C213416C8C3690050FA25 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C63C212916C8C3550050FA25 /* libRestKit.a */; };
+		C647029A16C8D1EF00815B53 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C647028F16C8D1DB00815B53 /* libRestKit.a */; };
 		C64AE97A16B7F59A00363ED6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C64AE97816B7F59A00363ED6 /* Icon.png */; };
 		C64AE97B16B7F59A00363ED6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C64AE97916B7F59A00363ED6 /* Icon@2x.png */; };
 		C64AE9AB16B7F5F100363ED6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C64AE9AA16B7F5F100363ED6 /* Default.png */; };
@@ -251,44 +251,44 @@
 			remoteGlobalIDString = 78509311149FAC2E000787E4;
 			remoteInfo = GMGridView;
 		};
-		C63C212816C8C3550050FA25 /* PBXContainerItemProxy */ = {
+		C647028E16C8D1DB00815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160D1614564E810060A5C5;
 			remoteInfo = RestKit;
 		};
-		C63C212A16C8C3550050FA25 /* PBXContainerItemProxy */ = {
+		C647029016C8D1DB00815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160D2614564E820060A5C5;
 			remoteInfo = RestKitTests;
 		};
-		C63C212C16C8C3550050FA25 /* PBXContainerItemProxy */ = {
+		C647029216C8D1DB00815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160E62145651060060A5C5;
 			remoteInfo = RestKitFramework;
 		};
-		C63C212E16C8C3550050FA25 /* PBXContainerItemProxy */ = {
+		C647029416C8D1DB00815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160E78145651060060A5C5;
 			remoteInfo = RestKitFrameworkTests;
 		};
-		C63C213016C8C3550050FA25 /* PBXContainerItemProxy */ = {
+		C647029616C8D1DB00815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 259C301615128079003066A2;
 			remoteInfo = RestKitResources;
 		};
-		C63C213216C8C3600050FA25 /* PBXContainerItemProxy */ = {
+		C647029816C8D1E600815B53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+			containerPortal = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 25160D1514564E810060A5C5;
 			remoteInfo = RestKit;
@@ -320,7 +320,7 @@
 		C63B7B8C16BD43270072A4D2 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		C63B7B8F16BD55120072A4D2 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
 		C63B7B9016BD55120072A4D2 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
-		C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Libraries/RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		C647028316C8D1DB00815B53 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Libraries/RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		C64AE97816B7F59A00363ED6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		C64AE97916B7F59A00363ED6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		C64AE9AA16B7F5F100363ED6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
@@ -724,7 +724,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C63C213416C8C3690050FA25 /* libRestKit.a in Frameworks */,
+				C647029A16C8D1EF00815B53 /* libRestKit.a in Frameworks */,
 				C6A8FCE716BEC32500A5CE88 /* CoreData.framework in Frameworks */,
 				C6A8FCE516BEC28100A5CE88 /* Security.framework in Frameworks */,
 				C63B7A4516BA4D9B0072A4D2 /* libGMGridView.a in Frameworks */,
@@ -813,14 +813,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		C63C211E16C8C3540050FA25 /* Products */ = {
+		C647028416C8D1DB00815B53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C63C212916C8C3550050FA25 /* libRestKit.a */,
-				C63C212B16C8C3550050FA25 /* RestKitTests.octest */,
-				C63C212D16C8C3550050FA25 /* RestKit.framework */,
-				C63C212F16C8C3550050FA25 /* RestKitFrameworkTests.octest */,
-				C63C213116C8C3550050FA25 /* RestKitResources.bundle */,
+				C647028F16C8D1DB00815B53 /* libRestKit.a */,
+				C647029116C8D1DB00815B53 /* RestKitTests.octest */,
+				C647029316C8D1DB00815B53 /* RestKit.framework */,
+				C647029516C8D1DB00815B53 /* RestKitFrameworkTests.octest */,
+				C647029716C8D1DB00815B53 /* RestKitResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -923,7 +923,7 @@
 		C687D9E816B53B3100AB82A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */,
+				C647028316C8D1DB00815B53 /* RestKit.xcodeproj */,
 				C6A8FCE616BEC32500A5CE88 /* CoreData.framework */,
 				C6A8FCE416BEC28100A5CE88 /* Security.framework */,
 				C687DC7A16B54CE600AB82A1 /* MapKit.framework */,
@@ -1755,7 +1755,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C63C213316C8C3600050FA25 /* PBXTargetDependency */,
+				C647029916C8D1E600815B53 /* PBXTargetDependency */,
 				C63B7A4416BA4D850072A4D2 /* PBXTargetDependency */,
 			);
 			name = Letao;
@@ -1790,8 +1790,8 @@
 					ProjectRef = C63B7A3A16BA4D790072A4D2 /* GMGridView.xcodeproj */;
 				},
 				{
-					ProductGroup = C63C211E16C8C3540050FA25 /* Products */;
-					ProjectRef = C63C211D16C8C3540050FA25 /* RestKit.xcodeproj */;
+					ProductGroup = C647028416C8D1DB00815B53 /* Products */;
+					ProjectRef = C647028316C8D1DB00815B53 /* RestKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1809,39 +1809,39 @@
 			remoteRef = C63B7A4116BA4D7A0072A4D2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C63C212916C8C3550050FA25 /* libRestKit.a */ = {
+		C647028F16C8D1DB00815B53 /* libRestKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRestKit.a;
-			remoteRef = C63C212816C8C3550050FA25 /* PBXContainerItemProxy */;
+			remoteRef = C647028E16C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C63C212B16C8C3550050FA25 /* RestKitTests.octest */ = {
+		C647029116C8D1DB00815B53 /* RestKitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = RestKitTests.octest;
-			remoteRef = C63C212A16C8C3550050FA25 /* PBXContainerItemProxy */;
+			remoteRef = C647029016C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C63C212D16C8C3550050FA25 /* RestKit.framework */ = {
+		C647029316C8D1DB00815B53 /* RestKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = RestKit.framework;
-			remoteRef = C63C212C16C8C3550050FA25 /* PBXContainerItemProxy */;
+			remoteRef = C647029216C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C63C212F16C8C3550050FA25 /* RestKitFrameworkTests.octest */ = {
+		C647029516C8D1DB00815B53 /* RestKitFrameworkTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = RestKitFrameworkTests.octest;
-			remoteRef = C63C212E16C8C3550050FA25 /* PBXContainerItemProxy */;
+			remoteRef = C647029416C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C63C213116C8C3550050FA25 /* RestKitResources.bundle */ = {
+		C647029716C8D1DB00815B53 /* RestKitResources.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = RestKitResources.bundle;
-			remoteRef = C63C213016C8C3550050FA25 /* PBXContainerItemProxy */;
+			remoteRef = C647029616C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2079,10 +2079,10 @@
 			name = GMGridView;
 			targetProxy = C63B7A4316BA4D850072A4D2 /* PBXContainerItemProxy */;
 		};
-		C63C213316C8C3600050FA25 /* PBXTargetDependency */ = {
+		C647029916C8D1E600815B53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RestKit;
-			targetProxy = C63C213216C8C3600050FA25 /* PBXContainerItemProxy */;
+			targetProxy = C647029816C8D1E600815B53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2169,15 +2169,12 @@
 		C687DA0416B53B3100AB82A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Libraries/RestKit/Tests/Vendor/OCHamcrest\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Letao/Letao-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
-					"../Common_iOS/Vendor/**",
+					"../Common_iOS/**",
 				);
 				INFOPLIST_FILE = "Letao/Letao-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2193,15 +2190,12 @@
 		C687DA0516B53B3100AB82A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Libraries/RestKit/Tests/Vendor/OCHamcrest\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Letao/Letao-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
-					"../Common_iOS/Vendor/**",
+					"../Common_iOS/**",
 				);
 				INFOPLIST_FILE = "Letao/Letao-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;

@@ -2,15 +2,14 @@
 //  ItemService.m
 //  Letao
 //
-//  Created by Callon Tom on 13-2-2.
+//  Created by Kaibin on 13-2-2.
 //  Copyright (c) 2013年 Kaibin. All rights reserved.
 //
 
 #import "ItemService.h"
 #import "Item.h"
 #import "StringUtil.h"
-
-#define kBaseURL @"http://127.0.0.1:5000"
+#import "GlobalConstants.h"
 
 @implementation ItemService
 
@@ -38,28 +37,21 @@ static ItemService *_defaultItemService = nil;
 
 - (void)initObjectMap
 {
-    RKURL *baseURL = [RKURL URLWithBaseURLString:kBaseURL];
-    RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
-    objectManager.client.baseURL = baseURL;
-
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *itemMapping =[RKObjectMapping mappingForClass:[Item class]];
-    [itemMapping mapKeyPathsToAttributes:@"_id" ,@"_id", @"title", @"title", @"subtitle", @"subtitle",
-                                    @"description", @"description", @"smooth_index", @"smooth_index",
-                                    @"information", @"information", @"tips", @"tips", @"imageList", @"imageList", nil];
-    [objectManager.mappingProvider setMapping:itemMapping forKeyPath:@""];
-
-        
+    [itemMapping mapKeyPathsToAttributes:@"title", @"title", @"subtitle", @"subtitle",      @"description", @"description", @"smooth_index", @"smooth_index", @"information", @"information", @"tips", @"tips", @"imageList", @"imageList", nil];
+    [objectManager.mappingProvider setMapping:itemMapping forKeyPath:@""];        
 }
 
-- (void)findItemsWithCategoryId:(int)categoryId start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
+- (void)findItemsWithBrandId:(int)brandId start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-                
-        NSString *category_id = [NSString stringWithInt:categoryId];
+        NSString *brand_id = [NSString stringWithInt:brandId];
         NSString *startStr = [NSString stringWithInt:start];
         NSString *countStr = [NSString stringWithInt:count];
-        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:category_id, @"category_id",startStr, @"start", countStr, @"count",nil];
+        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:brand_id, @"brand_id",startStr, @"start", countStr, @"count",nil];
+        
         RKObjectManager *objectManager = [RKObjectManager sharedManager];
         RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/items" queryParameters:queryParams];
         

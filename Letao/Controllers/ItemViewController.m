@@ -2,7 +2,7 @@
 //  ItemViewController.m
 //  Letao
 //
-//  Created by Callon Tom on 13-1-31.
+//  Created by Kaibin on 13-1-31.
 //  Copyright (c) 2013年 Kaibin. All rights reserved.
 //
 
@@ -15,9 +15,9 @@
 #import "Item.h"
 #import "UIImageView+WebCache.h"
 #import "ItemDetailViewController.h"
+#import "GlobalConstants.h"
 
 #define COUNT_EACH_FETCH 10
-#define kImageBaseURL @"http://www.durex.com.cn"
 
 @implementation ItemViewController
 
@@ -34,7 +34,7 @@
 
 - (void)loadDataFrom:(int)start count:(int)count
 {
-    [[ItemService defalutService] findItemsWithCategoryId:0 start:start count:count delegate:self];
+    [[ItemService defalutService] findItemsWithBrandId:0 start:start count:count delegate:self];
 }
 
 - (void)loadView
@@ -195,7 +195,7 @@
     
     Item *item = [_data objectAtIndex:index];
     customCell.textLabel.text = [item title];
-    NSString *imageUrl = [kImageBaseURL stringByAppendingString:[item.imageList objectAtIndex:0]];
+    NSString *imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:[item.imageList objectAtIndex:0]];
     [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"3.png"]];
     return customCell;
 }

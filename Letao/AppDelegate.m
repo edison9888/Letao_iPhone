@@ -9,8 +9,10 @@
 #import "AppDelegate.h"
 #import "MainController.h"
 #import "ItemViewController.h"
+#import "BrandListViewController.h"
 #import "DeviceDetection.h"
 #import "UIUtils.h"
+#import "GlobalConstants.h"
 
 @implementation AppDelegate
 
@@ -39,19 +41,19 @@
                     hasNavController:YES
                     viewControllers:controllers];
     
-    [UIUtils addViewController:[MainController alloc]
-                     viewTitle:@"喜欢"
-                     viewImage:@"love"
-                    hasNavController:YES
-                    hideNavigationBar:NO
-                    viewControllers:controllers];
-    
-    [UIUtils addViewController:[MainController alloc]
+    [UIUtils addViewController:[BrandListViewController alloc]
                      viewTitle:@"品牌"
                      viewImage:@"hierarchy"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
+    
+    [UIUtils addViewController:[MainController alloc]
+                     viewTitle:@"喜欢"
+                     viewImage:@"love"
+              hasNavController:YES
+             hideNavigationBar:NO
+               viewControllers:controllers];
     
     
     _tabBarController.viewControllers = controllers;
@@ -64,7 +66,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //HJCache
     [self initImageCacheManager];
+    
+    //RestKit
+    RKURL *baseURL = [RKURL URLWithBaseURLString:SERVER_URL];
+    RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
+    objectManager.client.baseURL = baseURL;
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];

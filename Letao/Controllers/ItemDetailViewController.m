@@ -63,14 +63,17 @@
     _totalHeight += titleLabel.frame.size.height;
     [titleLabel release];
     
-    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
-    subtitleLabel.backgroundColor = [UIColor clearColor];
-    subtitleLabel.font = [UIFont systemFontOfSize:14];
-    subtitleLabel.text =  _item.subtitle;
-    [self.dataScrollView addSubview:subtitleLabel];
-    _totalHeight += subtitleLabel.frame.size.height;
-    [subtitleLabel release];
-        
+    NSString *subtitle = _item.subtitle;
+    if ([subtitle length] > 0) {
+        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
+        subtitleLabel.backgroundColor = [UIColor clearColor];
+        subtitleLabel.font = [UIFont systemFontOfSize:14];
+        subtitleLabel.text =  subtitle;
+        [self.dataScrollView addSubview:subtitleLabel];
+        _totalHeight += subtitleLabel.frame.size.height;
+        [subtitleLabel release];
+    }
+    
     CGSize withinSize = CGSizeMake(300, CGFLOAT_MAX);
     NSString *description = _item.description;
     CGSize size = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
@@ -84,14 +87,18 @@
     _totalHeight += descriptionLabel.frame.size.height;
     [descriptionLabel release];
     
-    UILabel *smooth_indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
-    smooth_indexLabel.backgroundColor = [UIColor clearColor];
-    smooth_indexLabel.font = [UIFont systemFontOfSize:14];
-    smooth_indexLabel.text =  _item.smooth_index;
-    [self.dataScrollView addSubview:smooth_indexLabel];
-    _totalHeight += smooth_indexLabel.frame.size.height;
-    [smooth_indexLabel release];
     
+    NSString *smooth_index = _item.smooth_index;
+    if ([smooth_index length] > 0) {
+        UILabel *smooth_indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
+        smooth_indexLabel.backgroundColor = [UIColor clearColor];
+        smooth_indexLabel.font = [UIFont systemFontOfSize:14];
+        smooth_indexLabel.text =  smooth_index;
+        [self.dataScrollView addSubview:smooth_indexLabel];
+        _totalHeight += smooth_indexLabel.frame.size.height;
+        [smooth_indexLabel release];
+
+    }
     
     NSString *information = [[_item.information stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"mm" withString:@"mm\n"];
     size = [information sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
@@ -105,18 +112,20 @@
     _totalHeight += informationLabel.frame.size.height;
     [informationLabel release];
     
-    
-    NSString *tips = [[_item.tips stringByReplacingOccurrencesOfString:@"：" withString:@"：\n"] stringByReplacingOccurrencesOfString:@"。" withString:@"。\n" ];
-    size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-    UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height+10)];
-    tipsLabel.lineBreakMode = UILineBreakModeWordWrap;
-    tipsLabel.numberOfLines = 0;
-    tipsLabel.backgroundColor = [UIColor clearColor];
-    tipsLabel.font = [UIFont systemFontOfSize:14];
-    tipsLabel.text = tips;
-    [self.dataScrollView addSubview:tipsLabel];
-    _totalHeight += tipsLabel.frame.size.height;
-    [tipsLabel release];
+    NSString *tips = _item.tips;
+    if ([tips length] > 0) {
+        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"：" withString:@"：\n"] stringByReplacingOccurrencesOfString:@"。" withString:@"。\n" ];
+        size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+        UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height+10)];
+        tipsLabel.lineBreakMode = UILineBreakModeWordWrap;
+        tipsLabel.numberOfLines = 0;
+        tipsLabel.backgroundColor = [UIColor clearColor];
+        tipsLabel.font = [UIFont systemFontOfSize:14];
+        tipsLabel.text = tips;
+        [self.dataScrollView addSubview:tipsLabel];
+        _totalHeight += tipsLabel.frame.size.height;
+        [tipsLabel release];
+    }    
 }
 
 - (void)didReceiveMemoryWarning

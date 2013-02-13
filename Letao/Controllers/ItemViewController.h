@@ -2,7 +2,7 @@
 //  ItemViewController.h
 //  Letao
 //
-//  Created by Callon Tom on 13-1-31.
+//  Created by Kaibin on 13-1-31.
 //  Copyright (c) 2013年 Kaibin. All rights reserved.
 //
 

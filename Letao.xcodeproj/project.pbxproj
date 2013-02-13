@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6387EFC16CB451E009229DF /* BrandListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6387EFA16CB451E009229DF /* BrandListViewController.m */; };
+		C6387EFD16CB451E009229DF /* BrandListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6387EFB16CB451E009229DF /* BrandListViewController.xib */; };
+		C6387F4416CB9262009229DF /* BrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = C6387F4316CB9262009229DF /* BrandService.m */; };
+		C6387F4716CB9442009229DF /* Brand.m in Sources */ = {isa = PBXBuildFile; fileRef = C6387F4616CB9442009229DF /* Brand.m */; };
 		C63B7A4516BA4D9B0072A4D2 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C63B7A4216BA4D7A0072A4D2 /* libGMGridView.a */; };
 		C63B7A4816BA4EE80072A4D2 /* CustomGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B7A4716BA4EE80072A4D2 /* CustomGridViewCell.m */; };
 		C63B7A4A16BA8D3A0072A4D2 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C63B7A4916BA8D3A0072A4D2 /* 3.png */; };
@@ -296,6 +300,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6387EF716CB3F8F009229DF /* GlobalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalConstants.h; path = ../GlobalConstants.h; sourceTree = "<group>"; };
+		C6387EF916CB451E009229DF /* BrandListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandListViewController.h; sourceTree = "<group>"; };
+		C6387EFA16CB451E009229DF /* BrandListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandListViewController.m; sourceTree = "<group>"; };
+		C6387EFB16CB451E009229DF /* BrandListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrandListViewController.xib; sourceTree = "<group>"; };
+		C6387F4216CB9262009229DF /* BrandService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandService.h; sourceTree = "<group>"; };
+		C6387F4316CB9262009229DF /* BrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandService.m; sourceTree = "<group>"; };
+		C6387F4516CB9442009229DF /* Brand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brand.h; sourceTree = "<group>"; };
+		C6387F4616CB9442009229DF /* Brand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brand.m; sourceTree = "<group>"; };
 		C63B7A3A16BA4D790072A4D2 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		C63B7A4616BA4EE80072A4D2 /* CustomGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGridViewCell.h; sourceTree = "<group>"; };
 		C63B7A4716BA4EE80072A4D2 /* CustomGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGridViewCell.m; sourceTree = "<group>"; };
@@ -750,6 +762,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C6387EF816CB44CD009229DF /* Brand */ = {
+			isa = PBXGroup;
+			children = (
+				C6387EF916CB451E009229DF /* BrandListViewController.h */,
+				C6387EFA16CB451E009229DF /* BrandListViewController.m */,
+				C6387EFB16CB451E009229DF /* BrandListViewController.xib */,
+			);
+			name = Brand;
+			sourceTree = "<group>";
+		};
 		C63B7A3B16BA4D790072A4D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -879,9 +901,8 @@
 		C64AED5A16BA192900363ED6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C6387EF816CB44CD009229DF /* Brand */,
 				C64AED6516BA1AC300363ED6 /* Item */,
-				C64AED6016BA1A9B00363ED6 /* ItemViewController.h */,
-				C64AED6116BA1A9B00363ED6 /* ItemViewController.m */,
 				C64AED5B16BA192900363ED6 /* MainController.h */,
 				C64AED5C16BA192900363ED6 /* MainController.m */,
 				C64AED5D16BA192900363ED6 /* MainController.xib */,
@@ -892,6 +913,8 @@
 		C64AED6516BA1AC300363ED6 /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				C64AED6016BA1A9B00363ED6 /* ItemViewController.h */,
+				C64AED6116BA1A9B00363ED6 /* ItemViewController.m */,
 				C63B7A4616BA4EE80072A4D2 /* CustomGridViewCell.h */,
 				C63B7A4716BA4EE80072A4D2 /* CustomGridViewCell.m */,
 				C6A8FD9A16C2AC3800A5CE88 /* ItemDetailViewController.h */,
@@ -956,6 +979,7 @@
 				C63B7B8E16BD54D50072A4D2 /* Network */,
 				C687D9F816B53B3100AB82A1 /* AppDelegate.h */,
 				C687D9F916B53B3100AB82A1 /* AppDelegate.m */,
+				C6387EF716CB3F8F009229DF /* GlobalConstants.h */,
 				C687D9F016B53B3100AB82A1 /* Supporting Files */,
 			);
 			path = Letao;
@@ -1728,6 +1752,8 @@
 			children = (
 				C6A8FCF516BF669D00A5CE88 /* Item.h */,
 				C6A8FCF616BF669D00A5CE88 /* Item.m */,
+				C6387F4516CB9442009229DF /* Brand.h */,
+				C6387F4616CB9442009229DF /* Brand.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1737,6 +1763,8 @@
 			children = (
 				C63B7B8B16BD43270072A4D2 /* ItemService.h */,
 				C63B7B8C16BD43270072A4D2 /* ItemService.m */,
+				C6387F4216CB9262009229DF /* BrandService.h */,
+				C6387F4316CB9262009229DF /* BrandService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1889,6 +1917,7 @@
 				C6A8FD9E16C2AC3800A5CE88 /* ItemDetailViewController.xib in Resources */,
 				C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */,
 				C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */,
+				C6387EFD16CB451E009229DF /* BrandListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,6 +2097,9 @@
 				C63B7B9116BD55120072A4D2 /* NetworkRequest.m in Sources */,
 				C6A8FCF716BF669D00A5CE88 /* Item.m in Sources */,
 				C6A8FD9D16C2AC3800A5CE88 /* ItemDetailViewController.m in Sources */,
+				C6387EFC16CB451E009229DF /* BrandListViewController.m in Sources */,
+				C6387F4416CB9262009229DF /* BrandService.m in Sources */,
+				C6387F4716CB9442009229DF /* Brand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "ItemDetailViewController.h"
 #import "GlobalConstants.h"
+#import "Brand.h"
 
 #define COUNT_EACH_FETCH 10
 
@@ -26,23 +27,39 @@
     self = [super init];
     if (self) {
         _data = [[NSMutableArray alloc] init];
+        _brand = nil;
     }
     _currentData = _data;
 
     return self;
 }
 
+- (id)initWithBrand:(Brand*)brand
+{
+    self = [super init];
+    if (self) {
+        _data = [[NSMutableArray alloc] init];
+        _brand = brand;
+    }
+    _currentData = _data;
+    
+    return self;
+}
+
 - (void)loadDataFrom:(int)start count:(int)count
 {
-    [[ItemService defalutService] findItemsWithBrandId:0 start:start count:count delegate:self];
+    NSString *brand_id = [_brand name];
+    if (brand_id == nil) {
+        brand_id = @"";
+    }
+    [[ItemService defalutService] findItemsWithBrandId:brand_id start:start count:count delegate:self];
 }
 
 - (void)loadView
 {
     [super loadView];
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:nil] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -68,9 +85,9 @@
     
     if (_refreshHeaderView == nil) {
 		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.gmGridView.bounds.size.height, self.view.frame.size.width, self.gmGridView.bounds.size.height)];
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _gmGridView.bounds.size.height, self.view.frame.size.width, _gmGridView.bounds.size.height)];
 		view.delegate = self;
-		[self.gmGridView addSubview:view];
+		[_gmGridView addSubview:view];
 		_refreshHeaderView = view;
 		[view release];
 		
@@ -78,9 +95,9 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     if (_refreshFooterView == nil) {
-        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.gmGridView.frame.size.height+100, self.gmGridView.frame.size.width, self.gmGridView.frame.size.height)];
+        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, _gmGridView.frame.size.height+100, _gmGridView.frame.size.width, _gmGridView.frame.size.height)];
 		view.delegate = self;
-		[self.gmGridView addSubview:view];
+		[_gmGridView addSubview:view];
         _refreshFooterView = view;
         [view release];
     }
@@ -103,7 +120,6 @@
 
 - (void)dealloc
 {
-    [_gmGridView release];
     [super dealloc];
 }
 
@@ -139,8 +155,9 @@
     _start += [objects count];
     [_data addObjectsFromArray:objects];
     
-    NSLog(@"offset: %d", _start);
-    NSLog(@"Total objects count: %d", [_data count]);
+    NSLog(@"***Load objects count: %d", [objects count]);
+    NSLog(@"***Offset: %d", _start);
+    NSLog(@"***Total objects count: %d", [_data count]);
     
     [_gmGridView reloadData];
 }
@@ -149,7 +166,7 @@
 #pragma mark GMGridViewDataSource
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
-{
+{;
     return [_currentData count];
 }
 
@@ -195,7 +212,11 @@
     
     Item *item = [_data objectAtIndex:index];
     customCell.textLabel.text = [item title];
-    NSString *imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:[item.imageList objectAtIndex:0]];
+    
+    NSString *imageUrl = [item.imageList objectAtIndex:0];
+    if (![imageUrl hasPrefix:@"http"]) {
+        imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:imageUrl];
+    }
     [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"3.png"]];
     return customCell;
 }
@@ -403,7 +424,7 @@
 - (void)doneLoadingTableViewData
 {
 	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.gmGridView];
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_gmGridView];
 }
 
 - (void)loadMoreTableViewDataSource
@@ -414,10 +435,10 @@
 - (void)doneloadingMoreData
 {
     _reloading = NO;
-    [_refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:self.gmGridView];
+    [_refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:_gmGridView];
     
     //reset the _refreshFooterView frame
-    _refreshFooterView.frame = CGRectMake(0.0f, self.gmGridView.contentSize.height, self.gmGridView.frame.size.width, self.gmGridView.frame.size.height);
+    _refreshFooterView.frame = CGRectMake(0.0f, _gmGridView.contentSize.height, _gmGridView.frame.size.width, _gmGridView.frame.size.height);
 }
 
 #pragma mark -

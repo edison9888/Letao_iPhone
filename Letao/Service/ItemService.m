@@ -31,27 +31,27 @@ static ItemService *_defaultItemService = nil;
 - (id)init
 {
     self = [super init];
-    [self initObjectMap];
     return self;
 }
 
 - (void)initObjectMap
 {
+    //获取在AppDelegate中生成的第一个RKObjectManager对象
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *itemMapping =[RKObjectMapping mappingForClass:[Item class]];
     [itemMapping mapKeyPathsToAttributes:@"title", @"title", @"subtitle", @"subtitle",      @"description", @"description", @"smooth_index", @"smooth_index", @"information", @"information", @"tips", @"tips", @"imageList", @"imageList", nil];
     [objectManager.mappingProvider setMapping:itemMapping forKeyPath:@""];        
 }
 
-- (void)findItemsWithBrandId:(int)brandId start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
+- (void)findItemsWithBrandId:(NSString*)brandId start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
 {
+    //映射所需类对象
+    [self initObjectMap];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSString *brand_id = [NSString stringWithInt:brandId];
         NSString *startStr = [NSString stringWithInt:start];
         NSString *countStr = [NSString stringWithInt:count];
-        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:brand_id, @"brand_id",startStr, @"start", countStr, @"count",nil];
-        
+        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:brandId, @"brand_id",startStr, @"start", countStr, @"count",nil];
         RKObjectManager *objectManager = [RKObjectManager sharedManager];
         RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/items" queryParameters:queryParams];
         

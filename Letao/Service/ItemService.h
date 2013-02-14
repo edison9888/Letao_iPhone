@@ -13,6 +13,6 @@
 
 + (ItemService*)defalutService;
 
-- (void)findItemsWithBrandId:(int)brand_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
+- (void)findItemsWithBrandId:(NSString*)brand_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
 
 @end

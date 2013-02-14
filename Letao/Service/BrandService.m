@@ -27,12 +27,12 @@ static BrandService *_defaultBrandService = nil;
 - (id)init
 {
     self = [super init];
-    [self initObjectMap];
     return self;
 }
 
 - (void)initObjectMap
 {
+    //获取在AppDelegate中生成的第一个RKObjectManager对象
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *brandMapping =[RKObjectMapping mappingForClass:[Brand class]];
     [brandMapping mapKeyPathsToAttributes:@"name", @"name", @"brand_id", @"brand_id", nil];
@@ -42,6 +42,9 @@ static BrandService *_defaultBrandService = nil;
 
 - (void)findBrandsWithDelegate:(id<RKObjectLoaderDelegate>)delegate
 {
+     //映射所需类对象
+    [self initObjectMap];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         RKObjectManager *objectManager = [RKObjectManager sharedManager];

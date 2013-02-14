@@ -10,6 +10,7 @@
 #import "BrandListViewController.h"
 #import "BrandService.h"
 #import "Brand.h"
+#import "ItemViewController.h"
 
 @interface BrandListViewController ()
 
@@ -71,10 +72,6 @@
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
     [_dataList addObjectsFromArray:objects];
-    NSLog(@"-----%@",[[objects objectAtIndex:0] name]);
-    NSLog(@"------%d", [objects count]);
-    NSLog(@"------%d", [_dataList count]);
-
     [_dataTableView reloadData];
 }
 
@@ -98,7 +95,7 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"BrandCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -114,7 +111,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ItemViewController *controller = [[ItemViewController alloc] initWithBrand:[_dataList objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:controller animated:YES];    
 }
 
 @end

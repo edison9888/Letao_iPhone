@@ -9,8 +9,7 @@
 #import "ItemDetailViewController.h"
 #import "SlideImageView.h"
 #import "UIImageUtil.h"
-
-#define kImageBaseUrl  @"http://www.durex.com.cn"
+#import "GlobalConstants.h"
 
 @interface ItemDetailViewController ()
 
@@ -147,7 +146,10 @@
         if (image.length == 0) {
             break;
         }
-        NSString *path = [kImageBaseUrl stringByAppendingString:image];
+        NSString *path = image;
+        if (![image hasPrefix:@"http"]) {
+            path = [DUREX_IMAGE_BASE_URL stringByAppendingString:image];
+        }
         [imagePathList addObject:path];
     }
     

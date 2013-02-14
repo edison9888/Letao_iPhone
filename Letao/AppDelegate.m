@@ -72,6 +72,8 @@
     //RestKit
     RKURL *baseURL = [RKURL URLWithBaseURLString:SERVER_URL];
     RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
+    objectManager.acceptMIMEType = RKMIMETypeJSON;
+    objectManager.serializationMIMEType = RKMIMETypeJSON;
     objectManager.client.baseURL = baseURL;
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

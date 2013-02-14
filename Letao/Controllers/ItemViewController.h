@@ -11,22 +11,28 @@
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
 #import <RestKit/RestKit.h>
+#import "Brand.h"
 
 @interface ItemViewController : UIViewController <EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate, GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate, RKObjectLoaderDelegate>
 {
     BOOL _reloading;
     EGORefreshTableHeaderView *_refreshHeaderView;
     EGORefreshTableFooterView *_refreshFooterView;
+    GMGridView *_gmGridView;
     
     NSMutableArray *_data;
     NSMutableArray *_currentData;
+    Brand *_brand;
     
     int _start;
     int totalCount;
+    
 }
 
-@property(nonatomic, retain) GMGridView *gmGridView;
+//@property(nonatomic, retain) GMGridView *gmGridView;
 @property(nonatomic, assign) NSInteger lastDeleteItemIndexAsked;
+
+- (id)initWithBrand:(Brand*)brand;
 
 #pragma mark: For pull down to refresh
 - (void)reloadTableViewDataSource;

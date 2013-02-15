@@ -58,7 +58,11 @@
 - (void)loadView
 {
     [super loadView];
-
+    
+    if (_brand != nil) {
+        self.title = _brand.name;
+    }
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
@@ -197,8 +201,9 @@
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
-{    
-    GMGridViewCell *cell = [gridView dequeueReusableCell];
+{
+    static NSString *CellIdentifier = @"GridCell";
+    GMGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:CellIdentifier];
     CustomGridViewCell *customCell = (CustomGridViewCell*)cell;
     
     if (!cell)

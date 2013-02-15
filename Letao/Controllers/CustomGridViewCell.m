@@ -14,9 +14,9 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        // Background view
+        // Background view        
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
-        self.backgroundView.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
+//        self.backgroundView.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
         self.backgroundView.layer.borderWidth = 1;
         self.backgroundView.layer.borderColor = [UIColor purpleColor].CGColor;
         [self addSubview:self.backgroundView];
@@ -52,11 +52,14 @@
     // Background view
     self.backgroundView.frame = self.bounds;
     self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.clipsToBounds = YES;
     
     // Image view
-    self.imageView.frame = self.bounds;
+    CGRect bg = CGRectMake(self.bounds.origin.x+1, self.bounds.origin.y+1, self.bounds.size.width-2, self.bounds.size.height-2);
+    self.imageView.frame = bg;
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    self.imageView.contentMode = UIViewContentModeCenter;
+    self.imageView.clipsToBounds = YES;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Layout label
     self.textLabelBackgroundView.frame = CGRectMake(0,

@@ -53,13 +53,15 @@
 
 - (void)addDetailView
 {
+    float padding = 5;
+    
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _totalHeight, 310, 30)];
     titleLabel.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text =  [NSString stringWithFormat:(@" %@"),_item.title];
     [self.dataScrollView addSubview:titleLabel];
-    _totalHeight += titleLabel.frame.size.height;
+    _totalHeight += titleLabel.frame.size.height + padding;
     [titleLabel release];
     
     NSString *subtitle = _item.subtitle;
@@ -69,12 +71,12 @@
         subtitleLabel.font = [UIFont systemFontOfSize:14];
         subtitleLabel.text =  subtitle;
         [self.dataScrollView addSubview:subtitleLabel];
-        _totalHeight += subtitleLabel.frame.size.height;
+        _totalHeight += subtitleLabel.frame.size.height + padding;
         [subtitleLabel release];
     }
     
     CGSize withinSize = CGSizeMake(300, CGFLOAT_MAX);
-    NSString *description = _item.description;
+    NSString *description = [_item.description stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@"\n"];
     CGSize size = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
      UILabel *descriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
     descriptionLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -83,7 +85,7 @@
     descriptionLabel.font = [UIFont systemFontOfSize:14];
     descriptionLabel.text = description;
     [self.dataScrollView addSubview:descriptionLabel];
-    _totalHeight += descriptionLabel.frame.size.height;
+    _totalHeight += descriptionLabel.frame.size.height + padding;
     [descriptionLabel release];
     
     
@@ -94,12 +96,12 @@
         smooth_indexLabel.font = [UIFont systemFontOfSize:14];
         smooth_indexLabel.text =  smooth_index;
         [self.dataScrollView addSubview:smooth_indexLabel];
-        _totalHeight += smooth_indexLabel.frame.size.height;
+        _totalHeight += smooth_indexLabel.frame.size.height + padding;
         [smooth_indexLabel release];
 
     }
     
-    NSString *information = [[_item.information stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"mm" withString:@"mm\n"];
+    NSString *information = [[_item.information stringByReplacingOccurrencesOfString:@"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" withString:@"&nbsp;"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@"\n"];
     size = [information sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
     UILabel *informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
     informationLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -108,21 +110,26 @@
     informationLabel.font = [UIFont systemFontOfSize:14];
     informationLabel.text = information;
     [self.dataScrollView addSubview:informationLabel];
-    _totalHeight += informationLabel.frame.size.height;
+    _totalHeight += informationLabel.frame.size.height + padding;
     [informationLabel release];
     
     NSString *tips = _item.tips;
     if ([tips length] > 0) {
-        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"：" withString:@"：\n"] stringByReplacingOccurrencesOfString:@"。" withString:@"。\n" ];
+        tips = _item.tips;
+        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"] stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
+        tips = [[[[[[tips stringByReplacingOccurrencesOfString:@"&plusmn;" withString:@"±"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"]stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"]stringByReplacingOccurrencesOfString:@"&mdash;" withString:@"—"]stringByReplacingOccurrencesOfString:@"&quot;" withString:@"”"];
+        
+        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];
+        
         size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-        UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height+10)];
+        UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
         tipsLabel.lineBreakMode = UILineBreakModeWordWrap;
         tipsLabel.numberOfLines = 0;
         tipsLabel.backgroundColor = [UIColor clearColor];
         tipsLabel.font = [UIFont systemFontOfSize:14];
         tipsLabel.text = tips;
         [self.dataScrollView addSubview:tipsLabel];
-        _totalHeight += tipsLabel.frame.size.height;
+        _totalHeight += tipsLabel.frame.size.height + padding;
         [tipsLabel release];
     }    
 }
@@ -135,7 +142,6 @@
 - (void)dealloc
 {
     [_item release];
-    [_slideImageView release];
     [super dealloc];
 }
 
@@ -153,17 +159,16 @@
         [imagePathList addObject:path];
     }
     
-    _slideImageView = [[SlideImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    _slideImageView.defaultImage = @"3.png";
+    SlideImageView *slideImageView = [[SlideImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    slideImageView.defaultImage = @"3.png";
     
-    [_slideImageView.pageControl setPageIndicatorImageForCurrentPage:[UIImage strectchableImageName:@"point_pic3.png"] forNotCurrentPage:[UIImage strectchableImageName:@"point_pic4.png"]];
-    [_slideImageView setImages:imagePathList];
-    [_dataScrollView addSubview:_slideImageView];
-    _totalHeight = _slideImageView.frame.size.height;
+    [slideImageView.pageControl setPageIndicatorImageForCurrentPage:[UIImage strectchableImageName:@"point_pic3.png"] forNotCurrentPage:[UIImage strectchableImageName:@"point_pic4.png"]];
+    [slideImageView setImages:imagePathList];
+    [_dataScrollView addSubview:slideImageView];
+    _totalHeight = slideImageView.frame.size.height;
 
     [imagePathList release];
-    [_slideImageView release];
-    
+    [slideImageView release];
 }
 
 @end

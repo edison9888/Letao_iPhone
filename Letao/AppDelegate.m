@@ -10,6 +10,7 @@
 #import "MainController.h"
 #import "ItemViewController.h"
 #import "BrandListViewController.h"
+#import "FavouriteViewController.h"
 #import "DeviceDetection.h"
 #import "UIUtils.h"
 #import "GlobalConstants.h"
@@ -48,7 +49,7 @@
                     hideNavigationBar:NO
                     viewControllers:controllers];
     
-    [UIUtils addViewController:[MainController alloc]
+    [UIUtils addViewController:[FavouriteViewController alloc]
                      viewTitle:@"喜欢"
                      viewImage:@"love"
               hasNavController:YES

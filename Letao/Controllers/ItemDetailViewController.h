@@ -14,7 +14,7 @@
 
 @property (retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property (assign, nonatomic) float totalHeight;
-@property (retain, nonatomic)Item *item;
+@property (retain, nonatomic) Item *item;
 
 - (id)initWithItem:(Item*)item;
 @end

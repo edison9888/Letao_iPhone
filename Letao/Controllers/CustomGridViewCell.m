@@ -11,9 +11,10 @@
 
 @implementation CustomGridViewCell
 
-- (id)initWithFrame:(CGRect)frame
+//- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    if ((self = [super initWithFrame:frame])) {
+    if ((self = [super init])) {
         // Background view        
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
 //        self.backgroundView.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
@@ -38,7 +39,7 @@
         [self.textLabelBackgroundView addSubview:self.textLabel];
         [self addSubview:self.textLabelBackgroundView];
     }
-    
+    [self bringSubviewToFront:self.deleteButton];
     return self;
 }
 
@@ -52,13 +53,13 @@
     // Background view
     self.backgroundView.frame = self.bounds;
     self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.clipsToBounds = YES;
+//    self.clipsToBounds = YES;
     
     // Image view
     CGRect bg = CGRectMake(self.bounds.origin.x+1, self.bounds.origin.y+1, self.bounds.size.width-2, self.bounds.size.height-2);
     self.imageView.frame = bg;
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.imageView.clipsToBounds = YES;
+//    self.imageView.clipsToBounds = YES;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Layout label

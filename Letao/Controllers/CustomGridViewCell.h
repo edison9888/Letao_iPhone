@@ -7,6 +7,7 @@
 //
 
 #import "GMGridViewCell.h"
+#import "GMGridViewCell+Extended.h"
 
 @interface CustomGridViewCell : GMGridViewCell
 

@@ -13,7 +13,7 @@
 #import <RestKit/RestKit.h>
 #import "Brand.h"
 
-@interface ItemViewController : UIViewController <EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate, GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate, RKObjectLoaderDelegate>
+@interface ItemViewController : UIViewController <EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate, GMGridViewDataSource, GMGridViewTransformationDelegate, GMGridViewActionDelegate, RKObjectLoaderDelegate>
 {
     BOOL _reloading;
     EGORefreshTableHeaderView *_refreshHeaderView;
@@ -29,7 +29,6 @@
     
 }
 
-//@property(nonatomic, retain) GMGridView *gmGridView;
 @property(nonatomic, assign) NSInteger lastDeleteItemIndexAsked;
 
 - (id)initWithBrand:(Brand*)brand;

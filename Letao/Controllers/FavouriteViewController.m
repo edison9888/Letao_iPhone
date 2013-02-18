@@ -1,67 +1,40 @@
 //
-//  ItemViewController.m
+//  FavouriteViewController.m
 //  Letao
 //
-//  Created by Kaibin on 13-1-31.
+//  Created by Kaibin on 13-2-17.
 //  Copyright (c) 2013年 Kaibin. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import <UIKit/UIKit.h>
-#import "ItemViewController.h"
-#import "GMGridView.h"
+#import "FavouriteViewController.h"
 #import "CustomGridViewCell.h"
-#import "ItemService.h"
+#import "GMGridView.h"
 #import "Item.h"
-#import "UIImageView+WebCache.h"
-#import "ItemDetailViewController.h"
 #import "GlobalConstants.h"
-#import "Brand.h"
+#import "UIImageView+WebCache.h"
+#import "ItemManager.h"
+#import "ItemDetailViewController.h"
+#import "ItemManager.h"
 
-#define COUNT_EACH_FETCH 10
+@interface FavouriteViewController ()
 
-@implementation ItemViewController
+@end
+
+@implementation FavouriteViewController
 
 - (id)init
 {
     self = [super init];
     if (self) {
         _data = [[NSMutableArray alloc] init];
-        _brand = nil;
     }
-    _currentData = _data;
-
     return self;
-}
-
-- (id)initWithBrand:(Brand*)brand
-{
-    self = [super init];
-    if (self) {
-        _data = [[NSMutableArray alloc] init];
-        _brand = brand;
-    }
-    _currentData = _data;
-    
-    return self;
-}
-
-- (void)loadDataFrom:(int)start count:(int)count
-{
-    NSString *brand_id = [_brand name];
-    if (brand_id == nil) {
-        brand_id = @"";
-    }
-    [[ItemService defalutService] findItemsWithBrandId:brand_id start:start count:count delegate:self];
 }
 
 - (void)loadView
 {
     [super loadView];
-    
-    if (_brand != nil) {
-        self.title = _brand.name;
-    }
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
@@ -81,62 +54,35 @@
     _gmGridView.itemSpacing = spacing;
     _gmGridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     _gmGridView.centerGrid = NO;
+    _gmGridView.enableEditOnLongPress = YES;
+    _gmGridView.disableEditOnEmptySpaceTap = YES;
     _gmGridView.actionDelegate = self;
-//    _gmGridView.sortingDelegate = self;
+    _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
-    _gmGridView.delegate = self;
-    
-    if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _gmGridView.bounds.size.height, self.view.frame.size.width, _gmGridView.bounds.size.height)];
-		view.delegate = self;
-		[_gmGridView addSubview:view];
-		_refreshHeaderView = view;
-		[view release];
-		
-	}
-    [_refreshHeaderView refreshLastUpdatedDate];
-    
-    if (_refreshFooterView == nil) {
-        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, _gmGridView.frame.size.height+100, _gmGridView.frame.size.width, _gmGridView.frame.size.height)];
-		view.delegate = self;
-		[_gmGridView addSubview:view];
-        _refreshFooterView = view;
-        [view release];
-    }
-    [_refreshFooterView refreshLastUpdatedDate];
+}
+
+- (void)loadFavouriteData
+{
+    [_data removeAllObjects];
+    [_data addObjectsFromArray:[[ItemManager defaultManager] loadFavouriteItems]];
+    [_gmGridView reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _start = 0;
-    [self loadDataFrom:_start count:COUNT_EACH_FETCH];
-}
-
-- (void)viewDidUnload
-{
-    _gmGridView = nil;
-    _refreshHeaderView = nil;
-    _refreshFooterView = nil;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.hidesBottomBarWhenPushed = YES;
+    [self loadFavouriteData];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewDidUnload
 {
-    [super viewDidDisappear:animated];
-    self.hidesBottomBarWhenPushed = NO;
+    _gmGridView = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,33 +90,10 @@
     [super didReceiveMemoryWarning];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)dealloc
 {
-    return YES;
-}
-
-#pragma mark -
-#pragma mark - RKObjectLoaderDelegate
-
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
-    NSLog(@"Response code: %d", [response statusCode]);
-}
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
-{
-    NSLog(@"Error: %@", [error localizedDescription]);
-}
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
-{
-    _start += [objects count];
-    [_data addObjectsFromArray:objects];
-    
-    NSLog(@"***Load objects count: %d", [objects count]);
-    NSLog(@"***Offset: %d", _start);
-    NSLog(@"***Total objects count: %d", [_data count]);
-    
-    [_gmGridView reloadData];
+    [super dealloc];
+    [_data release];
 }
 
 #pragma mark -
@@ -178,7 +101,8 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return [_currentData count];
+    NSLog(@"number of data count:%d",_data.count);
+    return [_data count];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -218,8 +142,8 @@
         customCell = [[CustomGridViewCell alloc] init];
         customCell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         customCell.deleteButtonOffset = CGPointMake(-15, -15);
+
     }
-    
     [[customCell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     Item *item = [_data objectAtIndex:index];
@@ -233,9 +157,15 @@
     return customCell;
 }
 
+- (void)removeItem
+{
+    NSLog(@"remove item from superview");
+    
+}
+
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
 {
-    return YES; 
+    return YES;
 }
 
 #pragma mark -
@@ -245,7 +175,6 @@
 {
     ItemDetailViewController *controller = [[ItemDetailViewController alloc] initWithItem:[_data objectAtIndex:position]];
     [self.navigationController pushViewController:controller animated:YES];
-    
 }
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
@@ -258,6 +187,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
     
     [alert show];
+    [alert release];
     
     _lastDeleteItemIndexAsked = index;
 }
@@ -266,7 +196,8 @@
 {
     if (buttonIndex == 1)
     {
-        [_currentData removeObjectAtIndex:_lastDeleteItemIndexAsked];
+        [[ItemManager defaultManager] removeItemFromFavourite:[_data objectAtIndex:_lastDeleteItemIndexAsked]];
+        [_data removeObjectAtIndex:_lastDeleteItemIndexAsked];
         [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
     }
 }
@@ -307,14 +238,14 @@
 
 - (void)GMGridView:(GMGridView *)gridView moveItemAtIndex:(NSInteger)oldIndex toIndex:(NSInteger)newIndex
 {
-    NSObject *object = [_currentData objectAtIndex:oldIndex];
-    [_currentData removeObject:object];
-    [_currentData insertObject:object atIndex:newIndex];
+    NSObject *object = [_data objectAtIndex:oldIndex];
+    [_data removeObject:object];
+    [_data insertObject:object atIndex:newIndex];
 }
 
 - (void)GMGridView:(GMGridView *)gridView exchangeItemAtIndex:(NSInteger)index1 withItemAtIndex:(NSInteger)index2
 {
-    [_currentData exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
+    [_data exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
 }
 
 #pragma mark -
@@ -407,100 +338,6 @@
 }
 
 #pragma mark -
-#pragma mark UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    [_refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
-
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    [_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
-	
-}
-#pragma mark -
-#pragma mark Data Source Loading / Reloading Methods
-
-- (void)reloadTableViewDataSource
-{
-    [_data removeAllObjects];
-    _start = 0;
-    [self loadDataFrom:_start count:COUNT_EACH_FETCH];
-}
-
-- (void)doneLoadingTableViewData
-{
-	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_gmGridView];
-}
-
-- (void)loadMoreTableViewDataSource
-{
-    [self loadDataFrom:_start count:COUNT_EACH_FETCH];
-}
-
-- (void)doneloadingMoreData
-{
-    _reloading = NO;
-    [_refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:_gmGridView];
-    
-    //reset the _refreshFooterView frame
-    _refreshFooterView.frame = CGRectMake(0.0f, _gmGridView.contentSize.height, _gmGridView.frame.size.width, _gmGridView.frame.size.height);
-}
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
-{
-    
-    _reloading = YES;
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:2.0];
-	
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-	
-	return _reloading; // should return if data source model is reloading
-	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{
-	
-	return [NSDate date]; // should return date data source was last changed
-	
-}
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableFooterDidTriggerRefresh:(EGORefreshTableHeaderView*)view
-{
-    _reloading = YES;
-	[self loadMoreTableViewDataSource];
-    [self performSelector:@selector(doneloadingMoreData) withObject:nil afterDelay:2.0];
-}
-
-- (BOOL)egoRefreshTableFooterDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-    
-    return _reloading; // should return if data source model is reloading
-	
-}
-
-- (NSDate*)egoRefreshTableFooterDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{
-    
-	return [NSDate date]; // should return date data source was last changed
-}
-
+#pragma mark private methods
 
 @end

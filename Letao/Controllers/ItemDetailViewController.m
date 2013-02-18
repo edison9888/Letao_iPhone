@@ -10,6 +10,8 @@
 #import "SlideImageView.h"
 #import "UIImageUtil.h"
 #import "GlobalConstants.h"
+#import "ItemManager.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ItemDetailViewController ()
 
@@ -44,12 +46,55 @@
     [self addSlideImageView];
     
     [self addDetailView];
-        
-    NSLog(@"%f",_totalHeight);
     
+    [self addFavouriteView];
+            
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
     
 }
+
+- (void)clickFavourite:(id)sender
+{
+    ItemManager *itemManager = [ItemManager defaultManager];
+    [itemManager addItemIntoFavourite:self.item];
+    
+    MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"成功添加到我的喜欢";
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Checkmark"]] autorelease];
+
+    [HUD showAnimated:YES whileExecutingBlock:^{
+        sleep(1);
+    } completionBlock:^{
+        [HUD removeFromSuperview];
+        [HUD release];
+    }];
+    
+}
+
+- (void)addFavouriteView
+{
+    UIView *favouritesView = [[UIView alloc]initWithFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, 40)];
+    favouritesView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bottombg.png"]];
+    
+    UIButton *favButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-93)/2, 5, 93, 29)];
+    [favButton addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
+    favButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
+    [favButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [favButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [favButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
+    [favButton setTitle:@"喜欢" forState:UIControlStateNormal];
+    [favButton setEnabled:YES];
+    [favouritesView addSubview:favButton];
+    [favButton release];
+    
+    [_dataScrollView addSubview:favouritesView];
+    [favouritesView release];
+    
+    _totalHeight += favouritesView.frame.size.height;
+}
+
 
 - (void)addDetailView
 {

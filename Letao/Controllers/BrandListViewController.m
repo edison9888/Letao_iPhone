@@ -47,6 +47,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_dataList release];
+    [_dataTableView release];
+}
+
 - (void)reloadTableView
 {
     [self.dataTableView reloadData];

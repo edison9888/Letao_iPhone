@@ -229,6 +229,13 @@
 		C687DC7716B54CBF00AB82A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7616B54CBF00AB82A1 /* SystemConfiguration.framework */; };
 		C687DC7916B54CD000AB82A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7816B54CD000AB82A1 /* MobileCoreServices.framework */; };
 		C687DC7B16B54CE600AB82A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7A16B54CE600AB82A1 /* MapKit.framework */; };
+		C6901C7216CFB12F009C7816 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6901C7116CFB12F009C7816 /* ItemManager.m */; };
+		C6901C7616CFEC46009C7816 /* bottombg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7316CFEC46009C7816 /* bottombg@2x.png */; };
+		C6901C7716CFEC46009C7816 /* favorites_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7416CFEC46009C7816 /* favorites_ok@2x.png */; };
+		C6901C7816CFEC46009C7816 /* favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7516CFEC46009C7816 /* favorites@2x.png */; };
+		C6901C7D16D09F52009C7816 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6901C7B16D09F52009C7816 /* FavouriteViewController.m */; };
+		C6901C9216D0EF46009C7816 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6901C8F16D0EF19009C7816 /* libMBProgressHUD.a */; };
+		C6901CA016D23D99009C7816 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C9F16D23D99009C7816 /* close_x.png */; };
 		C6A8FCE516BEC28100A5CE88 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A8FCE416BEC28100A5CE88 /* Security.framework */; };
 		C6A8FCE716BEC32500A5CE88 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A8FCE616BEC32500A5CE88 /* CoreData.framework */; };
 		C6A8FCF716BF669D00A5CE88 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A8FCF616BF669D00A5CE88 /* Item.m */; };
@@ -296,6 +303,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 25160D1514564E810060A5C5;
 			remoteInfo = RestKit;
+		};
+		C6901C8E16D0EF19009C7816 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D286A7491518C70F00E13FB8;
+			remoteInfo = MBProgressHUD;
+		};
+		C6901C9016D0EF3C009C7816 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D286A7481518C70F00E13FB8;
+			remoteInfo = MBProgressHUD;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -718,6 +739,15 @@
 		C687DC7616B54CBF00AB82A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C687DC7816B54CD000AB82A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C687DC7A16B54CE600AB82A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C6901C7016CFB12F009C7816 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
+		C6901C7116CFB12F009C7816 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		C6901C7316CFEC46009C7816 /* bottombg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombg@2x.png"; sourceTree = "<group>"; };
+		C6901C7416CFEC46009C7816 /* favorites_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites_ok@2x.png"; sourceTree = "<group>"; };
+		C6901C7516CFEC46009C7816 /* favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites@2x.png"; sourceTree = "<group>"; };
+		C6901C7A16D09F52009C7816 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
+		C6901C7B16D09F52009C7816 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
+		C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
+		C6901C9F16D23D99009C7816 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
 		C6A8FCE416BEC28100A5CE88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C6A8FCE616BEC32500A5CE88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C6A8FCF516BF669D00A5CE88 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
@@ -736,6 +766,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6901C9216D0EF46009C7816 /* libMBProgressHUD.a in Frameworks */,
 				C647029A16C8D1EF00815B53 /* libRestKit.a in Frameworks */,
 				C6A8FCE716BEC32500A5CE88 /* CoreData.framework in Frameworks */,
 				C6A8FCE516BEC28100A5CE88 /* Security.framework in Frameworks */,
@@ -858,6 +889,10 @@
 		C64AE9B116B822A800363ED6 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C6901C9F16D23D99009C7816 /* close_x.png */,
+				C6901C7316CFEC46009C7816 /* bottombg@2x.png */,
+				C6901C7416CFEC46009C7816 /* favorites_ok@2x.png */,
+				C6901C7516CFEC46009C7816 /* favorites@2x.png */,
 				C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */,
 				C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */,
 				C6A8FD4E16C29C7000A5CE88 /* hierarchy.png */,
@@ -901,6 +936,7 @@
 		C64AED5A16BA192900363ED6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C6901C7916D09F1F009C7816 /* Favourite */,
 				C6387EF816CB44CD009229DF /* Brand */,
 				C64AED6516BA1AC300363ED6 /* Item */,
 				C64AED5B16BA192900363ED6 /* MainController.h */,
@@ -1423,6 +1459,7 @@
 		C687DAAF16B54BCD00AB82A1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */,
 				C63B7A6916BACEA30072A4D2 /* EGOTableViewPullRefresh */,
 				C63B7A3A16BA4D790072A4D2 /* GMGridView.xcodeproj */,
 				C64AECE916BA168B00363ED6 /* ASIHttpRequest */,
@@ -1754,6 +1791,8 @@
 				C6A8FCF616BF669D00A5CE88 /* Item.m */,
 				C6387F4516CB9442009229DF /* Brand.h */,
 				C6387F4616CB9442009229DF /* Brand.m */,
+				C6901C7016CFB12F009C7816 /* ItemManager.h */,
+				C6901C7116CFB12F009C7816 /* ItemManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1767,6 +1806,23 @@
 				C6387F4316CB9262009229DF /* BrandService.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		C6901C7916D09F1F009C7816 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				C6901C7A16D09F52009C7816 /* FavouriteViewController.h */,
+				C6901C7B16D09F52009C7816 /* FavouriteViewController.m */,
+			);
+			name = Favourite;
+			sourceTree = "<group>";
+		};
+		C6901C8816D0EF19009C7816 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6901C8F16D0EF19009C7816 /* libMBProgressHUD.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1783,6 +1839,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C6901C9116D0EF3C009C7816 /* PBXTargetDependency */,
 				C647029916C8D1E600815B53 /* PBXTargetDependency */,
 				C63B7A4416BA4D850072A4D2 /* PBXTargetDependency */,
 			);
@@ -1816,6 +1873,10 @@
 				{
 					ProductGroup = C63B7A3B16BA4D790072A4D2 /* Products */;
 					ProjectRef = C63B7A3A16BA4D790072A4D2 /* GMGridView.xcodeproj */;
+				},
+				{
+					ProductGroup = C6901C8816D0EF19009C7816 /* Products */;
+					ProjectRef = C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */;
 				},
 				{
 					ProductGroup = C647028416C8D1DB00815B53 /* Products */;
@@ -1872,6 +1933,13 @@
 			remoteRef = C647029616C8D1DB00815B53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C6901C8F16D0EF19009C7816 /* libMBProgressHUD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMBProgressHUD.a;
+			remoteRef = C6901C8E16D0EF19009C7816 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1918,6 +1986,10 @@
 				C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */,
 				C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */,
 				C6387EFD16CB451E009229DF /* BrandListViewController.xib in Resources */,
+				C6901C7616CFEC46009C7816 /* bottombg@2x.png in Resources */,
+				C6901C7716CFEC46009C7816 /* favorites_ok@2x.png in Resources */,
+				C6901C7816CFEC46009C7816 /* favorites@2x.png in Resources */,
+				C6901CA016D23D99009C7816 /* close_x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2100,6 +2172,8 @@
 				C6387EFC16CB451E009229DF /* BrandListViewController.m in Sources */,
 				C6387F4416CB9262009229DF /* BrandService.m in Sources */,
 				C6387F4716CB9442009229DF /* Brand.m in Sources */,
+				C6901C7216CFB12F009C7816 /* ItemManager.m in Sources */,
+				C6901C7D16D09F52009C7816 /* FavouriteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2115,6 +2189,11 @@
 			isa = PBXTargetDependency;
 			name = RestKit;
 			targetProxy = C647029816C8D1E600815B53 /* PBXContainerItemProxy */;
+		};
+		C6901C9116D0EF3C009C7816 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MBProgressHUD;
+			targetProxy = C6901C9016D0EF3C009C7816 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

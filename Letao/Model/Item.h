@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Item : NSObject
+@interface Item : NSObject<NSCoding>
 
 @property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *subtitle;

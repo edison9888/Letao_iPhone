@@ -61,16 +61,18 @@ static ItemManager *_defaultManager;
     [self writeToFileWithArray:newArray];
 }
 
+//you are not allowed to change arrays when you are enumerating them.
 - (void)removeItemFromFavourite:(Item*)item
 {
     NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavouriteItems]];
-    NSLog(@"newArray count:%d",newArray.count);
+    NSMutableArray *itemToDelete = [NSMutableArray array];
     for (Item *aItem in newArray) {
         if ([aItem.title isEqualToString:item.title]) {
-            [newArray removeObject:aItem];
+            [itemToDelete addObject:aItem];
+            break;
         }
     }
-    NSLog(@"newArray count:%d",newArray.count);
+    [newArray removeObjectsInArray:itemToDelete];
     [self writeToFileWithArray:newArray];
 }
 

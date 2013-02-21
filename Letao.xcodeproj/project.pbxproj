@@ -56,8 +56,6 @@
 		C64AED0316BA168B00363ED6 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AECF616BA168B00363ED6 /* ASIHTTPRequest.m */; };
 		C64AED0416BA168B00363ED6 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AECFA16BA168B00363ED6 /* ASIInputStream.m */; };
 		C64AED0516BA168B00363ED6 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AECFC16BA168B00363ED6 /* ASINetworkQueue.m */; };
-		C64AED5E16BA192900363ED6 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AED5C16BA192900363ED6 /* MainController.m */; };
-		C64AED5F16BA192900363ED6 /* MainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C64AED5D16BA192900363ED6 /* MainController.xib */; };
 		C64AED6316BA1A9B00363ED6 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AED6116BA1A9B00363ED6 /* ItemViewController.m */; };
 		C687D9EA16B53B3100AB82A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687D9E916B53B3100AB82A1 /* UIKit.framework */; };
 		C687D9EC16B53B3100AB82A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687D9EB16B53B3100AB82A1 /* Foundation.framework */; };
@@ -413,9 +411,6 @@
 		C64AECFB16BA168B00363ED6 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
 		C64AECFC16BA168B00363ED6 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		C64AECFD16BA168B00363ED6 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
-		C64AED5B16BA192900363ED6 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
-		C64AED5C16BA192900363ED6 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
-		C64AED5D16BA192900363ED6 /* MainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainController.xib; sourceTree = "<group>"; };
 		C64AED6016BA1A9B00363ED6 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
 		C64AED6116BA1A9B00363ED6 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
 		C687D9E516B53B3100AB82A1 /* Letao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letao.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1020,9 +1015,6 @@
 				C6901C7916D09F1F009C7816 /* Favourite */,
 				C6387EF816CB44CD009229DF /* Brand */,
 				C64AED6516BA1AC300363ED6 /* Item */,
-				C64AED5B16BA192900363ED6 /* MainController.h */,
-				C64AED5C16BA192900363ED6 /* MainController.m */,
-				C64AED5D16BA192900363ED6 /* MainController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2052,7 +2044,6 @@
 				C64AE9BB16B822A800363ED6 /* man.png in Resources */,
 				C64AE9CE16B8357F00363ED6 /* bookmark.png in Resources */,
 				C64AE9CF16B8357F00363ED6 /* star.png in Resources */,
-				C64AED5F16BA192900363ED6 /* MainController.xib in Resources */,
 				C63B7A4A16BA8D3A0072A4D2 /* 3.png in Resources */,
 				C63B7A8016BACEA30072A4D2 /* EGORefreshTableHeaderView.strings in Resources */,
 				C63B7A8116BACEA30072A4D2 /* blackArrow.png in Resources */,
@@ -2251,7 +2242,6 @@
 				C64AED0316BA168B00363ED6 /* ASIHTTPRequest.m in Sources */,
 				C64AED0416BA168B00363ED6 /* ASIInputStream.m in Sources */,
 				C64AED0516BA168B00363ED6 /* ASINetworkQueue.m in Sources */,
-				C64AED5E16BA192900363ED6 /* MainController.m in Sources */,
 				C64AED6316BA1A9B00363ED6 /* ItemViewController.m in Sources */,
 				C63B7A4816BA4EE80072A4D2 /* CustomGridViewCell.m in Sources */,
 				C63B7A7E16BACEA30072A4D2 /* EGORefreshTableFooterView.m in Sources */,

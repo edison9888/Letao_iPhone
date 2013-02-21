@@ -78,4 +78,13 @@
     self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
+- (void)dealloc
+{
+    [_textLabel release], _textLabel = nil;
+    [_textLabelBackgroundView release], _textLabelBackgroundView = nil;
+    [_backgroundView release], _backgroundView = nil;
+    [_imageView release], _imageView = nil;
+    [super dealloc];
+}
+
 @end

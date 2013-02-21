@@ -103,7 +103,7 @@
     [favouritesView addSubview:favButton];
     [favButton release];
     
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width+50)/2, 5, 93, 29)];
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width+30)/2, 5, 93, 29)];
     [shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
     shareButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -212,8 +212,16 @@
 
 - (void)dealloc
 {
-    [_item release];
+    [_dataScrollView release], _dataScrollView = nil;
+    [_item release], _item = nil;
     [super dealloc];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    _dataScrollView = nil;
+    _item = nil;
 }
 
 - (void)addSlideImageView

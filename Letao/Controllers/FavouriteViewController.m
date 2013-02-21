@@ -92,8 +92,8 @@
 
 - (void)dealloc
 {
+    [_data release], _data = nil;
     [super dealloc];
-    [_data release];
 }
 
 #pragma mark -

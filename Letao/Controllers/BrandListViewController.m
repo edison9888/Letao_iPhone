@@ -49,9 +49,9 @@
 
 - (void)dealloc
 {
+    [_dataList release], _dataList = nil;
+    [_dataTableView release], _dataTableView = nil;
     [super dealloc];
-    [_dataList release];
-    [_dataTableView release];
 }
 
 - (void)reloadTableView

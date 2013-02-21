@@ -17,5 +17,9 @@
 
 #define PARA_BRAND_ID   @"brand_id"
 
+#define SINA_WEIBO_APP_KEY       @"617036183"
+#define SINA_WEIBO_APP_SECRET    @"7079419c3608a680c4ad056b1cae9f6c"
+#define kAppRedirectURI     @"http://"
+
 
 #endif

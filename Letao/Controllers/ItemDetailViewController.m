@@ -12,6 +12,7 @@
 #import "GlobalConstants.h"
 #import "ItemManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "ShareToSinaController.h"
 
 @interface ItemDetailViewController ()
 
@@ -35,6 +36,12 @@
         self.item = item;
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = YES;
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -73,12 +80,19 @@
     
 }
 
+- (void)clickShare:(id)sender
+{
+    ShareToSinaController *controller = [[ShareToSinaController alloc] initWithItem:_item];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (void)addFavouriteView
 {
     UIView *favouritesView = [[UIView alloc]initWithFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, 40)];
     favouritesView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bottombg.png"]];
     
-    UIButton *favButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-93)/2, 5, 93, 29)];
+    UIButton *favButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, 5, 93, 29)];
     [favButton addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
     favButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
     [favButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -88,6 +102,18 @@
     [favButton setEnabled:YES];
     [favouritesView addSubview:favButton];
     [favButton release];
+    
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width+50)/2, 5, 93, 29)];
+    [shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+    shareButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
+    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [shareButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
+    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+    [shareButton setEnabled:YES];
+    [favouritesView addSubview:shareButton];
+    [shareButton release];
+
     
     [_dataScrollView addSubview:favouritesView];
     [favouritesView release];

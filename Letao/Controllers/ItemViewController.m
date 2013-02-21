@@ -245,6 +245,7 @@
 {
     ItemDetailViewController *controller = [[ItemDetailViewController alloc] initWithItem:[_data objectAtIndex:position]];
     [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
     
 }
 

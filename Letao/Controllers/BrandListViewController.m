@@ -119,7 +119,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ItemViewController *controller = [[ItemViewController alloc] initWithBrand:[_dataList objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:controller animated:YES];    
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 @end

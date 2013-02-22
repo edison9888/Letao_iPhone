@@ -17,5 +17,6 @@
 
 @property(nonatomic, retain) NSMutableArray *data;
 @property(nonatomic, assign) NSInteger lastDeleteItemIndexAsked;
+@property (nonatomic, retain) UILabel *helpLabel;
 
 @end

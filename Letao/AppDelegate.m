@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainController.h"
 #import "ItemViewController.h"
 #import "BrandListViewController.h"
 #import "FavouriteViewController.h"

@@ -23,6 +23,15 @@
 
 @implementation FavouriteViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (id)init
 {
     self = [super init];
@@ -60,6 +69,15 @@
     _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
+    
+    _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 275, 40)];
+    _helpLabel.hidden = YES;
+    NSString* text = @"您暂无喜欢的套套，在详情页面点击喜欢添加！";
+    _helpLabel.numberOfLines = 0;
+    _helpLabel.textAlignment = UITextAlignmentCenter;
+    _helpLabel.text = text;
+    _helpLabel.font = [UIFont systemFontOfSize:13];
+    [self.view addSubview:_helpLabel];
 }
 
 - (void)loadFavouriteData
@@ -72,17 +90,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self loadFavouriteData];
+    if ([_data count] == 0) {
+        _helpLabel.hidden = NO;
+    } else {
+        _helpLabel.hidden = YES;
+    }
 }
 
 - (void)viewDidUnload
 {
     _gmGridView = nil;
+    _helpLabel = nil;
+    _data = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,6 +119,7 @@
 - (void)dealloc
 {
     [_data release], _data = nil;
+    [_helpLabel release], _helpLabel = nil;
     [super dealloc];
 }
 

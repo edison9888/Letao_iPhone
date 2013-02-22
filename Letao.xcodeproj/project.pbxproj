@@ -244,7 +244,6 @@
 		C6901C7616CFEC46009C7816 /* bottombg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7316CFEC46009C7816 /* bottombg@2x.png */; };
 		C6901C7716CFEC46009C7816 /* favorites_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7416CFEC46009C7816 /* favorites_ok@2x.png */; };
 		C6901C7816CFEC46009C7816 /* favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7516CFEC46009C7816 /* favorites@2x.png */; };
-		C6901C7D16D09F52009C7816 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6901C7B16D09F52009C7816 /* FavouriteViewController.m */; };
 		C6901C9216D0EF46009C7816 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6901C8F16D0EF19009C7816 /* libMBProgressHUD.a */; };
 		C6901CA016D23D99009C7816 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C9F16D23D99009C7816 /* close_x.png */; };
 		C6A8FCE516BEC28100A5CE88 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A8FCE416BEC28100A5CE88 /* Security.framework */; };
@@ -256,6 +255,7 @@
 		C6A8FD9E16C2AC3800A5CE88 /* ItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FD9C16C2AC3800A5CE88 /* ItemDetailViewController.xib */; };
 		C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */; };
 		C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */; };
+		C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -771,8 +771,6 @@
 		C6901C7316CFEC46009C7816 /* bottombg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombg@2x.png"; sourceTree = "<group>"; };
 		C6901C7416CFEC46009C7816 /* favorites_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites_ok@2x.png"; sourceTree = "<group>"; };
 		C6901C7516CFEC46009C7816 /* favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites@2x.png"; sourceTree = "<group>"; };
-		C6901C7A16D09F52009C7816 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
-		C6901C7B16D09F52009C7816 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
 		C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		C6901C9F16D23D99009C7816 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
 		C6A8FCE416BEC28100A5CE88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -786,6 +784,8 @@
 		C6A8FD9C16C2AC3800A5CE88 /* ItemDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailViewController.xib; sourceTree = "<group>"; };
 		C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic3@2x.png"; sourceTree = "<group>"; };
 		C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
+		C6A9E7C116D71156002BAD63 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
+		C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1886,8 +1886,8 @@
 		C6901C7916D09F1F009C7816 /* Favourite */ = {
 			isa = PBXGroup;
 			children = (
-				C6901C7A16D09F52009C7816 /* FavouriteViewController.h */,
-				C6901C7B16D09F52009C7816 /* FavouriteViewController.m */,
+				C6A9E7C116D71156002BAD63 /* FavouriteViewController.h */,
+				C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */,
 			);
 			name = Favourite;
 			sourceTree = "<group>";
@@ -2254,12 +2254,12 @@
 				C6387F4416CB9262009229DF /* BrandService.m in Sources */,
 				C6387F4716CB9442009229DF /* Brand.m in Sources */,
 				C6901C7216CFB12F009C7816 /* ItemManager.m in Sources */,
-				C6901C7D16D09F52009C7816 /* FavouriteViewController.m in Sources */,
 				C633B3F816D524DC00B28E58 /* SinaWeiboManager.m in Sources */,
 				C633B40516D52A3300B28E58 /* ShareToSinaController.m in Sources */,
 				C633B41616D5308300B28E58 /* SinaWeibo.m in Sources */,
 				C633B41716D5308300B28E58 /* SinaWeiboAuthorizeView.m in Sources */,
 				C633B41816D5308300B28E58 /* SinaWeiboRequest.m in Sources */,
+				C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

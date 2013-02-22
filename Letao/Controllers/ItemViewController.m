@@ -191,7 +191,7 @@
         }
         else
         {
-            return CGSizeMake(150, 110);
+            return CGSizeMake(152, 110);
         }
     }
     else

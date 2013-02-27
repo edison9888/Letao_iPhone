@@ -88,29 +88,34 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
-    
-    UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
-    // use cap insets that leave a 1x1 pixel area in the center of the image
-    UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
-    UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    // this image should stretch to fill the button
-    [button setBackgroundImage:stretchy forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [button setTitle:@"   EDIT   " forState:UIControlStateNormal];
-    [button sizeToFit];
-    [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;}
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self loadFavouriteData];
+        
     if ([_data count] == 0) {
         _helpLabel.hidden = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+
     } else {
         _helpLabel.hidden = YES;
+        
+        UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
+        // use cap insets that leave a 1x1 pixel area in the center of the image
+        UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
+        UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        // this image should stretch to fill the button
+        [button setBackgroundImage:stretchy forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        [button setTitle:@"   EDIT   " forState:UIControlStateNormal];
+        [button sizeToFit];
+        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+
     }
 }
 
@@ -202,7 +207,7 @@
 
 - (void)clickEdit:(id)sender
 {
-    _gmGridView.editing = YES;
+    _gmGridView.editing = !_gmGridView.isEditing;
     [_gmGridView layoutSubviewsWithAnimation:GMGridViewItemAnimationFade];
 
 }

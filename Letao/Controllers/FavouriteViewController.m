@@ -16,6 +16,7 @@
 #import "ItemManager.h"
 #import "ItemDetailViewController.h"
 #import "ItemManager.h"
+#import "UIBarButtonItemExt.h"
 
 @interface FavouriteViewController ()
 
@@ -46,11 +47,6 @@
     [super loadView];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
-    self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.navigationController.navigationBar.layer.shadowRadius = 3.0f;
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.8f;
     
     NSInteger spacing = INTERFACE_IS_PHONE ? 5 : 15;
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
@@ -71,8 +67,9 @@
     _gmGridView.dataSource = self;
     
     _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 275, 40)];
+    _helpLabel.backgroundColor = [UIColor clearColor];
     _helpLabel.hidden = YES;
-    NSString* text = @"您暂无喜欢的套套，在详情页面点击喜欢添加！";
+    NSString* text = @"在详情页面点击心形按钮添加喜欢的项目！";
     _helpLabel.numberOfLines = 0;
     _helpLabel.textAlignment = UITextAlignmentCenter;
     _helpLabel.text = text;
@@ -90,8 +87,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
     
-}
+    UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
+    // use cap insets that leave a 1x1 pixel area in the center of the image
+    UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
+    UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    // this image should stretch to fill the button
+    [button setBackgroundImage:stretchy forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [button setTitle:@"   EDIT   " forState:UIControlStateNormal];
+    [button sizeToFit];
+    [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -180,7 +190,7 @@
     if (![imageUrl hasPrefix:@"http"]) {
         imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:imageUrl];
     }
-    [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"3.png"]];
+    [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"photo-placeholder"]];
     return customCell;
 }
 
@@ -188,6 +198,13 @@
 {
     NSLog(@"remove item from superview");
     
+}
+
+- (void)clickEdit:(id)sender
+{
+    _gmGridView.editing = YES;
+    [_gmGridView layoutSubviewsWithAnimation:GMGridViewItemAnimationFade];
+
 }
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index

@@ -17,7 +17,7 @@
     if ((self = [super init])) {
         // Background view        
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
-        self.backgroundView.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+        self.backgroundView.backgroundColor = [UIColor whiteColor];
         self.backgroundView.layer.borderWidth = 1;
         self.backgroundView.layer.borderColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0].CGColor;
         [self addSubview:self.backgroundView];
@@ -55,8 +55,8 @@
     self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //    self.clipsToBounds = YES;
     
-    // Image view
-    CGRect bg = CGRectMake(self.bounds.origin.x+1, self.bounds.origin.y+1, self.bounds.size.width, self.bounds.size.height);
+    // Image view-
+    CGRect bg = CGRectMake(self.bounds.origin.x+1, self.bounds.origin.y+1, self.bounds.size.width-2, self.bounds.size.height-2);
     self.imageView.frame = bg;
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //    self.imageView.clipsToBounds = YES;

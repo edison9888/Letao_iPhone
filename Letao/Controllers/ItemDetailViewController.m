@@ -48,16 +48,41 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered  target:self action:@selector(clickEdit:)] autorelease];
+    
+    UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 26, 24)] autorelease];
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    
+    UIView *rightBarView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 24)] autorelease];
+    UIButton *favouriteButon = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)] autorelease];
+    UIButton *shareButon = [[[UIButton alloc] initWithFrame:CGRectMake(34, 0, 24, 24)] autorelease];
+    
+    [favouriteButon setImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
+    [shareButon setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [favouriteButon addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
+    [shareButon addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [rightBarView addSubview:favouriteButon];
+    [rightBarView addSubview:shareButon];
+    
+    UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarView] autorelease];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+
+    
     self.title = @"详情";
     
     [self addSlideImageView];
     
     [self addDetailView];
-    
-    [self addFavouriteView];
-            
+        
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
     
+}
+- (void)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickFavourite:(id)sender
@@ -128,6 +153,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _totalHeight, 310, 30)];
     titleLabel.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
+//    titleLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"section-bar2"]];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text =  [NSString stringWithFormat:(@" %@"),_item.title];
@@ -239,7 +265,7 @@
     }
     
     SlideImageView *slideImageView = [[SlideImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    slideImageView.defaultImage = @"3.png";
+    slideImageView.defaultImage = @"photo-placeholder";
     
     [slideImageView.pageControl setPageIndicatorImageForCurrentPage:[UIImage strectchableImageName:@"point_pic3.png"] forNotCurrentPage:[UIImage strectchableImageName:@"point_pic4.png"]];
     [slideImageView setImages:imagePathList];

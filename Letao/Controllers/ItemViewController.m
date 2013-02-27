@@ -62,14 +62,8 @@
     if (_brand != nil) {
         self.title = _brand.name;
     }
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
-    self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.navigationController.navigationBar.layer.shadowRadius = 3.0f;
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.8f;
-    
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+
     NSInteger spacing = INTERFACE_IS_PHONE ? 5 : 15;
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -113,6 +107,20 @@
     [super viewDidLoad];
     _start = 0;
     [self loadDataFrom:_start count:COUNT_EACH_FETCH];
+    
+    if (_brand) {
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered  target:self action:@selector(clickEdit:)] autorelease];
+        
+        UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 26, 24)] autorelease];
+        [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    }
+}
+
+- (void)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
@@ -229,7 +237,7 @@
     if (![imageUrl hasPrefix:@"http"]) {
         imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:imageUrl];
     }
-    [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"3.png"]];
+    [customCell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"photo-placeholder"]];
     return customCell;
 }
 

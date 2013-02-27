@@ -32,11 +32,11 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];    
-    self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.navigationController.navigationBar.layer.shadowRadius = 3.0f;
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.8f;
+//    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
+//    self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
+//    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+//    self.navigationController.navigationBar.layer.shadowRadius = 3.0f;
+//    self.navigationController.navigationBar.layer.shadowOpacity = 0.8f;
     
     [self loadData];
 }

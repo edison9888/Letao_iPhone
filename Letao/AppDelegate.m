@@ -64,6 +64,14 @@
     
 }
 
+- (void)configureAppearance
+{
+    UIImage *barImage = [UIImage imageNamed:@"bar-background"];
+    [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+    [[UIToolbar appearance] setBackgroundImage:barImage forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //HJCache
@@ -80,6 +88,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [self initTabViewControllers];
+    [self configureAppearance];
     self.window.rootViewController  = _tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

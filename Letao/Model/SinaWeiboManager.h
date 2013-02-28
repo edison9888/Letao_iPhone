@@ -13,7 +13,7 @@
 
 @property (retain, nonatomic) SinaWeibo *sinaweibo;
 
-+ (SinaWeiboManager *)defaultManager;
++ (SinaWeiboManager *)sharedManager;
 
 - (void)createSinaweiboWithAppKey:(NSString *)appKey
                         appSecret:(NSString *)appSecret

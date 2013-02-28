@@ -11,14 +11,17 @@
 
 @implementation ItemManager
 
-static ItemManager *_defaultManager;
 
-+ (ItemManager*)defaultManager
++ (ItemManager*)sharedManager
 {
-    if (_defaultManager == nil) {
-        _defaultManager = [[super alloc] init];
+    static ItemManager *_sharedManager;
+    @synchronized(self)
+    {
+        if (_sharedManager == nil) {
+            _sharedManager = [[super alloc] init];
+        }
     }
-    return _defaultManager;
+    return _sharedManager;
 }
 
 - (NSString*)getFilePath

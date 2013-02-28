@@ -87,7 +87,7 @@
 
 - (void)clickFavourite:(id)sender
 {
-    ItemManager *itemManager = [ItemManager defaultManager];
+    ItemManager *itemManager = [ItemManager sharedManager];
     [itemManager addItemIntoFavourite:self.item];
     
     MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];

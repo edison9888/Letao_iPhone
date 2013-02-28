@@ -8,7 +8,6 @@
 
 #import "SinaWeiboManager.h"
 
-static SinaWeiboManager* _globalSinaweiboManager = nil;
 
 @interface SinaWeiboManager()
 @property (retain, nonatomic) NSString *appKey;
@@ -29,13 +28,17 @@ static SinaWeiboManager* _globalSinaweiboManager = nil;
     [super dealloc];
 }
 
-+ (SinaWeiboManager *)defaultManager
++ (SinaWeiboManager *)sharedManager
 {
-    if (_globalSinaweiboManager == nil) {
-        _globalSinaweiboManager = [[SinaWeiboManager alloc] init];
+    static SinaWeiboManager* _sharedManager = nil;
+    @synchronized(self)
+    {
+        if (_sharedManager == nil) {
+            _sharedManager = [[SinaWeiboManager alloc] init];
+        }
+        
     }
-    
-    return _globalSinaweiboManager;
+    return _sharedManager;
 }
 
 - (void)createSinaweiboWithAppKey:(NSString *)appKey

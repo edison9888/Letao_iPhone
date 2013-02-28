@@ -53,7 +53,7 @@
     
     [self showSendView];
         
-    _sinaweiboManager = [SinaWeiboManager defaultManager];
+    _sinaweiboManager = [SinaWeiboManager sharedManager];
     [_sinaweiboManager createSinaweiboWithAppKey:SINA_WEIBO_APP_KEY appSecret:SINA_WEIBO_APP_SECRET appRedirectURI:kAppRedirectURI delegate:self];
     
     if (![_sinaweiboManager.sinaweibo isAuthValid]) {

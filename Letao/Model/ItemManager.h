@@ -11,7 +11,7 @@
 
 @interface ItemManager : NSObject
 
-+ (ItemManager*)defaultManager;
++ (ItemManager*)sharedManager;
 
 - (void)addItemIntoFavourite:(Item*)item;
 - (void)removeItemFromFavourite:(Item*)item;

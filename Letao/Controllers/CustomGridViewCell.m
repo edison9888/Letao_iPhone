@@ -28,7 +28,7 @@
         
         // Label
         self.textLabelBackgroundView = [[UIView alloc] initWithFrame:CGRectNull];
-        self.textLabelBackgroundView.backgroundColor = [UIColor colorWithRed:64/255.0 green:64/255.0 blue:64/255.0 alpha:0.2];
+        self.textLabelBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.55];
         
         self.textLabel = [[UILabel alloc] initWithFrame:CGRectNull];
         self.textLabel.textAlignment = NSTextAlignmentRight;

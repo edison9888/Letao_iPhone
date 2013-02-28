@@ -12,7 +12,7 @@
 
 @interface BrandService : NSObject
 
-+ (BrandService*)defaultService;
++ (BrandService*)sharedService;
 
 - (void)findBrandsWithDelegate:(id<RKObjectLoaderDelegate>)delegate;
 

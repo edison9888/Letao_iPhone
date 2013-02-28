@@ -23,6 +23,8 @@
     self = [super init];
     if (self) {
         _dataList = [[NSMutableArray alloc] init];
+        _demosticList = [[NSMutableArray alloc] init];
+        _foreignList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -32,12 +34,17 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
-//    self.navigationController.navigationBar.layer.shadowColor = [[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0] CGColor];
-//    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-//    self.navigationController.navigationBar.layer.shadowRadius = 3.0f;
-//    self.navigationController.navigationBar.layer.shadowOpacity = 0.8f;
     
+    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"国内",@"国外", nil]];
+    toggle.segmentedControlStyle = UISegmentedControlStyleBar;
+    toggle.selectedSegmentIndex = 0;
+    CGRect frame = toggle.frame;
+    frame.size.width = self.view.frame.size.width - 140;
+    toggle.frame = frame;
+    [toggle addTarget:self action:@selector(reloadTableView) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = toggle;
+    [toggle release];
+   
     [self loadData];
 }
 
@@ -50,6 +57,8 @@
 - (void)dealloc
 {
     [_dataList release], _dataList = nil;
+    [_demosticList release], _dataList = nil;
+    [_foreignList release], _dataList = nil;
     [_dataTableView release], _dataTableView = nil;
     [super dealloc];
 }
@@ -61,7 +70,7 @@
 
 - (void)loadData
 {
-    [[BrandService defaultService] findBrandsWithDelegate:self];
+    [[BrandService sharedService] findBrandsWithDelegate:self];
 }
 
 #pragma mark -
@@ -79,6 +88,13 @@
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
     [_dataList addObjectsFromArray:objects];
+    for (Brand *brand in _dataList) {
+        if (brand.country_flag == 0) {
+            [_demosticList addObject:brand];
+        } else {
+            [_foreignList addObject:brand];
+        }
+    }
     [_dataTableView reloadData];
 }
 
@@ -92,7 +108,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataList.count;
+    UISegmentedControl *toggle = (UISegmentedControl *)self.navigationItem.titleView;
+    if (toggle.selectedSegmentIndex == 0) {
+        return [_demosticList count];
+    } else {
+        return [_foreignList count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +130,13 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    Brand *brand = [_dataList objectAtIndex:indexPath.row];
+    UISegmentedControl *toggle = (UISegmentedControl *)self.navigationItem.titleView;
+    Brand *brand = nil;
+    if (toggle.selectedSegmentIndex == 0) {
+        brand = [_demosticList objectAtIndex:indexPath.row];
+    } else {
+        brand = [_foreignList objectAtIndex:indexPath.row];
+    }
 	cell.textLabel.text = brand.name;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     

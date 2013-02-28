@@ -43,7 +43,7 @@
     
     [UIUtils addViewController:[BrandListViewController alloc]
                      viewTitle:@"品牌"
-                     viewImage:@"hierarchy"
+                     viewImage:@"cabinet"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];

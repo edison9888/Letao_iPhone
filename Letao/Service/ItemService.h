@@ -11,7 +11,7 @@
 
 @interface ItemService : NSObject
 
-+ (ItemService*)defalutService;
++ (ItemService*)sharedService;
 
 - (void)findItemsWithBrandId:(NSString*)brand_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
 

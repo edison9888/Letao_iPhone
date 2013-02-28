@@ -14,14 +14,17 @@
 
 @implementation BrandService
 
-static BrandService *_defaultBrandService = nil;
 
-+ (BrandService*)defaultService
++ (BrandService*)sharedService
 {
-    if (_defaultBrandService == nil) {
-        _defaultBrandService = [[BrandService alloc] init];
-    }
-    return _defaultBrandService;
+    static BrandService *_sharedInstance = nil;
+     @synchronized(self)
+    {
+        if (_sharedInstance == nil) {
+            _sharedInstance = [[BrandService alloc] init];
+        }
+      }
+    return _sharedInstance;
 }
 
 - (id)init
@@ -35,7 +38,7 @@ static BrandService *_defaultBrandService = nil;
     //获取在AppDelegate中生成的第一个RKObjectManager对象
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *brandMapping =[RKObjectMapping mappingForClass:[Brand class]];
-    [brandMapping mapKeyPathsToAttributes:@"name", @"name", @"brand_id", @"brand_id", nil];
+    [brandMapping mapKeyPathsToAttributes:@"name", @"name", @"brand_id", @"brand_id", @"country_flag", @"country_flag", nil];
     [objectManager.mappingProvider setMapping:brandMapping forKeyPath:@""];    
 }
 

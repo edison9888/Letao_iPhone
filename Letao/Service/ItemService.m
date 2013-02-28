@@ -13,19 +13,22 @@
 
 @implementation ItemService
 
-static ItemService *_defaultItemService = nil;
 
 - (void)dealloc
 {
     [super dealloc];
 }
 
-+ (ItemService*)defalutService
++ (ItemService*)sharedService
 {
-    if (_defaultItemService == nil) {
-        _defaultItemService = [[ItemService alloc] init];
+    static ItemService *_sharedInstance = nil;
+    @synchronized(self)
+    {
+        if (_sharedInstance == nil) {
+            _sharedInstance = [[ItemService alloc] init];
+        }
     }
-    return _defaultItemService;
+        return _sharedInstance;
 }
 
 - (id)init

@@ -69,11 +69,11 @@
     _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 275, 40)];
     _helpLabel.backgroundColor = [UIColor clearColor];
     _helpLabel.hidden = YES;
-    NSString* text = @"在详情页面点击心形按钮添加喜欢的项目！";
+    NSString* text = @"在详情页面右上角点击添加喜欢的项目！";
     _helpLabel.numberOfLines = 0;
     _helpLabel.textAlignment = UITextAlignmentCenter;
     _helpLabel.text = text;
-    _helpLabel.font = [UIFont systemFontOfSize:13];
+    _helpLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:_helpLabel];
 }
 
@@ -102,19 +102,24 @@
     } else {
         _helpLabel.hidden = YES;
         
-        UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
-        // use cap insets that leave a 1x1 pixel area in the center of the image
-        UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
-        UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        // this image should stretch to fill the button
-        [button setBackgroundImage:stretchy forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        [button setTitle:@"   EDIT   " forState:UIControlStateNormal];
-        [button sizeToFit];
-        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+//        UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
+//        // use cap insets that leave a 1x1 pixel area in the center of the image
+//        UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
+//        UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        // this image should stretch to fill the button
+//        [button setBackgroundImage:stretchy forState:UIControlStateNormal];
+//        button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+//        [button setTitle:@"   Edit   " forState:UIControlStateNormal];
+//        [button sizeToFit];
+//        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+//        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        
+        UIButton *actionButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
+        [actionButton setImage:[UIImage imageNamed:@"action"] forState:UIControlStateNormal];
+        [actionButton addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:actionButton] autorelease];
 
     }
 }

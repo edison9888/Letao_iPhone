@@ -13,6 +13,7 @@
 
 @property (nonatomic, retain)IBOutlet UITableView *dataTableView;
 @property (nonatomic, retain) NSMutableArray *dataList;
-
+@property (nonatomic, retain) NSMutableArray *demosticList;
+@property (nonatomic, retain) NSMutableArray *foreignList;
 
 @end

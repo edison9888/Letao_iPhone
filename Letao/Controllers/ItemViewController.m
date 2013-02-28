@@ -52,7 +52,7 @@
     if (brand_id == nil) {
         brand_id = @"";
     }
-    [[ItemService defalutService] findItemsWithBrandId:brand_id start:start count:count delegate:self];
+    [[ItemService sharedService] findItemsWithBrandId:brand_id start:start count:count delegate:self];
 }
 
 - (void)loadView
@@ -109,9 +109,7 @@
     [self loadDataFrom:_start count:COUNT_EACH_FETCH];
     
     if (_brand) {
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered  target:self action:@selector(clickEdit:)] autorelease];
-        
-        UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 26, 24)] autorelease];
+        UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
         [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];

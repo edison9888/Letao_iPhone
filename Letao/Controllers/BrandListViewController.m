@@ -11,6 +11,7 @@
 #import "BrandService.h"
 #import "Brand.h"
 #import "ItemViewController.h"
+#import "BrandCell.h"
 
 @interface BrandListViewController ()
 
@@ -118,26 +119,32 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44.0;
+    return [BrandCell heightForCell];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"BrandCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//    }
+    
+    BrandCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[BrandCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     UISegmentedControl *toggle = (UISegmentedControl *)self.navigationItem.titleView;
     Brand *brand = nil;
     if (toggle.selectedSegmentIndex == 0) {
-        brand = [_demosticList objectAtIndex:indexPath.row];
+        brand = (Brand*)[_demosticList objectAtIndex:indexPath.row];
     } else {
-        brand = [_foreignList objectAtIndex:indexPath.row];
+        brand = (Brand*)[_foreignList objectAtIndex:indexPath.row];
     }
-	cell.textLabel.text = brand.name;
+    [cell setBrand:brand];
+    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return cell;

@@ -12,5 +12,6 @@
 
 @property(nonatomic, assign) NSInteger brand_id;
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *image;
 @property(nonatomic, assign) NSInteger country_flag;
 @end

@@ -10,6 +10,6 @@
 
 @implementation Brand
 
-@synthesize name, brand_id, country_flag;
+@synthesize name, brand_id, country_flag, image;
 
 @end

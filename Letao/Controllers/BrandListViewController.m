@@ -126,11 +126,6 @@
 {
     static NSString *CellIdentifier = @"BrandCell";
     
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//    }
-    
     BrandCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[BrandCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -152,7 +147,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ItemViewController *controller = [[ItemViewController alloc] initWithBrand:[_dataList objectAtIndex:indexPath.row]];
+    UISegmentedControl *toggle = (UISegmentedControl *)self.navigationItem.titleView;
+    Brand *brand = nil;
+    if (toggle.selectedSegmentIndex == 0) {
+        brand = (Brand*)[_demosticList objectAtIndex:indexPath.row];
+    } else {
+        brand = (Brand*)[_foreignList objectAtIndex:indexPath.row];
+    }
+    ItemViewController *controller = [[ItemViewController alloc] initWithBrand:brand];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }

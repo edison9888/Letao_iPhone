@@ -86,21 +86,22 @@
 - (void)clickFavourite:(id)sender
 {
     ItemManager *itemManager = [ItemManager sharedManager];
-    [itemManager addItemIntoFavourite:self.item];
-    
     MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
-    HUD.labelText = @"成功添加到我的喜欢";
+    if ([itemManager existItemInFavourites:self.item]) {
+        HUD.labelText = @"已经喜欢过了！";
+    } else {
+        [itemManager addItemIntoFavourites:self.item];
+        HUD.labelText = @"成功添加到我的喜欢！";
+        HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tick"]] autorelease];
+    }
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Checkmark"]] autorelease];
-
     [HUD showAnimated:YES whileExecutingBlock:^{
         sleep(1);
     } completionBlock:^{
         [HUD removeFromSuperview];
         [HUD release];
     }];
-    
 }
 
 - (void)clickShare:(id)sender

@@ -80,7 +80,7 @@
 - (void)loadFavouriteData
 {
     [_data removeAllObjects];
-    [_data addObjectsFromArray:[[ItemManager sharedManager] loadFavouriteItems]];
+    [_data addObjectsFromArray:[[ItemManager sharedManager] loadFavourites]];
     [_gmGridView reloadData];
 }
 
@@ -250,7 +250,7 @@
 {
     if (buttonIndex == 1)
     {
-        [[ItemManager sharedManager] removeItemFromFavourite:[_data objectAtIndex:_lastDeleteItemIndexAsked]];
+        [[ItemManager sharedManager] removeItemFromFavourites:[_data objectAtIndex:_lastDeleteItemIndexAsked]];
         [_data removeObjectAtIndex:_lastDeleteItemIndexAsked];
         [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
     }

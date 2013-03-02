@@ -29,7 +29,7 @@
     return [[FileUtil getAppHomeDir] stringByAppendingPathComponent:@"items.dat"];
 }
 
-- (NSArray*)loadFavouriteItems
+- (NSArray*)loadFavourites
 {
     NSMutableArray *itemArray = [[[NSMutableArray alloc] init] autorelease];
     NSArray *array = [NSArray arrayWithContentsOfFile:[self getFilePath]];
@@ -57,17 +57,30 @@
     NSLog(@"write to file count: %d",dataArray.count);
 }
 
-- (void)addItemIntoFavourite:(Item*)item
+- (BOOL)existItemInFavourites:(Item*)item
 {
-    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavouriteItems]];
+    BOOL exist = NO;
+    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavourites]];
+    for (Item *aItem in newArray) {
+        if ([aItem.title isEqualToString:item.title]) {
+            exist = YES;
+            break;
+        }
+    }
+    return exist;
+}
+
+- (void)addItemIntoFavourites:(Item*)item
+{
+    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavourites]];
     [newArray addObject:item];
     [self writeToFileWithArray:newArray];
 }
 
 //you are not allowed to change arrays when you are enumerating them.
-- (void)removeItemFromFavourite:(Item*)item
+- (void)removeItemFromFavourites:(Item*)item
 {
-    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavouriteItems]];
+    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self loadFavourites]];
     NSMutableArray *itemToDelete = [NSMutableArray array];
     for (Item *aItem in newArray) {
         if ([aItem.title isEqualToString:item.title]) {

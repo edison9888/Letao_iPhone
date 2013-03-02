@@ -13,8 +13,9 @@
 
 + (ItemManager*)sharedManager;
 
-- (void)addItemIntoFavourite:(Item*)item;
-- (void)removeItemFromFavourite:(Item*)item;
-- (NSArray*)loadFavouriteItems;
+- (BOOL)existItemInFavourites:(Item*)item;
+- (void)addItemIntoFavourites:(Item*)item;
+- (void)removeItemFromFavourites:(Item*)item;
+- (NSArray*)loadFavourites;
 
 @end

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <RestKit/RestKit.h>
+#import "BrandCell.h"
 
-@interface BrandListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,RKObjectLoaderDelegate>
+@interface BrandListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,RKObjectLoaderDelegate, BrandCellDelegate>
 
 @property (nonatomic, retain)IBOutlet UITableView *dataTableView;
 @property (nonatomic, retain) NSMutableArray *dataList;

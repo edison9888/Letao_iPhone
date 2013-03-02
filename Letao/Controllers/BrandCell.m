@@ -20,6 +20,12 @@
         [self.brandImageView setFrame:CGRectMake( 10.0f, 14.0f, 50.0f, 40.0f)];
         [self.contentView addSubview:self.brandImageView];
         
+        self.brandImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.brandImageButton setBackgroundColor:[UIColor clearColor]];
+        [self.brandImageButton setFrame:self.brandImageView.frame];
+        [self.brandImageButton addTarget:self action:@selector(didTapImageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.brandImageButton];
+        
         self.nameLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.nameLabel];
     }
@@ -41,11 +47,11 @@
 
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)didTapImageButtonAction:(id)sender
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (self.delegate && [self.delegate respondsToSelector:@selector(cell:didTapImageButton:)]) {
+        [self.delegate cell:self didTapImageButton:self.brand];
+    }
 }
 
 + (CGFloat)heightForCell

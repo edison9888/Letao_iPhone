@@ -14,4 +14,6 @@
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *image;
 @property(nonatomic, assign) NSInteger country_flag;
+@property(nonatomic, copy) NSString *introduction;
+
 @end

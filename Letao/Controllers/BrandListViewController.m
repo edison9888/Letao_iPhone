@@ -11,11 +11,7 @@
 #import "BrandService.h"
 #import "Brand.h"
 #import "ItemViewController.h"
-#import "BrandCell.h"
-
-@interface BrandListViewController ()
-
-@end
+#import "BrandDescriptionViewController.h"
 
 @implementation BrandListViewController
 
@@ -129,6 +125,7 @@
     BrandCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[BrandCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.delegate = self;
     }
     
     UISegmentedControl *toggle = (UISegmentedControl *)self.navigationItem.titleView;
@@ -140,6 +137,7 @@
     }
     [cell setBrand:brand];
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return cell;
@@ -155,6 +153,14 @@
         brand = (Brand*)[_foreignList objectAtIndex:indexPath.row];
     }
     ItemViewController *controller = [[ItemViewController alloc] initWithBrand:brand];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+#pragma mark - BrandCellDelegate
+- (void)cell:(BrandCell *)cellView didTapImageButton:(Brand *)brand{
+    
+    BrandDescriptionViewController *controller = [[BrandDescriptionViewController alloc] initWithBrand:brand];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }

@@ -11,7 +11,9 @@
 
 #define RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
 
-#define SERVER_URL  @"http://127.0.0.1:5000"
+#define SERVER_URL  @"http://127.0.0.1:5000/api"
+//#define SERVER_URL  @"http://42.96.134.32:8080/api"
+
 #define DUREX_IMAGE_BASE_URL @"http://www.durex.com.cn"
 #define CONDOM_BRAND_IMAGE_URL_PREFIX @"http://42.96.134.32/condom_brand_images/"
 

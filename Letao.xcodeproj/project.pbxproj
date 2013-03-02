@@ -68,6 +68,8 @@
 		C64AED6316BA1A9B00363ED6 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AED6116BA1A9B00363ED6 /* ItemViewController.m */; };
 		C65E47E016DE0CC5003C3977 /* BarButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C65E47DE16DE0CC5003C3977 /* BarButtonBackground.png */; };
 		C65E47E116DE0CC5003C3977 /* BarButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C65E47DF16DE0CC5003C3977 /* BarButtonBackground@2x.png */; };
+		C6652ACE16E2438C00CA3CA2 /* BrandDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6652ACC16E2438B00CA3CA2 /* BrandDescriptionViewController.m */; };
+		C6652ACF16E2438C00CA3CA2 /* BrandDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6652ACD16E2438B00CA3CA2 /* BrandDescriptionViewController.xib */; };
 		C687D9EA16B53B3100AB82A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687D9E916B53B3100AB82A1 /* UIKit.framework */; };
 		C687D9EC16B53B3100AB82A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687D9EB16B53B3100AB82A1 /* Foundation.framework */; };
 		C687D9EE16B53B3100AB82A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687D9ED16B53B3100AB82A1 /* CoreGraphics.framework */; };
@@ -442,6 +444,9 @@
 		C64AED6116BA1A9B00363ED6 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
 		C65E47DE16DE0CC5003C3977 /* BarButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarButtonBackground.png; sourceTree = "<group>"; };
 		C65E47DF16DE0CC5003C3977 /* BarButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarButtonBackground@2x.png"; sourceTree = "<group>"; };
+		C6652ACB16E2438B00CA3CA2 /* BrandDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandDescriptionViewController.h; sourceTree = "<group>"; };
+		C6652ACC16E2438B00CA3CA2 /* BrandDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandDescriptionViewController.m; sourceTree = "<group>"; };
+		C6652ACD16E2438B00CA3CA2 /* BrandDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrandDescriptionViewController.xib; sourceTree = "<group>"; };
 		C687D9E516B53B3100AB82A1 /* Letao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C687D9E916B53B3100AB82A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C687D9EB16B53B3100AB82A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -905,6 +910,9 @@
 				C6387EFB16CB451E009229DF /* BrandListViewController.xib */,
 				C60A923716E04C8F00329F98 /* BrandCell.h */,
 				C60A923816E04C8F00329F98 /* BrandCell.m */,
+				C6652ACB16E2438B00CA3CA2 /* BrandDescriptionViewController.h */,
+				C6652ACC16E2438B00CA3CA2 /* BrandDescriptionViewController.m */,
+				C6652ACD16E2438B00CA3CA2 /* BrandDescriptionViewController.xib */,
 			);
 			name = Brand;
 			sourceTree = "<group>";
@@ -2141,6 +2149,7 @@
 				C60A923216DFA66200329F98 /* edit@2x.png in Resources */,
 				C60A924416E19FB300329F98 /* tick.png in Resources */,
 				C60A924516E19FB300329F98 /* tick@2x.png in Resources */,
+				C6652ACF16E2438C00CA3CA2 /* BrandDescriptionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2330,6 +2339,7 @@
 				C633B41816D5308300B28E58 /* SinaWeiboRequest.m in Sources */,
 				C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */,
 				C60A923916E04C8F00329F98 /* BrandCell.m in Sources */,
+				C6652ACE16E2438C00CA3CA2 /* BrandDescriptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

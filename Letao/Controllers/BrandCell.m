@@ -43,7 +43,7 @@
     
     CGSize nameSize = [_brand.name sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
     [self.nameLabel setFrame:CGRectMake( 70.0f, 25.0f, 144.0f, nameSize.height)];
-    self.nameLabel.text = _brand.name;
+    self.nameLabel.text = [_brand.name stringByAppendingFormat:@" (%d)",_brand.totalNumber];
 
 }
 

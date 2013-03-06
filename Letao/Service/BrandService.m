@@ -38,7 +38,7 @@
     //获取在AppDelegate中生成的第一个RKObjectManager对象
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *brandMapping =[RKObjectMapping mappingForClass:[Brand class]];
-    [brandMapping mapKeyPathsToAttributes:@"name", @"name", @"brand_id", @"brand_id", @"country_flag", @"country_flag", @"image", @"image", @"introduction", @"introduction", nil];
+    [brandMapping mapKeyPathsToAttributes:@"name", @"name", @"brand_id", @"brand_id", @"country_flag", @"country_flag", @"image", @"image", @"introduction", @"introduction", @"totalNumber", @"totalNumber", nil];
     [objectManager.mappingProvider setMapping:brandMapping forKeyPath:@""];    
 }
 

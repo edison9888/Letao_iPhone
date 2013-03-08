@@ -36,7 +36,7 @@
     NSMutableArray* controllers = [[NSMutableArray alloc] init];
     
     [UIUtils addViewController:[ItemViewController alloc]
-                     viewTitle:@"首页"
+                     viewTitle:@"精品"
                      viewImage:@"home"
                     hasNavController:YES
                     viewControllers:controllers];

@@ -13,6 +13,7 @@
 @property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *subtitle;
 @property (nonatomic, copy)NSString *description;
+@property (nonatomic, copy)NSString *price;
 @property (nonatomic, copy)NSString *smooth_index;
 @property (nonatomic, copy)NSString *information;
 @property (nonatomic, copy)NSString *tips;

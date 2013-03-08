@@ -44,6 +44,10 @@
     [super viewDidAppear:animated];
 }
 
+#define TITLE_COLOR [UIColor colorWithRed:37.0/255.0 green:66.0/255.0 blue:80/255.0 alpha:1.0]
+#define DESCRIPTION_COLOR [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1.0]
+#define BG_COLOR [UIColor colorWithRed:222/255.0 green:239/255.0 blue:247/255.0 alpha:1.0]
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,8 +72,9 @@
     UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarView] autorelease];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 
-    
     self.title = @"详情";
+
+    self.view.backgroundColor = BG_COLOR;
     
     [self addSlideImageView];
     
@@ -145,16 +150,14 @@
     _totalHeight += favouritesView.frame.size.height;
 }
 
-
 - (void)addDetailView
 {
     float padding = 5;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _totalHeight, 310, 30)];
-    titleLabel.backgroundColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0];
-//    titleLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"section-bar2"]];
     titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = TITLE_COLOR;
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text =  [NSString stringWithFormat:(@" %@"),_item.title];
     [self.dataScrollView addSubview:titleLabel];
     _totalHeight += titleLabel.frame.size.height + padding;
@@ -162,28 +165,40 @@
     
     NSString *subtitle = _item.subtitle;
     if ([subtitle length] > 0) {
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
+        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 20)];
         subtitleLabel.backgroundColor = [UIColor clearColor];
         subtitleLabel.font = [UIFont systemFontOfSize:14];
+        subtitleLabel.textColor = DESCRIPTION_COLOR;
         subtitleLabel.text =  subtitle;
         [self.dataScrollView addSubview:subtitleLabel];
         _totalHeight += subtitleLabel.frame.size.height + padding;
         [subtitleLabel release];
     }
-    
+      
     CGSize withinSize = CGSizeMake(300, CGFLOAT_MAX);
     NSString *description = [_item.description stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@"\n"];
     CGSize size = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-     UILabel *descriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
+    UILabel *descriptionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
     descriptionLabel.lineBreakMode = UILineBreakModeWordWrap;
     descriptionLabel.numberOfLines = 0;
     descriptionLabel.backgroundColor = [UIColor clearColor];
     descriptionLabel.font = [UIFont systemFontOfSize:14];
+    descriptionLabel.textColor = DESCRIPTION_COLOR;
     descriptionLabel.text = description;
     [self.dataScrollView addSubview:descriptionLabel];
     _totalHeight += descriptionLabel.frame.size.height + padding;
     [descriptionLabel release];
     
+    if ([_item.price length] > 0) {
+        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 20)];
+        priceLabel.backgroundColor = [UIColor clearColor];
+        priceLabel.font = [UIFont systemFontOfSize:14];
+        priceLabel.textColor = DESCRIPTION_COLOR;
+        priceLabel.text =  [@"推荐报价" stringByAppendingFormat:@": %@",_item.price];;
+        [self.dataScrollView addSubview:priceLabel];
+        _totalHeight += priceLabel.frame.size.height + padding;
+        [priceLabel release];
+    }
     
     NSString *smooth_index = _item.smooth_index;
     if ([smooth_index length] > 0) {
@@ -191,6 +206,7 @@
         smooth_indexLabel.backgroundColor = [UIColor clearColor];
         smooth_indexLabel.font = [UIFont systemFontOfSize:14];
         smooth_indexLabel.text =  smooth_index;
+        smooth_indexLabel.textColor = DESCRIPTION_COLOR;
         [self.dataScrollView addSubview:smooth_indexLabel];
         _totalHeight += smooth_indexLabel.frame.size.height + padding;
         [smooth_indexLabel release];
@@ -204,6 +220,7 @@
     informationLabel.numberOfLines = 0;
     informationLabel.backgroundColor = [UIColor clearColor];
     informationLabel.font = [UIFont systemFontOfSize:14];
+    informationLabel.textColor = DESCRIPTION_COLOR;
     informationLabel.text = information;
     [self.dataScrollView addSubview:informationLabel];
     _totalHeight += informationLabel.frame.size.height + padding;
@@ -212,10 +229,10 @@
     NSString *tips = _item.tips;
     if ([tips length] > 0) {
         tips = _item.tips;
-        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"] stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
-        tips = [[[[[[tips stringByReplacingOccurrencesOfString:@"&plusmn;" withString:@"±"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"]stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"]stringByReplacingOccurrencesOfString:@"&mdash;" withString:@"—"]stringByReplacingOccurrencesOfString:@"&quot;" withString:@"”"];
-        
-        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];
+//        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"] stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
+//        tips = [[[[[[tips stringByReplacingOccurrencesOfString:@"&plusmn;" withString:@"±"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"]stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"]stringByReplacingOccurrencesOfString:@"&mdash;" withString:@"—"]stringByReplacingOccurrencesOfString:@"&quot;" withString:@"”"];
+//        
+//        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];
         
         size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
         UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
@@ -223,6 +240,7 @@
         tipsLabel.numberOfLines = 0;
         tipsLabel.backgroundColor = [UIColor clearColor];
         tipsLabel.font = [UIFont systemFontOfSize:14];
+        tipsLabel.textColor = DESCRIPTION_COLOR;
         tipsLabel.text = tips;
         [self.dataScrollView addSubview:tipsLabel];
         _totalHeight += tipsLabel.frame.size.height + padding;

@@ -19,7 +19,7 @@
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
         self.backgroundView.backgroundColor = [UIColor whiteColor];
         self.backgroundView.layer.borderWidth = 1;
-        self.backgroundView.layer.borderColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0].CGColor;
+        self.backgroundView.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.55].CGColor;//[UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1.0].CGColor;
         [self addSubview:self.backgroundView];
         
         // Image view

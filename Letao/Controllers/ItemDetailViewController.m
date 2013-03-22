@@ -13,6 +13,10 @@
 #import "ItemManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ShareToSinaController.h"
+#import "CommentCell.h"
+#import "UIImage+Scale.h"
+#import "CommentViewController.h"
+#import "CommentService.h"
 
 @interface ItemDetailViewController ()
 
@@ -34,19 +38,48 @@
     self = [super init];
     if (self) {
         self.item = item;
+        _commentList = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self loadComments];
     self.hidesBottomBarWhenPushed = YES;
     [super viewDidAppear:animated];
 }
 
-#define TITLE_COLOR [UIColor colorWithRed:37.0/255.0 green:66.0/255.0 blue:80/255.0 alpha:1.0]
-#define DESCRIPTION_COLOR [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1.0]
-#define BG_COLOR [UIColor colorWithRed:222/255.0 green:239/255.0 blue:247/255.0 alpha:1.0]
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc
+{
+    [_dataScrollView release], _dataScrollView = nil;
+    [_commentTableView release], _commentTableView = nil;
+    [_commentButton release], _commentButton = nil;
+    [_commentList release], _commentList = nil;
+    [super dealloc];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    _dataScrollView = nil;
+    _commentTableView = nil;
+    _commentButton = nil;
+    _commentList = nil;
+    _item = nil;
+}
+
+//#define TITLE_COLOR [UIColor colorWithRed:37.0/255.0 green:66.0/255.0 blue:80/255.0 alpha:1.0]
+//#define DESCRIPTION_COLOR [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1.0]
+//#define BG_COLOR [UIColor colorWithRed:222/255.0 green:239/255.0 blue:247/255.0 alpha:1.0]
+#define TITLE_COLOR [UIColor blackColor]
+#define DESCRIPTION_COLOR [UIColor blackColor]
+#define BG_COLOR [UIColor colorWithWhite:1 alpha:0.3f]
 
 - (void)viewDidLoad
 {
@@ -57,17 +90,21 @@
     [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     
-    UIView *rightBarView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 24)] autorelease];
-    UIButton *favouriteButon = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)] autorelease];
-    UIButton *shareButon = [[[UIButton alloc] initWithFrame:CGRectMake(34, 0, 24, 24)] autorelease];
+    UIView *rightBarView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 24)] autorelease];
+    UIButton *commentButon = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)] autorelease];
+    UIButton *favouriteButon = [[[UIButton alloc] initWithFrame:CGRectMake(34, 0, 24, 24)] autorelease];
+    UIButton *shareButon = [[[UIButton alloc] initWithFrame:CGRectMake(68, 0, 24, 24)] autorelease];
     
+    [commentButon setImage:[UIImage imageNamed:@"edit@2x"] forState:UIControlStateNormal];
     [favouriteButon setImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
     [shareButon setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [favouriteButon addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
     [shareButon addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+    [commentButon addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
     
     [rightBarView addSubview:favouriteButon];
     [rightBarView addSubview:shareButon];
+    [rightBarView addSubview:commentButon];
     
     UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarView] autorelease];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
@@ -79,10 +116,21 @@
     [self addSlideImageView];
     
     [self addDetailView];
+    
+    [self addCommentSectionView];
         
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
     
 }
+
+- (void)loadComments
+{
+    [self.commentList removeAllObjects];
+    [_commentButton removeFromSuperview];
+    _totalHeight -= _commentTableView.frame.size.height;
+    [[CommentService sharedService] findCommentsWithItemId:_item._id delegate:self];
+}
+
 - (void)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -153,6 +201,11 @@
 - (void)addDetailView
 {
     float padding = 5;
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
+    UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
+    bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    [_dataScrollView addSubview:bgView];
+    [bgView release];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _totalHeight, 310, 30)];
     titleLabel.font = [UIFont systemFontOfSize:15];
@@ -245,26 +298,48 @@
         [self.dataScrollView addSubview:tipsLabel];
         _totalHeight += tipsLabel.frame.size.height + padding;
         [tipsLabel release];
-    }    
+    }
+    
+//    UIView *separatorLineView = [[[UIView alloc]initWithFrame:CGRectMake(0, _totalHeight, 320, 2)] autorelease];
+//    separatorLineView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"separator"]];
+//    [self.dataScrollView addSubview:separatorLineView];
+//    _totalHeight += separatorLineView.frame.size.height;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)addCommentSectionView
 {
-    [super didReceiveMemoryWarning];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
+    UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
+//    bgImage = [bgImage scaleToSize:CGSizeMake(320, 40)];
+    bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    [_dataScrollView addSubview:bgView];
+    [bgView release];
+
+    float padding = 5;
+    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
+    commentLabel.font = [UIFont systemFontOfSize:15];
+    commentLabel.textColor = TITLE_COLOR;
+    commentLabel.backgroundColor = [UIColor clearColor];        
+    commentLabel.text = @"相关评论";
+    _totalHeight += commentLabel.frame.size.height + padding;
+    [_dataScrollView addSubview:commentLabel];
+    [commentLabel release];
+        
+    _commentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, 0)];
+    _commentTableView.delegate = self;
+    _commentTableView.dataSource = self;
+    [_commentTableView setBackgroundColor:BG_COLOR];
+    _commentTableView.bounces = NO;
+    _commentTableView.scrollEnabled = NO;
+    
+    [_dataScrollView addSubview:_commentTableView];
 }
 
-- (void)dealloc
+- (void)addComment:(id)sender
 {
-    [_dataScrollView release], _dataScrollView = nil;
-    [_item release], _item = nil;
-    [super dealloc];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    _dataScrollView = nil;
-    _item = nil;
+    CommentViewController *controller = [[[CommentViewController alloc] init] autorelease];
+    controller.item_id = _item._id;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)addSlideImageView
@@ -291,6 +366,97 @@
 
     [imagePathList release];
     [slideImageView release];
+}
+
+#pragma mark -
+#pragma mark TableView Delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger size;
+    if ([_commentList count] > 0) {
+        size = [_commentList count];
+    } else {
+        size = 0;
+    }
+    return size;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [CommentCell heightForCell];
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"CommentCell";
+    
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    [cell setBackgroundColor:BG_COLOR];
+    
+    if ([_commentList count] > 0) {
+        Comment *comment = [_commentList objectAtIndex:indexPath.row];
+        [cell setComment:comment];
+    }
+    return cell;
+}
+
+#pragma mark -
+#pragma mark - RKObjectLoaderDelegate
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+    NSLog(@"Response code: %d", [response statusCode]);
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", [error localizedDescription]);
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
+{
+    [_commentList addObjectsFromArray:objects];
+    NSLog(@"***Total comments count: %d", [_commentList count]);
+    [_commentTableView reloadData];
+    
+    NSInteger size = [_commentList count];
+    if (size == 0)
+    {
+//        _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
+//        _helpLabel.backgroundColor = [UIColor clearColor];
+//        _helpLabel.hidden = NO;
+//        NSString* text = @"暂无相关评论";
+//        _helpLabel.numberOfLines = 0;
+//        _helpLabel.textAlignment = UITextAlignmentCenter;
+//        _helpLabel.text = text;
+//        _helpLabel.font = [UIFont systemFontOfSize:14];
+//        [_dataScrollView addSubview:_helpLabel];
+//        _totalHeight += _helpLabel.frame.size.height;
+        
+    } else {
+        [self.commentTableView setFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, size*[CommentCell heightForCell])];
+        [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
+        _totalHeight += size*[CommentCell heightForCell];
+    }
+    
+    _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(125, _totalHeight+5, 80, 30)];
+    [_commentButton setBackgroundImage:[UIImage imageNamed:@"favorites@2x"] forState:UIControlStateNormal];
+    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
+    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+    
+    [_commentButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
+    [_dataScrollView addSubview:_commentButton];
+    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+_commentButton.frame.size.height+10)];
 }
 
 @end

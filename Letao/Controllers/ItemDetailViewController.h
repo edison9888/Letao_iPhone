@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RestKit/RestKit.h>
 #import "Item.h"
 #import "SlideImageView.h"
 
-@interface ItemDetailViewController : UIViewController
+@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate>
 
-@property (retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
-@property (assign, nonatomic) float totalHeight;
-@property (retain, nonatomic) Item *item;
+@property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
+@property(retain, nonatomic) IBOutlet UITableView *commentTableView;
+@property(retain, nonatomic) UILabel *helpLabel;
+@property(retain, nonatomic) UIButton *commentButton;
+@property(assign, nonatomic) float totalHeight;
+@property(retain, nonatomic) Item *item;
+@property(retain, nonatomic) NSMutableArray *commentList;
 
 - (id)initWithItem:(Item*)item;
 @end

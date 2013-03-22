@@ -10,11 +10,12 @@
 
 @implementation Item
 
-@synthesize title, subtitle, price, description, smooth_index, information, tips, imageList;
+@synthesize title, subtitle, price, description, smooth_index, information, tips, imageList, commentList, _id;
 
 #pragma mark NSCoding delegate
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [aCoder encodeObject:self._id forKey:@"_id"];
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.subtitle forKey:@"subtitle"];
     [aCoder encodeObject:self.information forKey:@"information"];
@@ -27,6 +28,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super init]) {
+        self._id = [aDecoder decodeObjectForKey:@"_id"];
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.subtitle = [aDecoder decodeObjectForKey:@"subtitle"];
         self.information = [aDecoder decodeObjectForKey:@"information"];

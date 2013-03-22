@@ -62,7 +62,8 @@
     if (_brand != nil) {
         self.title = _brand.name;
     }
-    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3f];
 
     NSInteger spacing = INTERFACE_IS_PHONE ? 5 : 15;
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
@@ -252,7 +253,6 @@
     ItemDetailViewController *controller = [[ItemDetailViewController alloc] initWithItem:[_data objectAtIndex:position]];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
-    
 }
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView

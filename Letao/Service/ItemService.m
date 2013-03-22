@@ -42,7 +42,7 @@
     //获取在AppDelegate中生成的第一个RKObjectManager对象
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     RKObjectMapping *itemMapping =[RKObjectMapping mappingForClass:[Item class]];
-    [itemMapping mapKeyPathsToAttributes:@"title", @"title", @"subtitle", @"subtitle",      @"description", @"description", @"smooth_index", @"smooth_index", @"information", @"information", @"tips", @"tips", @"imageList", @"imageList", @"price", @"price", nil];
+    [itemMapping mapKeyPathsToAttributes: @"_id", @"_id", @"title", @"title", @"subtitle", @"subtitle",      @"description", @"description", @"smooth_index", @"smooth_index", @"information", @"information", @"tips", @"tips", @"imageList", @"imageList", @"price", @"price", nil];
     [objectManager.mappingProvider setMapping:itemMapping forKeyPath:@""];        
 }
 

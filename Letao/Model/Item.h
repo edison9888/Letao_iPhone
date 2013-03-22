@@ -18,5 +18,7 @@
 @property (nonatomic, copy)NSString *information;
 @property (nonatomic, copy)NSString *tips;
 @property (nonatomic, retain)NSArray *imageList;
+@property (nonatomic, retain)NSArray *commentList;
+@property (nonatomic, copy)NSString *_id;
 
 @end

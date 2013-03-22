@@ -40,7 +40,7 @@ NSString *dateFromISODateString(NSString *date)
 {
     _comment = comment;
     self.authorLabel.text = _comment.author;
-    self.authorLabel.font = [UIFont systemFontOfSize:14];
+    self.authorLabel.font = [UIFont systemFontOfSize:13];
     self.authorLabel.textColor = [UIColor darkGrayColor];
     self.authorLabel.backgroundColor = [UIColor clearColor];
 

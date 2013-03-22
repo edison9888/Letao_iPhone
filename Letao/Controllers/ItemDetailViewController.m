@@ -401,7 +401,8 @@
         cell = [[[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     [cell setBackgroundColor:BG_COLOR];
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
     if ([_commentList count] > 0) {
         Comment *comment = [_commentList objectAtIndex:indexPath.row];
         [cell setComment:comment];

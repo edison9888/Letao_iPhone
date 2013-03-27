@@ -46,13 +46,28 @@
     return self;
 }
 
+- (id)initWithData:(NSArray*)array
+{
+    self = [super init];
+    if (self) {
+        _data = [[NSMutableArray alloc] initWithArray:array];
+        _brand = nil;
+    }
+    _currentData = _data;
+    
+    return self;
+}
+
 - (void)loadDataFrom:(int)start count:(int)count
 {
     NSString *brand_id = [_brand name];
     if (brand_id == nil) {
         brand_id = @"";
     }
+    NSLog(@"Load data from remote server");
     [[ItemService sharedService] findItemsWithBrandId:brand_id start:start count:count delegate:self];
+    _supportRefreshHeader = YES;
+    _supportRefreshFooter = YES;
 }
 
 - (void)loadView
@@ -107,7 +122,10 @@
 {
     [super viewDidLoad];
     _start = 0;
-    [self loadDataFrom:_start count:COUNT_EACH_FETCH];
+    
+    if ([_data count] == 0) {
+        [self loadDataFrom:_start count:COUNT_EACH_FETCH];
+    }
     
     if (_brand) {
         UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
@@ -417,17 +435,24 @@
 #pragma mark UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (_supportRefreshHeader) {
+        [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
 
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    [_refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
+    }
+    if (_supportRefreshFooter) {
+        [_refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
+    }
 
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    [_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
+	if (_supportRefreshHeader) {
+        [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    }
+    if (_supportRefreshFooter) {
+        [_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
+    }
 	
 }
 #pragma mark -

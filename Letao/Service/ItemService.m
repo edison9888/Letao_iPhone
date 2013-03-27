@@ -68,4 +68,23 @@
     });
 }
 
+- (void)search:(NSString*)keyword delegate:(id<RKObjectLoaderDelegate>)delegate
+{
+    [self initObjectMap];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:keyword, @"kw", nil];
+        RKObjectManager *objectManager = [RKObjectManager sharedManager];
+        RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/query" queryParameters:queryParams];
+        
+        NSLog(@"url: %@", [url absoluteString]);
+        NSLog(@"resourcePath: %@", [url resourcePath]);
+        NSLog(@"query: %@", [url query]);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [url resourcePath], [url query]] delegate:delegate ];
+        });
+    });
+}
+
+
 @end

@@ -31,7 +31,11 @@
 
 @property(nonatomic, assign) NSInteger lastDeleteItemIndexAsked;
 
+@property(nonatomic, assign) BOOL supportRefreshHeader;
+@property(nonatomic, assign) BOOL supportRefreshFooter;
+
 - (id)initWithBrand:(Brand*)brand;
+- (id)initWithData:(NSArray*)array;
 
 #pragma mark: For pull down to refresh
 - (void)reloadTableViewDataSource;

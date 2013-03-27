@@ -100,7 +100,7 @@
 {
     [self.textView resignFirstResponder];
     Comment *comment = [[[Comment alloc] init] autorelease];
-    comment.author = @"匿名网友";
+    comment.author = @"匿名用户";
     comment.content = _textView.text;
     comment.item_id = _item_id;
     [[CommentService sharedService] postComment:comment delegate:self];

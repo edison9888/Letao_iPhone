@@ -251,6 +251,11 @@
 		C687DC7716B54CBF00AB82A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7616B54CBF00AB82A1 /* SystemConfiguration.framework */; };
 		C687DC7916B54CD000AB82A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7816B54CD000AB82A1 /* MobileCoreServices.framework */; };
 		C687DC7B16B54CE600AB82A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DC7A16B54CE600AB82A1 /* MapKit.framework */; };
+		C68CC40E1701583A005B60C8 /* magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = C68CC40D1701583A005B60C8 /* magnify.png */; };
+		C68CC41317015E7A005B60C8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C68CC41117015E7A005B60C8 /* SearchViewController.m */; };
+		C68CC41417015E7A005B60C8 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C68CC41217015E7A005B60C8 /* SearchViewController.xib */; };
+		C68CC41B170179BC005B60C8 /* tu_46-18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C68CC419170179BC005B60C8 /* tu_46-18@2x.png */; };
+		C68CC41C170179BC005B60C8 /* tu_48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C68CC41A170179BC005B60C8 /* tu_48@2x.png */; };
 		C6901C7216CFB12F009C7816 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6901C7116CFB12F009C7816 /* ItemManager.m */; };
 		C6901C7616CFEC46009C7816 /* bottombg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7316CFEC46009C7816 /* bottombg@2x.png */; };
 		C6901C7816CFEC46009C7816 /* favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6901C7516CFEC46009C7816 /* favorites@2x.png */; };
@@ -805,6 +810,12 @@
 		C687DC7616B54CBF00AB82A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C687DC7816B54CD000AB82A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C687DC7A16B54CE600AB82A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C68CC40D1701583A005B60C8 /* magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnify.png; sourceTree = "<group>"; };
+		C68CC41017015E7A005B60C8 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		C68CC41117015E7A005B60C8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		C68CC41217015E7A005B60C8 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		C68CC419170179BC005B60C8 /* tu_46-18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tu_46-18@2x.png"; sourceTree = "<group>"; };
+		C68CC41A170179BC005B60C8 /* tu_48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tu_48@2x.png"; sourceTree = "<group>"; };
 		C6901C7016CFB12F009C7816 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		C6901C7116CFB12F009C7816 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
 		C6901C7316CFEC46009C7816 /* bottombg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombg@2x.png"; sourceTree = "<group>"; };
@@ -1021,6 +1032,9 @@
 		C64AE9B116B822A800363ED6 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C68CC40D1701583A005B60C8 /* magnify.png */,
+				C68CC419170179BC005B60C8 /* tu_46-18@2x.png */,
+				C68CC41A170179BC005B60C8 /* tu_48@2x.png */,
 				C6DED69716F392BD006265C4 /* separator.png */,
 				C6DED69816F392BD006265C4 /* separator@2x.png */,
 				C60A922B16DFA66200329F98 /* cabinet.png */,
@@ -1092,6 +1106,7 @@
 		C64AED5A16BA192900363ED6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C68CC40F17015E49005B60C8 /* Search */,
 				C633B3F916D528EA00B28E58 /* Share */,
 				C6901C7916D09F1F009C7816 /* Favourite */,
 				C6387EF816CB44CD009229DF /* Brand */,
@@ -1973,6 +1988,16 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		C68CC40F17015E49005B60C8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C68CC41017015E7A005B60C8 /* SearchViewController.h */,
+				C68CC41117015E7A005B60C8 /* SearchViewController.m */,
+				C68CC41217015E7A005B60C8 /* SearchViewController.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		C6901C7916D09F1F009C7816 /* Favourite */ = {
 			isa = PBXGroup;
 			children = (
@@ -2182,6 +2207,10 @@
 				C6DED69916F392BD006265C4 /* separator.png in Resources */,
 				C6DED69A16F392BD006265C4 /* separator@2x.png in Resources */,
 				C6DED6A316F62DF4006265C4 /* CommentViewController.xib in Resources */,
+				C68CC40E1701583A005B60C8 /* magnify.png in Resources */,
+				C68CC41417015E7A005B60C8 /* SearchViewController.xib in Resources */,
+				C68CC41B170179BC005B60C8 /* tu_46-18@2x.png in Resources */,
+				C68CC41C170179BC005B60C8 /* tu_48@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2376,6 +2405,7 @@
 				C6DED69616F34A60006265C4 /* Comment.m in Sources */,
 				C6DED6A216F62DF4006265C4 /* CommentViewController.m in Sources */,
 				C6DED6A616F6EC1D006265C4 /* CommentService.m in Sources */,
+				C68CC41317015E7A005B60C8 /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

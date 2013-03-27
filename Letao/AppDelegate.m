@@ -13,6 +13,7 @@
 #import "DeviceDetection.h"
 #import "UIUtils.h"
 #import "GlobalConstants.h"
+#import "SearchViewController.h"
 
 @implementation AppDelegate
 
@@ -51,13 +52,19 @@
     [UIUtils addViewController:[FavouriteViewController alloc]
                      viewTitle:@"喜欢"
                      viewImage:@"love"
-              hasNavController:YES
-             hideNavigationBar:NO
-               viewControllers:controllers];
+                    hasNavController:YES
+                    hideNavigationBar:NO
+                    viewControllers:controllers];
+    
+    [UIUtils addViewController:[SearchViewController alloc]
+                     viewTitle:@"搜索"
+                     viewImage:@"magnify"
+                    hasNavController:YES
+                    hideNavigationBar:NO
+                    viewControllers:controllers];
     
     
     _tabBarController.viewControllers = controllers;
-    
     _tabBarController.selectedIndex = 0;
     [controllers release];
     

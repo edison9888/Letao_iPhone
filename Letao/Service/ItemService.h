@@ -15,4 +15,6 @@
 
 - (void)findItemsWithBrandId:(NSString*)brand_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
 
+- (void)search:(NSString*)keyword delegate:(id<RKObjectLoaderDelegate>)delegate;
+
 @end

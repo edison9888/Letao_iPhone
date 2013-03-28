@@ -73,13 +73,10 @@
 - (void)loadView
 {
     [super loadView];
-    
     if (_brand != nil) {
         self.title = _brand.name;
     }
-//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
     self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3f];
-
     NSInteger spacing = INTERFACE_IS_PHONE ? 5 : 15;
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -92,30 +89,9 @@
     _gmGridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     _gmGridView.centerGrid = NO;
     _gmGridView.actionDelegate = self;
-//    _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
-    _gmGridView.delegate = self;
-    
-    if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _gmGridView.bounds.size.height, self.view.frame.size.width, _gmGridView.bounds.size.height)];
-		view.delegate = self;
-		[_gmGridView addSubview:view];
-		_refreshHeaderView = view;
-		[view release];
-		
-	}
-    [_refreshHeaderView refreshLastUpdatedDate];
-    
-    if (_refreshFooterView == nil) {
-        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, _gmGridView.frame.size.height+100, _gmGridView.frame.size.width, _gmGridView.frame.size.height)];
-		view.delegate = self;
-		[_gmGridView addSubview:view];
-        _refreshFooterView = view;
-        [view release];
-    }
-    [_refreshFooterView refreshLastUpdatedDate];
+    _gmGridView.delegate = self;    
 }
 
 - (void)viewDidLoad
@@ -133,6 +109,33 @@
         [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     }
+    
+    if ([self.title isEqualToString:@"结果"]) {
+        UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
+        [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    }
+    
+    if (_supportRefreshHeader && _refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - _gmGridView.bounds.size.height, self.view.frame.size.width, _gmGridView.bounds.size.height)];
+		view.delegate = self;
+		[_gmGridView addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+		
+	}
+    [_refreshHeaderView refreshLastUpdatedDate];
+    
+    if (_supportRefreshFooter && _refreshFooterView == nil) {
+        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, _gmGridView.frame.size.height+100, _gmGridView.frame.size.width, _gmGridView.frame.size.height)];
+		view.delegate = self;
+		[_gmGridView addSubview:view];
+        _refreshFooterView = view;
+        [view release];
+    }
+    [_refreshFooterView refreshLastUpdatedDate];
 }
 
 - (void)clickBack:(id)sender

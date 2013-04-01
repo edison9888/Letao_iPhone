@@ -17,6 +17,7 @@
 #import "UIImage+Scale.h"
 #import "CommentViewController.h"
 #import "CommentService.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ItemDetailViewController ()
 
@@ -415,11 +416,21 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
     NSLog(@"Response code: %d", [response statusCode]);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)requestDidStartLoad:(RKRequest *)request
+{
+    NSLog(@"Start load request...");
+    MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.labelText = @"正在加载中...";
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {
     NSLog(@"Error: %@", [error localizedDescription]);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects

@@ -45,7 +45,7 @@
     [keywordTemplateButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [keywordTemplateButton setTitleColor:[UIColor colorWithRed:(111/255.0) green:(104/255.0) blue:(94/255.0) alpha:1.0] forState:UIControlStateNormal];
     
-    _wordsView = [[UIView alloc] initWithFrame:CGRectMake(15, 50, 290, 80)];
+    _wordsView = [[UIView alloc] initWithFrame:CGRectMake(15, 50, 290, 100)];
     [self.view addSubview:_wordsView];
     [_wordsView release];
     
@@ -56,7 +56,7 @@
 
 - (NSArray*)getKeywords
 {
-    return [NSArray arrayWithObjects: @"螺纹", @"润滑", @"摩擦", @"激情", @"凸点", @"超薄", @"颗粒", nil];
+    return [NSArray arrayWithObjects: @"螺纹", @"润滑", @"摩擦", @"激情", @"凸点", @"超薄", @"颗粒", @"持久", @"保护", @"冰霜", @"大头", nil];
 }
 
 - (void)clickKeyword:(id)sender
@@ -78,12 +78,7 @@
         return;
     }
 	[_searchTextField resignFirstResponder];
-    
-    MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.mode = MBProgressHUDModeAnnularDeterminate;
-    HUD.labelText = @"正在加载中...";
-    [HUD showWhileExecuting:@selector(search:) onTarget:self withObject:_searchTextField.text animated:YES];
+    [self search:_searchTextField.text];
 }
 
 - (void)search:(NSString*)keyword
@@ -101,7 +96,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    int top = _wordsView.frame.origin.y + 80;
+    int top = _wordsView.frame.origin.y + 100;
     [self addBlankView:top currentResponder:_searchTextField];
 }
 
@@ -141,11 +136,21 @@
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
     NSLog(@"Response code: %d", [response statusCode]);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {
     NSLog(@"Error: %@", [error localizedDescription]);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)requestDidStartLoad:(RKRequest *)request
+{
+    NSLog(@"Start load request...");
+    MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.labelText = @"正在加载中...";
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects

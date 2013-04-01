@@ -12,6 +12,7 @@
 #import "UIUtils.h"
 #import "ItemService.h"
 #import "ItemViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SearchViewController ()
 
@@ -77,7 +78,12 @@
         return;
     }
 	[_searchTextField resignFirstResponder];
-	[self search:_searchTextField.text];
+    
+    MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.mode = MBProgressHUDModeAnnularDeterminate;
+    HUD.labelText = @"正在加载中...";
+    [HUD showWhileExecuting:@selector(search:) onTarget:self withObject:_searchTextField.text animated:YES];
 }
 
 - (void)search:(NSString*)keyword
@@ -87,7 +93,10 @@
 
 - (void)viewDidUnload
 {
-    
+    _wordsView = nil;
+    _searchTextFieldBackgroundView = nil;
+    _searchButton = nil;
+    _searchTextField = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated

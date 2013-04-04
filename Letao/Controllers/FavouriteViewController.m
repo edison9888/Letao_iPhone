@@ -67,7 +67,7 @@
     _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 275, 40)];
     _helpLabel.backgroundColor = [UIColor clearColor];
     _helpLabel.hidden = YES;
-    NSString* text = @"在详情页面右上角点击心按钮添加喜欢";
+    NSString* text = @"在详情页面右上角点击心形按钮收藏";
     _helpLabel.numberOfLines = 0;
     _helpLabel.textAlignment = UITextAlignmentCenter;
     _helpLabel.text = text;

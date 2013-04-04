@@ -14,6 +14,8 @@
 #import "UIUtils.h"
 #import "GlobalConstants.h"
 #import "SearchViewController.h"
+#import "ArticleListViewController.h"
+#import "Reachability.h"
 
 @implementation AppDelegate
 
@@ -50,8 +52,8 @@
                     viewControllers:controllers];
     
     [UIUtils addViewController:[FavouriteViewController alloc]
-                     viewTitle:@"喜欢"
-                     viewImage:@"love"
+                     viewTitle:@"收藏"
+                     viewImage:@"star"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
@@ -59,6 +61,13 @@
     [UIUtils addViewController:[SearchViewController alloc]
                      viewTitle:@"搜索"
                      viewImage:@"magnify"
+                    hasNavController:YES
+                    hideNavigationBar:NO
+                    viewControllers:controllers];
+    
+    [UIUtils addViewController:[ArticleListViewController alloc]
+                     viewTitle:@"趣文"
+                     viewImage:@"text-list"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
@@ -81,6 +90,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请查看网络是否连接正常！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+
     //HJCache
     [self initImageCacheManager];
     

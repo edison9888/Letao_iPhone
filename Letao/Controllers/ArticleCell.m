@@ -20,7 +20,6 @@
         
         self.contentLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.contentLabel];
-        
     }
     return self;
 }

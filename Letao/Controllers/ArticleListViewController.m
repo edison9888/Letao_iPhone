@@ -47,7 +47,7 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     if (_supportRefreshFooter && _refreshFooterView == nil) {
-        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, _dataTableView.frame.size.height+100, _dataTableView.frame.size.width, _dataTableView.frame.size.height)];
+        EGORefreshTableFooterView *view = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, COUNT_EACH_FETCH * [ArticleCell heightForCell], _dataTableView.frame.size.width, _dataTableView.frame.size.height)];
 		view.delegate = self;
 		[_dataTableView addSubview:view];
         _refreshFooterView = view;

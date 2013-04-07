@@ -66,6 +66,7 @@
 		C64AED0416BA168B00363ED6 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AECFA16BA168B00363ED6 /* ASIInputStream.m */; };
 		C64AED0516BA168B00363ED6 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AECFC16BA168B00363ED6 /* ASINetworkQueue.m */; };
 		C64AED6316BA1A9B00363ED6 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C64AED6116BA1A9B00363ED6 /* ItemViewController.m */; };
+		C65935251711AAAB00311D9D /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C65935231711AAAB00311D9D /* libMobClickLibrary.a */; };
 		C65E47E016DE0CC5003C3977 /* BarButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C65E47DE16DE0CC5003C3977 /* BarButtonBackground.png */; };
 		C65E47E116DE0CC5003C3977 /* BarButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C65E47DF16DE0CC5003C3977 /* BarButtonBackground@2x.png */; };
 		C6652ACE16E2438C00CA3CA2 /* BrandDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6652ACC16E2438B00CA3CA2 /* BrandDescriptionViewController.m */; };
@@ -462,6 +463,8 @@
 		C64AECFD16BA168B00363ED6 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		C64AED6016BA1A9B00363ED6 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
 		C64AED6116BA1A9B00363ED6 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
+		C65935231711AAAB00311D9D /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		C65935241711AAAB00311D9D /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		C65E47DE16DE0CC5003C3977 /* BarButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarButtonBackground.png; sourceTree = "<group>"; };
 		C65E47DF16DE0CC5003C3977 /* BarButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarButtonBackground@2x.png"; sourceTree = "<group>"; };
 		C6652ACB16E2438B00CA3CA2 /* BrandDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandDescriptionViewController.h; sourceTree = "<group>"; };
@@ -904,6 +907,7 @@
 				C687DA0716B53B4A00AB82A1 /* CoreLocation.framework in Frameworks */,
 				C687D9EA16B53B3100AB82A1 /* UIKit.framework in Frameworks */,
 				C687D9EC16B53B3100AB82A1 /* Foundation.framework in Frameworks */,
+				C65935251711AAAB00311D9D /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1159,15 @@
 				C6DED6A116F62DF3006265C4 /* CommentViewController.xib */,
 			);
 			name = Item;
+			sourceTree = "<group>";
+		};
+		C65935221711AAAB00311D9D /* UMAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				C65935231711AAAB00311D9D /* libMobClickLibrary.a */,
+				C65935241711AAAB00311D9D /* MobClick.h */,
+			);
+			path = UMAnalytics;
 			sourceTree = "<group>";
 		};
 		C687D9DA16B53B3100AB82A1 = {
@@ -1656,6 +1669,7 @@
 		C687DAAF16B54BCD00AB82A1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C65935221711AAAB00311D9D /* UMAnalytics */,
 				C633B40716D5308300B28E58 /* sinaweibo */,
 				C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */,
 				C63B7A6916BACEA30072A4D2 /* EGOTableViewPullRefresh */,
@@ -2571,6 +2585,10 @@
 				);
 				INFOPLIST_FILE = "Letao/Letao-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iOS/Vendor/UMAnalytics\"",
+				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",
 					"-all_load",
@@ -2592,6 +2610,10 @@
 				);
 				INFOPLIST_FILE = "Letao/Letao-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iOS/Vendor/UMAnalytics\"",
+				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",
 					"-all_load",

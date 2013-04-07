@@ -16,6 +16,7 @@
 #import "SearchViewController.h"
 #import "ArticleListViewController.h"
 #import "Reachability.h"
+#import "MobClick.h"
 
 @implementation AppDelegate
 
@@ -95,6 +96,8 @@
         [alert show];
         [alert release];
     }
+    
+    [MobClick startWithAppkey:@"51616d0a56240bd604004389"];
 
     //HJCache
     [self initImageCacheManager];

@@ -47,6 +47,14 @@
     self.contentLabel.font = [UIFont systemFontOfSize:14];
     self.contentLabel.text = article.content;
     self.contentLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.85];
+    
+}
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetRGBFillColor(context, 0.05, 0.05, 0.15, 0.2);
+	rect = CGRectMake(0, self.bounds.size.height - 4, self.bounds.size.width, 4);
+	CGContextFillRect(context, rect);
 }
 
 + (CGFloat)heightForCell

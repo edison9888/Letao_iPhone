@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6036AA8171A73CF009B5561 /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6036AA4171A73CF009B5561 /* libWeChatSDK_armv7_armv7s.a */; };
 		C60A922716DFA3E300329F98 /* action.png in Resources */ = {isa = PBXBuildFile; fileRef = C60A922316DFA3E300329F98 /* action.png */; };
 		C60A922816DFA3E300329F98 /* action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C60A922416DFA3E300329F98 /* action@2x.png */; };
 		C60A922916DFA3E300329F98 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C60A922516DFA3E300329F98 /* back.png */; };
@@ -278,6 +279,7 @@
 		C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */; };
 		C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */; };
 		C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */; };
+		C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */; };
 		C6DED69316F3447A006265C4 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED69216F3447A006265C4 /* CommentCell.m */; };
 		C6DED69616F34A60006265C4 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED69516F34A60006265C4 /* Comment.m */; };
 		C6DED69916F392BD006265C4 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = C6DED69716F392BD006265C4 /* separator.png */; };
@@ -372,6 +374,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6036AA4171A73CF009B5561 /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
+		C6036AA5171A73CF009B5561 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		C6036AA6171A73CF009B5561 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		C60A922316DFA3E300329F98 /* action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action.png; sourceTree = "<group>"; };
 		C60A922416DFA3E300329F98 /* action@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action@2x.png"; sourceTree = "<group>"; };
 		C60A922516DFA3E300329F98 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -852,6 +857,8 @@
 		C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		C6A9E7C116D71156002BAD63 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
 		C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
+		C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToWeixinControllerViewController.h; sourceTree = "<group>"; };
+		C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToWeixinControllerViewController.m; sourceTree = "<group>"; };
 		C6DED69116F3447A006265C4 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C6DED69216F3447A006265C4 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C6DED69416F34A60006265C4 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -908,12 +915,23 @@
 				C687D9EA16B53B3100AB82A1 /* UIKit.framework in Frameworks */,
 				C687D9EC16B53B3100AB82A1 /* Foundation.framework in Frameworks */,
 				C65935251711AAAB00311D9D /* libMobClickLibrary.a in Frameworks */,
+				C6036AA8171A73CF009B5561 /* libWeChatSDK_armv7_armv7s.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C6036AA2171A73CF009B5561 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				C6036AA4171A73CF009B5561 /* libWeChatSDK_armv7_armv7s.a */,
+				C6036AA5171A73CF009B5561 /* WXApi.h */,
+				C6036AA6171A73CF009B5561 /* WXApiObject.h */,
+			);
+			path = WeChatSDK;
+			sourceTree = "<group>";
+		};
 		C633B3F516D524A700B28E58 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +947,8 @@
 				C633B40216D52A3300B28E58 /* ShareToSinaController.h */,
 				C633B40316D52A3300B28E58 /* ShareToSinaController.m */,
 				C633B40416D52A3300B28E58 /* ShareToSinaController.xib */,
+				C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.h */,
+				C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */,
 			);
 			name = Share;
 			sourceTree = "<group>";
@@ -1669,6 +1689,7 @@
 		C687DAAF16B54BCD00AB82A1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C6036AA2171A73CF009B5561 /* WeChatSDK */,
 				C65935221711AAAB00311D9D /* UMAnalytics */,
 				C633B40716D5308300B28E58 /* sinaweibo */,
 				C6901C8716D0EF19009C7816 /* MBProgressHUD.xcodeproj */,
@@ -2470,6 +2491,7 @@
 				C6E5EAB5170C32E500AA7283 /* Article.m in Sources */,
 				C6E5EAC5170D7C1D00AA7283 /* ArticleDetailViewController.m in Sources */,
 				C6E5EAC9170D9FEC00AA7283 /* ArticleService.m in Sources */,
+				C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2588,6 +2610,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iOS/Vendor/UMAnalytics\"",
+					"\"$(SRCROOT)/../Common_iOS/Vendor/WeChatSDK\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",
@@ -2613,6 +2636,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iOS/Vendor/UMAnalytics\"",
+					"\"$(SRCROOT)/../Common_iOS/Vendor/WeChatSDK\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",

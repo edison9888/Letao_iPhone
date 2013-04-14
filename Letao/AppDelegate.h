@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PPApplication.h"
+#import "WXApi.h"
 
 @class MainController;
 
-@interface AppDelegate : PPApplication <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : PPApplication <UIApplicationDelegate, UITabBarControllerDelegate, WXApiDelegate>
 
 @property (retain, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MainController *mainController;

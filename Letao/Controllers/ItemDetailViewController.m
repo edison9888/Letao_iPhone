@@ -13,6 +13,7 @@
 #import "ItemManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ShareToSinaController.h"
+#import "ShareToWeixinControllerViewController.h"
 #import "CommentCell.h"
 #import "UIImage+Scale.h"
 #import "CommentViewController.h"
@@ -20,7 +21,11 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ItemDetailViewController ()
-
+{
+    NSInteger buttonIndexWeixinTimeline;
+    NSInteger buttonIndexWeixinFriend;
+    NSInteger buttonIndexSinaWeibo;
+}
 @end
 
 @implementation ItemDetailViewController
@@ -160,9 +165,50 @@
 
 - (void)clickShare:(id)sender
 {
-    ShareToSinaController *controller = [[ShareToSinaController alloc] initWithItem:_item];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:@"请选择分享方式" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    int buttonIndex = 0;
+    
+    [shareOptions addButtonWithTitle:@"分享到微信朋友圈"];
+    buttonIndexWeixinTimeline = buttonIndex;
+    
+    buttonIndex ++;
+    [shareOptions addButtonWithTitle:@"分享给微信好友"];
+    buttonIndexWeixinFriend = buttonIndex;
+    
+    buttonIndex ++;
+    [shareOptions addButtonWithTitle:@"分享到新浪微博"];
+    buttonIndexSinaWeibo = buttonIndex;
+
+    buttonIndex ++;
+    [shareOptions addButtonWithTitle:@"取消"];
+    [shareOptions setCancelButtonIndex:buttonIndex];
+    
+    shareOptions.destructiveButtonIndex = 0;
+    [shareOptions showInView:self.view];
+    [shareOptions release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        NSLog(@"Click No Share!");
+        return;
+    } else if (buttonIndex == buttonIndexWeixinTimeline){
+        ShareToWeixinControllerViewController *controller = [[ShareToWeixinControllerViewController alloc] initWithItem:_item];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+        
+    } else if (buttonIndex == buttonIndexWeixinFriend){
+        ShareToWeixinControllerViewController *controller = [[ShareToWeixinControllerViewController alloc] initWithItem:_item];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+        
+    } else if (buttonIndex == buttonIndexSinaWeibo){
+        ShareToSinaController *controller = [[ShareToSinaController alloc] initWithItem:_item];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (void)addFavouriteView
@@ -283,7 +329,8 @@
     NSString *tips = _item.tips;
     if ([tips length] > 0) {
         tips = _item.tips;
-//        tips = [[_item.tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"] stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
+        tips = [tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"];
+//        tips = [tips stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
 //        tips = [[[[[[tips stringByReplacingOccurrencesOfString:@"&plusmn;" withString:@"±"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"]stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"]stringByReplacingOccurrencesOfString:@"&mdash;" withString:@"—"]stringByReplacingOccurrencesOfString:@"&quot;" withString:@"”"];
 //        
 //        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];

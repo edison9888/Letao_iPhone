@@ -121,7 +121,7 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake((320-CONTENT_WIDTH)/2, WEIBO_LOGO_HEIGHT, CONTENT_WIDTH, CONTENT_HEIGHT)];
     textView.delegate = self;
     textView.font = [UIFont systemFontOfSize:14];
-    textView.text = [NSString stringWithFormat:@"我通过《安全套宝》发现了一刻有意思的安全套:%@",_item.title];
+    textView.text = [NSString stringWithFormat:@"我通过”套套大全“发现了一刻有意思的安全套:%@",_item.title];
     textView.backgroundColor = [UIColor clearColor];
     self.contentTextView = textView;
     [textView release];

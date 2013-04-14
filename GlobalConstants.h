@@ -25,5 +25,6 @@
 #define SINA_WEIBO_APP_SECRET    @"7079419c3608a680c4ad056b1cae9f6c"
 #define kAppRedirectURI     @"http://"
 
+#define WEIXIN_APP_KEY  @"wxcf2ade6cb40cd0b5"
 
 #endif

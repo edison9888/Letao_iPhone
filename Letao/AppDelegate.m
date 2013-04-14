@@ -90,6 +90,14 @@
     [[UIToolbar appearance] setBackgroundImage:barImage forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -98,6 +106,9 @@
         [alert show];
         [alert release];
     }
+    
+    //Weixin
+    [WXApi registerApp:WEIXIN_APP_KEY];
     
     //UMeng
     [MobClick startWithAppkey:UMENG_KEY];
@@ -149,5 +160,23 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+-(void) onReq:(BaseReq*)req
+{
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        if (resp.errCode == WXSuccess){
+            [UIUtils alert:@"已成功分享至微信"];
+            NSLog(@"<onResp> weixin response success");
+        }else {
+            NSLog(@"<onResp> weixin response fail");
+        }
+    }
+}
+
 
 @end

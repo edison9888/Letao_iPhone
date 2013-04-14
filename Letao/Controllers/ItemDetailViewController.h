@@ -11,7 +11,7 @@
 #import "Item.h"
 #import "SlideImageView.h"
 
-@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate>
+@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate>
 
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(retain, nonatomic) IBOutlet UITableView *commentTableView;

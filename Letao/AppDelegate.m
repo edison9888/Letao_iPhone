@@ -163,6 +163,7 @@
 
 -(void) onReq:(BaseReq*)req
 {
+    NSLog(@"OnReq ........");
 }
 
 -(void) onResp:(BaseResp*)resp

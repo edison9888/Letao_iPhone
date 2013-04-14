@@ -279,7 +279,7 @@
 		C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */; };
 		C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */; };
 		C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */; };
-		C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */; };
+		C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */; };
 		C6DED69316F3447A006265C4 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED69216F3447A006265C4 /* CommentCell.m */; };
 		C6DED69616F34A60006265C4 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED69516F34A60006265C4 /* Comment.m */; };
 		C6DED69916F392BD006265C4 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = C6DED69716F392BD006265C4 /* separator.png */; };
@@ -857,8 +857,8 @@
 		C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		C6A9E7C116D71156002BAD63 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
 		C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
-		C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToWeixinControllerViewController.h; sourceTree = "<group>"; };
-		C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToWeixinControllerViewController.m; sourceTree = "<group>"; };
+		C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToWeixinController.h; sourceTree = "<group>"; };
+		C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToWeixinController.m; sourceTree = "<group>"; };
 		C6DED69116F3447A006265C4 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C6DED69216F3447A006265C4 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C6DED69416F34A60006265C4 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -947,8 +947,8 @@
 				C633B40216D52A3300B28E58 /* ShareToSinaController.h */,
 				C633B40316D52A3300B28E58 /* ShareToSinaController.m */,
 				C633B40416D52A3300B28E58 /* ShareToSinaController.xib */,
-				C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.h */,
-				C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m */,
+				C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinController.h */,
+				C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */,
 			);
 			name = Share;
 			sourceTree = "<group>";
@@ -2491,7 +2491,7 @@
 				C6E5EAB5170C32E500AA7283 /* Article.m in Sources */,
 				C6E5EAC5170D7C1D00AA7283 /* ArticleDetailViewController.m in Sources */,
 				C6E5EAC9170D9FEC00AA7283 /* ArticleService.m in Sources */,
-				C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinControllerViewController.m in Sources */,
+				C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Item.h"
 
-@interface ShareToWeixinControllerViewController : UIViewController<UITextViewDelegate>
+@interface ShareToWeixinController : UIViewController<UITextViewDelegate>
 {
     Item *_item;
 }
 
 @property (nonatomic, retain) UITextView *contentTextView;
 @property (nonatomic, retain) UILabel *wordsNumberLabel;
+@property (nonatomic, assign) int scene;
 
 - (id)initWithItem:(Item*)item;
 

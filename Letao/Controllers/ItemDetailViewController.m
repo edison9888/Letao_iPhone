@@ -13,12 +13,13 @@
 #import "ItemManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ShareToSinaController.h"
-#import "ShareToWeixinControllerViewController.h"
+#import "ShareToWeixinController.h"
 #import "CommentCell.h"
 #import "UIImage+Scale.h"
 #import "CommentViewController.h"
 #import "CommentService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "WXApi.h"
 
 @interface ItemDetailViewController ()
 {
@@ -148,10 +149,10 @@
     MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     if ([itemManager existItemInFavourites:self.item]) {
-        HUD.labelText = @"已经喜欢过了！";
+        HUD.labelText = @"已经收藏过了！";
     } else {
         [itemManager addItemIntoFavourites:self.item];
-        HUD.labelText = @"成功添加到我的喜欢！";
+        HUD.labelText = @"成功添加到收藏！";
         HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tick"]] autorelease];
     }
     HUD.mode = MBProgressHUDModeCustomView;
@@ -173,7 +174,7 @@
     buttonIndexWeixinTimeline = buttonIndex;
     
     buttonIndex ++;
-    [shareOptions addButtonWithTitle:@"分享给微信好友"];
+    [shareOptions addButtonWithTitle:@"发送给微信好友"];
     buttonIndexWeixinFriend = buttonIndex;
     
     buttonIndex ++;
@@ -195,12 +196,14 @@
         NSLog(@"Click No Share!");
         return;
     } else if (buttonIndex == buttonIndexWeixinTimeline){
-        ShareToWeixinControllerViewController *controller = [[ShareToWeixinControllerViewController alloc] initWithItem:_item];
+        ShareToWeixinController *controller = [[ShareToWeixinController alloc] initWithItem:_item];
         [self.navigationController pushViewController:controller animated:YES];
+        controller.scene = WXSceneTimeline;
         [controller release];
         
     } else if (buttonIndex == buttonIndexWeixinFriend){
-        ShareToWeixinControllerViewController *controller = [[ShareToWeixinControllerViewController alloc] initWithItem:_item];
+        ShareToWeixinController *controller = [[ShareToWeixinController alloc] initWithItem:_item];
+        controller.scene = WXSceneSession;
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
         

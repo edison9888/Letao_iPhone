@@ -6,16 +6,16 @@
 //  Copyright (c) 2013年 Kaibin. All rights reserved.
 //
 
-#import "ShareToWeixinControllerViewController.h"
+#import "ShareToWeixinController.h"
 #import "DeviceDetection.h"
 #import "WXApi.h"
 #import "GlobalConstants.h"
 
-@interface ShareToWeixinControllerViewController ()
+@interface ShareToWeixinController ()
 
 @end
 
-@implementation ShareToWeixinControllerViewController
+@implementation ShareToWeixinController
 
 - (id)init
 {
@@ -91,7 +91,6 @@
 
 - (void)showSendView
 {
-
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((320-CONTENT_WIDTH)/2+CONTENT_WIDTH-WORDSNUMBER_WIDTH, 30-WORDSNUMBER_HEIGHT, WORDSNUMBER_WIDTH, WORDSNUMBER_HEIGHT)];
     label.text = @"0";
     label.textAlignment = UITextAlignmentRight;
@@ -124,24 +123,25 @@
 - (void)sendMsgToWexin:(id)sender
 {
     [_contentTextView resignFirstResponder];
-    
-//    NSString *path = [_item.imageList objectAtIndex:0];;
-//    if (![path hasPrefix:@"http"]) {
-//        path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
-//    }
-//    UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
-//    WXMediaMessage *message = [WXMediaMessage message];
-//    [message setThumbImage:image];
-//    
-//    WXImageObject *ext = [WXImageObject object];
-//    NSString *filePath = path;
-//    ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
-//    message.mediaObject = ext;
     NSLog(@"send msg to weixin!!!!!!!!");
+
+    NSString *path = [_item.imageList objectAtIndex:0];;
+    if (![path hasPrefix:@"http"]) {
+        path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
+    }
+    UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:image];
+    
+    WXImageObject *ext = [WXImageObject object];
+    NSString *filePath = path;
+    ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
+    message.mediaObject = ext;
+    
     SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
-    req.bText = YES;
-    req.text = _contentTextView.text;
-    //req.scene = WXSceneTimeline;  //选择发送到朋友圈，默认值为WXSceneSession，发送到会话
+    req.bText = NO;
+    req.message = message;
+    req.scene = self.scene;  //选择发送到朋友圈，默认值为WXSceneSession，发送到会话
     [WXApi sendReq:req];
     
 }

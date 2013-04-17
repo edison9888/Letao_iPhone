@@ -10,8 +10,9 @@
 #import <RestKit/RestKit.h>
 #import "Item.h"
 #import "SlideImageView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate>
+@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(retain, nonatomic) IBOutlet UITableView *commentTableView;

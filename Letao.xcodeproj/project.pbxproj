@@ -24,6 +24,10 @@
 		C61E8F6C16D60E6900DE9920 /* all_page_bg2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C61E8F6916D60E6900DE9920 /* all_page_bg2@2x.jpg */; };
 		C61E8F6D16D60E6900DE9920 /* SinaWeibo_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E8F6A16D60E6900DE9920 /* SinaWeibo_logo@2x.png */; };
 		C61E8F6F16D60F4A00DE9920 /* feedback_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E8F6E16D60F4A00DE9920 /* feedback_bg2@2x.png */; };
+		C61E9EBE171D8D4200E1CDFC /* cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E9EBC171D8D4200E1CDFC /* cell_bg.png */; };
+		C61E9EBF171D8D4200E1CDFC /* cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E9EBD171D8D4200E1CDFC /* cell_bg@2x.png */; };
+		C61E9EC2171D9AA700E1CDFC /* cell_sel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E9EC0171D9AA700E1CDFC /* cell_sel_bg.png */; };
+		C61E9EC3171D9AA700E1CDFC /* cell_sel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C61E9EC1171D9AA700E1CDFC /* cell_sel_bg@2x.png */; };
 		C633B3F816D524DC00B28E58 /* SinaWeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C633B3F716D524DC00B28E58 /* SinaWeiboManager.m */; };
 		C633B40516D52A3300B28E58 /* ShareToSinaController.m in Sources */ = {isa = PBXBuildFile; fileRef = C633B40316D52A3300B28E58 /* ShareToSinaController.m */; };
 		C633B40616D52A3300B28E58 /* ShareToSinaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C633B40416D52A3300B28E58 /* ShareToSinaController.xib */; };
@@ -394,6 +398,10 @@
 		C61E8F6916D60E6900DE9920 /* all_page_bg2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "all_page_bg2@2x.jpg"; sourceTree = "<group>"; };
 		C61E8F6A16D60E6900DE9920 /* SinaWeibo_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SinaWeibo_logo@2x.png"; sourceTree = "<group>"; };
 		C61E8F6E16D60F4A00DE9920 /* feedback_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback_bg2@2x.png"; sourceTree = "<group>"; };
+		C61E9EBC171D8D4200E1CDFC /* cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_bg.png; sourceTree = "<group>"; };
+		C61E9EBD171D8D4200E1CDFC /* cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_bg@2x.png"; sourceTree = "<group>"; };
+		C61E9EC0171D9AA700E1CDFC /* cell_sel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_sel_bg.png; sourceTree = "<group>"; };
+		C61E9EC1171D9AA700E1CDFC /* cell_sel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_sel_bg@2x.png"; sourceTree = "<group>"; };
 		C633B3F616D524DC00B28E58 /* SinaWeiboManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboManager.h; sourceTree = "<group>"; };
 		C633B3F716D524DC00B28E58 /* SinaWeiboManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboManager.m; sourceTree = "<group>"; };
 		C633B40216D52A3300B28E58 /* ShareToSinaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToSinaController.h; sourceTree = "<group>"; };
@@ -1077,7 +1085,11 @@
 		C64AE9B116B822A800363ED6 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C61E9EC0171D9AA700E1CDFC /* cell_sel_bg.png */,
+				C61E9EC1171D9AA700E1CDFC /* cell_sel_bg@2x.png */,
 				C6E5EAA8170BFF6600AA7283 /* text-list.png */,
+				C61E9EBC171D8D4200E1CDFC /* cell_bg.png */,
+				C61E9EBD171D8D4200E1CDFC /* cell_bg@2x.png */,
 				C68CC40D1701583A005B60C8 /* magnify.png */,
 				C68CC419170179BC005B60C8 /* tu_46-18@2x.png */,
 				C68CC41A170179BC005B60C8 /* tu_48@2x.png */,
@@ -2291,6 +2303,10 @@
 				C6E5EAA9170BFF6600AA7283 /* text-list.png in Resources */,
 				C6E5EAAF170C247000AA7283 /* ArticleListViewController.xib in Resources */,
 				C6E5EAC6170D7C1D00AA7283 /* ArticleDetailViewController.xib in Resources */,
+				C61E9EBE171D8D4200E1CDFC /* cell_bg.png in Resources */,
+				C61E9EBF171D8D4200E1CDFC /* cell_bg@2x.png in Resources */,
+				C61E9EC2171D9AA700E1CDFC /* cell_sel_bg.png in Resources */,
+				C61E9EC3171D9AA700E1CDFC /* cell_sel_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

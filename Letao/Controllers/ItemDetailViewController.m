@@ -20,12 +20,14 @@
 #import "CommentService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "WXApi.h"
+#import "DeviceDetection.h"
 
 @interface ItemDetailViewController ()
 {
     NSInteger buttonIndexWeixinTimeline;
     NSInteger buttonIndexWeixinFriend;
     NSInteger buttonIndexSinaWeibo;
+    NSInteger buttonIndexEmail;
 }
 @end
 
@@ -180,6 +182,10 @@
     buttonIndex ++;
     [shareOptions addButtonWithTitle:@"分享到新浪微博"];
     buttonIndexSinaWeibo = buttonIndex;
+    
+    buttonIndex ++;
+    [shareOptions addButtonWithTitle:@"通过邮件分享"];
+    buttonIndexEmail = buttonIndex;
 
     buttonIndex ++;
     [shareOptions addButtonWithTitle:@"取消"];
@@ -211,7 +217,42 @@
         ShareToSinaController *controller = [[ShareToSinaController alloc] initWithItem:_item];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
+    } else if (buttonIndex == buttonIndexEmail){
+        [self shareViaEmail];
     }
+}
+
+- (void)shareViaEmail
+{
+    MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
+    NSString* subject = [NSString stringWithFormat:@"套套分享"];
+    NSString* body = [NSString stringWithFormat:@"分享一款有趣的套套"];
+    
+    NSString* mime = nil;
+    mime = @"image/png";
+        
+    NSString *path = [_item.imageList objectAtIndex:0];;
+    if (![path hasPrefix:@"http"]) {
+        path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
+    }
+    
+    [compose setSubject:subject];
+    [compose setMessageBody:body
+                     isHTML:NO];
+    [compose addAttachmentData:[NSData dataWithContentsOfFile:path]
+                      mimeType:mime
+                      fileName:[path lastPathComponent]];
+    [compose setMailComposeDelegate:self];
+    
+    if ([DeviceDetection isOS6]){
+        [self presentViewController:compose animated:YES completion:^{
+            
+        }];
+    }
+    else{
+        [self presentModalViewController:compose animated:YES];
+    }
+    [compose release];
 }
 
 - (void)addFavouriteView
@@ -519,6 +560,18 @@
     [_commentButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
     [_dataScrollView addSubview:_commentButton];
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+_commentButton.frame.size.height+10)];
+}
+
+#pragma mark - mail compose delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [self dismissModalViewControllerAnimated:YES];
+    if (error == nil && result == MFMailComposeResultSent) {
+    }
+    
 }
 
 @end

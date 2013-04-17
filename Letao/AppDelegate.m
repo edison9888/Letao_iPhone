@@ -161,11 +161,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//onReq是微信终端向第三方程序发起请求，要求第三方程序响应。第三方程序响应完后必须调用sendRsp返回。在调用sendRsp返回时，会切回到微信终端程序界面。
 -(void) onReq:(BaseReq*)req
 {
-    NSLog(@"OnReq ........");
+    if([req isKindOfClass:[GetMessageFromWXReq class]]) {
+        // TODO 微信请求内容，目前不需要回应
+    }
+    
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]]) {
+        // TODO 微信发过来的内容
+    }
 }
 
+//如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面。
 -(void) onResp:(BaseResp*)resp
 {
     if([resp isKindOfClass:[SendMessageToWXResp class]])

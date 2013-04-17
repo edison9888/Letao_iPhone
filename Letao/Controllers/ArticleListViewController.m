@@ -12,6 +12,7 @@
 #import "ArticleDetailViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ArticleService.h"
+#import "UIImage+Scale.h"
 
 #define COUNT_EACH_FETCH 10
 
@@ -113,8 +114,13 @@
     
     Article *article = [_dataList objectAtIndex:indexPath.row];
     [cell setArticle:article];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    UIImage *bg = [[UIImage imageNamed:@"cell_bg"] scaleToSize:CGSizeMake(320, [ArticleCell heightForCell])];
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
+    cell.backgroundView = bgView;
+    [bgView release];
+
     return cell;
 }
 
@@ -124,6 +130,10 @@
     ArticleDetailViewController *controller = [[ArticleDetailViewController alloc] initWithArticle:article];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
 }
 
 #pragma mark -

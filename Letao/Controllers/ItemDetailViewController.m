@@ -374,9 +374,6 @@
     if ([tips length] > 0) {
         tips = _item.tips;
         tips = [tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"];
-//        tips = [tips stringByReplacingOccurrencesOfString:@"【" withString:@"\n【"];
-//        tips = [[[[[[tips stringByReplacingOccurrencesOfString:@"&plusmn;" withString:@"±"] stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""] stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"]stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"]stringByReplacingOccurrencesOfString:@"&mdash;" withString:@"—"]stringByReplacingOccurrencesOfString:@"&quot;" withString:@"”"];
-//        
 //        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];
         
         size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
@@ -533,16 +530,16 @@
     NSInteger size = [_commentList count];
     if (size == 0)
     {
-//        _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
-//        _helpLabel.backgroundColor = [UIColor clearColor];
-//        _helpLabel.hidden = NO;
-//        NSString* text = @"暂无相关评论";
-//        _helpLabel.numberOfLines = 0;
-//        _helpLabel.textAlignment = UITextAlignmentCenter;
-//        _helpLabel.text = text;
-//        _helpLabel.font = [UIFont systemFontOfSize:14];
-//        [_dataScrollView addSubview:_helpLabel];
-//        _totalHeight += _helpLabel.frame.size.height;
+        _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
+        _helpLabel.backgroundColor = [UIColor clearColor];
+        _helpLabel.hidden = NO;
+        NSString* text = @"暂无相关评论";
+        _helpLabel.numberOfLines = 0;
+        _helpLabel.textAlignment = UITextAlignmentCenter;
+        _helpLabel.text = text;
+        _helpLabel.font = [UIFont systemFontOfSize:14];
+        [_dataScrollView addSubview:_helpLabel];
+        _totalHeight += _helpLabel.frame.size.height;
         
     } else {
         [self.commentTableView setFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, size*[CommentCell heightForCell])];
@@ -550,16 +547,44 @@
         _totalHeight += size*[CommentCell heightForCell];
     }
     
-    _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(125, _totalHeight+5, 80, 30)];
-    [_commentButton setBackgroundImage:[UIImage imageNamed:@"favorites@2x"] forState:UIControlStateNormal];
-    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
-    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+    UIButton *buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
+    [buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
+    [buyButton setTitle:@"购买" forState:UIControlStateNormal];
+    [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_dataScrollView addSubview:buyButton];
     
-    [_commentButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
-    [_dataScrollView addSubview:_commentButton];
-    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+_commentButton.frame.size.height+10)];
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + 5, 100, 30)];
+    [shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
+    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+    [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+    [_dataScrollView addSubview:shareButton];
+    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+buyButton.frame.size.height+10)];
+    
+//    _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(125, _totalHeight+5, 80, 30)];
+//    [_commentButton setBackgroundImage:[UIImage imageNamed:@"favorites@2x"] forState:UIControlStateNormal];
+//    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//    [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
+//    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+//    [_commentButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
+//    [_dataScrollView addSubview:_commentButton];
+//    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+_commentButton.frame.size.height+10)];
+}
+
+- (IBAction)buyButtonPressed {
+    NSString *str;
+    
+    NSString *path = [_item.imageList objectAtIndex:0];;
+    if (![path hasPrefix:@"http"]) {
+        str = [ NSString stringWithFormat:@"http://durex-china.taobao.com/"];
+    } else {
+        str = _item.buy_url;
+    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
 #pragma mark - mail compose delegate
@@ -571,7 +596,6 @@
     [self dismissModalViewControllerAnimated:YES];
     if (error == nil && result == MFMailComposeResultSent) {
     }
-    
 }
 
 @end

@@ -54,7 +54,8 @@
         _data = [[NSMutableArray alloc] initWithArray:array];
         _brand = nil;
     }
-    _currentData = _data;
+    _currentData = [NSMutableArray arrayWithArray:array];
+    NSLog(@"------%d",_currentData.count);
     
     return self;
 }
@@ -92,7 +93,7 @@
     _gmGridView.actionDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
-    _gmGridView.delegate = self;    
+    _gmGridView.delegate = self;
 }
 
 - (void)viewDidLoad

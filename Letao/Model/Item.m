@@ -18,6 +18,7 @@
     [aCoder encodeObject:self._id forKey:@"_id"];
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.subtitle forKey:@"subtitle"];
+    [aCoder encodeObject:self.subtitle forKey:@"buy_url"];
     [aCoder encodeObject:self.information forKey:@"information"];
     [aCoder encodeObject:self.description forKey:@"description"];
     [aCoder encodeObject:self.tips forKey:@"tips"];
@@ -31,6 +32,7 @@
         self._id = [aDecoder decodeObjectForKey:@"_id"];
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.subtitle = [aDecoder decodeObjectForKey:@"subtitle"];
+        self.subtitle = [aDecoder decodeObjectForKey:@"buy_url"];
         self.information = [aDecoder decodeObjectForKey:@"information"];
         self.description = [aDecoder decodeObjectForKey:@"description"];
         self.tips = [aDecoder decodeObjectForKey:@"tips"];

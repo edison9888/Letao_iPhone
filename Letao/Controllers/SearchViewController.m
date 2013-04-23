@@ -156,10 +156,10 @@
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
     NSLog(@"***Load objects count: %d", [objects count]);
-    ItemViewController *controller = [[ItemViewController alloc] initWithData:objects];
+    ItemViewController *controller = [[[ItemViewController alloc] initWithData:objects] autorelease];
     controller.title = @"结果";
     [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+//    [controller release];
 }
 
 

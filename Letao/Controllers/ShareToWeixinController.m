@@ -110,7 +110,14 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake((320-CONTENT_WIDTH)/2, 30, CONTENT_WIDTH, CONTENT_HEIGHT)];
     textView.delegate = self;
     textView.font = [UIFont systemFontOfSize:14];
-    textView.text = [NSString stringWithFormat:@"我通过”套套大全“发现了一款有趣的安全套:%@\n%@",_item.title, _item.buy_url];
+    
+    NSString *path = [_item.imageList objectAtIndex:0];;
+    if (![path hasPrefix:@"http"]) {
+        textView.text = [NSString stringWithFormat:@"我通过”套套大全“发现了一款有趣的安全套:%@\n%@",_item.title, @"http://durex-china.taobao.com/"];
+    } else {
+        textView.text = [NSString stringWithFormat:@"我通过”套套大全“发现了一款有趣的安全套:%@\n%@",_item.title, _item.buy_url];
+    }
+    
     textView.backgroundColor = [UIColor clearColor];
     self.contentTextView = textView;
     [textView release];

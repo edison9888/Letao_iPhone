@@ -18,9 +18,9 @@
 #import "UIImage+Scale.h"
 #import "CommentViewController.h"
 #import "CommentService.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "WXApi.h"
 #import "DeviceDetection.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface ItemDetailViewController ()
 {
@@ -68,8 +68,9 @@
 {
     [_dataScrollView release], _dataScrollView = nil;
     [_commentTableView release], _commentTableView = nil;
-    [_commentButton release], _commentButton = nil;
     [_commentList release], _commentList = nil;
+    [_buyButton release], _buyButton = nil;
+    [_shareButton release], _shareButton = nil;
     [super dealloc];
 }
 
@@ -78,8 +79,9 @@
     [super viewDidUnload];
     _dataScrollView = nil;
     _commentTableView = nil;
-    _commentButton = nil;
     _commentList = nil;
+    _shareButton = nil;
+    _buyButton = nil;
     _item = nil;
 }
 
@@ -99,21 +101,21 @@
     [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     
-    UIView *rightBarView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 24)] autorelease];
+    UIView *rightBarView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)] autorelease];
     UIButton *commentButon = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)] autorelease];
     UIButton *favouriteButon = [[[UIButton alloc] initWithFrame:CGRectMake(34, 0, 24, 24)] autorelease];
-    UIButton *shareButon = [[[UIButton alloc] initWithFrame:CGRectMake(68, 0, 24, 24)] autorelease];
+//    UIButton *shareButon = [[[UIButton alloc] initWithFrame:CGRectMake(68, 0, 24, 24)] autorelease];
     
     [commentButon setImage:[UIImage imageNamed:@"edit@2x"] forState:UIControlStateNormal];
     [favouriteButon setImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
-    [shareButon setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+//    [shareButon setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [favouriteButon addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
-    [shareButon addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+//    [shareButon addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
     [commentButon addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
     
-    [rightBarView addSubview:favouriteButon];
-    [rightBarView addSubview:shareButon];
     [rightBarView addSubview:commentButon];
+    [rightBarView addSubview:favouriteButon];
+//    [rightBarView addSubview:shareButon];
     
     UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarView] autorelease];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
@@ -135,7 +137,6 @@
 - (void)loadComments
 {
     [self.commentList removeAllObjects];
-    [_commentButton removeFromSuperview];
     _totalHeight -= _commentTableView.frame.size.height;
     [[CommentService sharedService] findCommentsWithItemId:_item._id delegate:self];
 }
@@ -224,6 +225,11 @@
 
 - (void)shareViaEmail
 {
+    if ([MFMailComposeViewController canSendMail] == NO)
+    {
+        [UIUtils alert:@"您的手机还没设置邮件账户"];
+        return;
+    }
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
     NSString* subject = [NSString stringWithFormat:@"套套分享"];
     NSString* body = [NSString stringWithFormat:@"分享一款有趣的套套"];
@@ -231,17 +237,17 @@
     NSString* mime = nil;
     mime = @"image/png";
         
-    NSString *path = [_item.imageList objectAtIndex:0];;
-    if (![path hasPrefix:@"http"]) {
-        path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
+    NSString *imageUrl = [_item.imageList objectAtIndex:0];;
+    if (![imageUrl hasPrefix:@"http"]) {
+        imageUrl = [DUREX_IMAGE_BASE_URL stringByAppendingString:imageUrl];
     }
     
     [compose setSubject:subject];
     [compose setMessageBody:body
                      isHTML:NO];
-    [compose addAttachmentData:[NSData dataWithContentsOfFile:path]
+    [compose addAttachmentData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]
                       mimeType:mime
-                      fileName:[path lastPathComponent]];
+                      fileName:[imageUrl lastPathComponent]];
     [compose setMailComposeDelegate:self];
     
     if ([DeviceDetection isOS6]){
@@ -373,9 +379,7 @@
     NSString *tips = _item.tips;
     if ([tips length] > 0) {
         tips = _item.tips;
-        tips = [tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"];
-//        tips = [[[[tips stringByReplacingOccurrencesOfString:[_item.title stringByAppendingString:@"描述"] withString:@""] stringByReplacingOccurrencesOfString:@"基本信息" withString:@"\n基本信息："] stringByReplacingOccurrencesOfString:@"温馨提示" withString:@"\n温馨提示："] stringByReplacingOccurrencesOfString:@"品牌介绍" withString:@"\n品牌介绍：\n"];
-        
+        tips = [tips stringByReplacingOccurrencesOfString:@"●" withString:@"\n●"];        
         size = [tips sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
         UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, _totalHeight, 300, size.height)];
         tipsLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -388,18 +392,12 @@
         _totalHeight += tipsLabel.frame.size.height + padding;
         [tipsLabel release];
     }
-    
-//    UIView *separatorLineView = [[[UIView alloc]initWithFrame:CGRectMake(0, _totalHeight, 320, 2)] autorelease];
-//    separatorLineView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"separator"]];
-//    [self.dataScrollView addSubview:separatorLineView];
-//    _totalHeight += separatorLineView.frame.size.height;
 }
 
 - (void)addCommentSectionView
 {
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
     UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
-//    bgImage = [bgImage scaleToSize:CGSizeMake(320, 40)];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     [_dataScrollView addSubview:bgView];
     [bgView release];
@@ -528,7 +526,7 @@
     [_commentTableView reloadData];
     
     NSInteger size = [_commentList count];
-    if (size == 0)
+    if (size == 0 && _helpLabel == nil)
     {
         _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
         _helpLabel.backgroundColor = [UIColor clearColor];
@@ -546,33 +544,34 @@
         [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
         _totalHeight += size*[CommentCell heightForCell];
     }
-    
-    UIButton *buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
-    [buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
-    [buyButton setTitle:@"购买" forState:UIControlStateNormal];
-    [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [_dataScrollView addSubview:buyButton];
-    
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + 5, 100, 30)];
-    [shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
-    [_dataScrollView addSubview:shareButton];
-    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+buyButton.frame.size.height+10)];
-    
-//    _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(125, _totalHeight+5, 80, 30)];
-//    [_commentButton setBackgroundImage:[UIImage imageNamed:@"favorites@2x"] forState:UIControlStateNormal];
-//    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//    [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
-//    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
-//    [_commentButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
-//    [_dataScrollView addSubview:_commentButton];
-//    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight+_commentButton.frame.size.height+10)];
+    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
+    [self addBuyAndShare];
+}
+
+- (void)addBuyAndShare
+{
+    if (_buyButton == nil) {
+        _buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
+        [_buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
+        [_buyButton setTitle:@"购买" forState:UIControlStateNormal];
+        [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [_dataScrollView addSubview:_buyButton];
+        
+        _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + 5, 100, 30)];
+        [_shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
+        [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+        [_dataScrollView addSubview:_shareButton];
+
+    } else {
+        [_buyButton setFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
+        [_shareButton setFrame:CGRectMake(180,_totalHeight + 5, 100, 30)];
+    }
+    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight + _shareButton.frame.size.height+10)];
 }
 
 - (IBAction)buyButtonPressed {
@@ -588,14 +587,31 @@
 }
 
 #pragma mark - mail compose delegate
-
 - (void)mailComposeController:(MFMailComposeViewController *)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    [self dismissModalViewControllerAnimated:YES];
-    if (error == nil && result == MFMailComposeResultSent) {
+    NSString *msg;
+    
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            msg = @"邮件发送取消";
+            break;
+        case MFMailComposeResultSaved:
+            msg = @"邮件保存成功";
+            break;
+        case MFMailComposeResultSent:
+            msg = @"邮件发送成功";
+            break;
+        case MFMailComposeResultFailed:
+            msg = @"邮件发送失败";
+            break;
+        default:
+            break;
     }
+    [UIUtils alert:msg];
+    [self dismissModalViewControllerAnimated:YES];
 }
+
 
 @end

@@ -17,10 +17,12 @@
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(retain, nonatomic) IBOutlet UITableView *commentTableView;
 @property(retain, nonatomic) UILabel *helpLabel;
-@property(retain, nonatomic) UIButton *commentButton;
 @property(assign, nonatomic) float totalHeight;
 @property(retain, nonatomic) Item *item;
 @property(retain, nonatomic) NSMutableArray *commentList;
+@property(retain, nonatomic) UIButton *shareButton;
+@property(retain, nonatomic) UIButton *buyButton;
+
 
 - (id)initWithItem:(Item*)item;
 @end

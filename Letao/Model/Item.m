@@ -10,7 +10,7 @@
 
 @implementation Item
 
-@synthesize title, subtitle, price, description, smooth_index, information, tips, imageList, commentList, _id;
+@synthesize title, subtitle, buy_url, price, description, smooth_index, information, tips, imageList, commentList, _id;
 
 #pragma mark NSCoding delegate
 - (void)encodeWithCoder:(NSCoder *)aCoder

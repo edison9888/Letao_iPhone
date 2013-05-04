@@ -41,7 +41,7 @@
     [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
 
-    _textView = [[[UITextView alloc] initWithFrame:self.view.frame] autorelease];
+    _textView = [[UITextView alloc] initWithFrame:self.view.frame];
     _textView.delegate = self;
     _textView.editable = YES;
     _textView.textColor = [UIColor blackColor];
@@ -60,6 +60,12 @@
 - (void)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = YES;
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

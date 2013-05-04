@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GMGridView/GMGridView.h>
+#import "GMGridView.h"
 
 
 @interface FavouriteViewController : UIViewController<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewActionDelegate, GMGridViewTransformationDelegate>

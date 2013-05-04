@@ -130,23 +130,29 @@
         [_contentTextView resignFirstResponder];
         NSLog(@"send msg to weixin!!!!!!!!");
         
-        NSString *path = [_item.imageList objectAtIndex:0];;
-        if (![path hasPrefix:@"http"]) {
-            path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
-        }
-        UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
-        WXMediaMessage *message = [WXMediaMessage message];
-        [message setThumbImage:image];
-        
-        WXImageObject *ext = [WXImageObject object];
-        NSString *filePath = path;
-        ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
-        message.mediaObject = ext;
+//        NSString *path = [_item.imageList objectAtIndex:0];;
+//        if (![path hasPrefix:@"http"]) {
+//            path = [DUREX_IMAGE_BASE_URL stringByAppendingString:path];
+//        }
+//        UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+//        WXMediaMessage *message = [WXMediaMessage message];
+//        [message setThumbImage:image];
+//        
+//        WXImageObject *ext = [WXImageObject object];
+//        NSString *filePath = path;
+//        ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
+//        message.mediaObject = ext;
+//        
+//        SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
+//        req.bText = NO;
+//        req.message = message;
+//        req.scene = _scene;  //选择发送到朋友圈，默认值为WXSceneSession，发送到会话
+//        [WXApi sendReq:req];
         
         SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
-        req.bText = NO;
-        req.message = message;
-        req.scene = self.scene;  //选择发送到朋友圈，默认值为WXSceneSession，发送到会话
+        req.bText = YES;
+        req.text = _contentTextView.text;
+        req.scene = _scene;
         [WXApi sendReq:req];
     }
 }

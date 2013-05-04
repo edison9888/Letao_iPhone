@@ -12,9 +12,9 @@
 
 @interface SearchViewController : UIViewController<RKObjectLoaderDelegate>
 
-@property (retain, nonatomic) IBOutlet UIImageView *searchTextFieldBackgroundView;
-@property (retain, nonatomic) IBOutlet UIButton *searchButton;
-@property (retain, nonatomic) IBOutlet UITextField *searchTextField;
+@property (retain, nonatomic) UIImageView *searchTextFieldBackgroundView;
+@property (strong, nonatomic) UIButton *searchButton;
+@property (retain, nonatomic) UITextField *searchTextField;
 @property (retain, nonatomic) UIView *wordsView;
 @property (nonatomic, retain) UIBlankView *blankView;
 

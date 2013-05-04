@@ -18,7 +18,6 @@
 #import "Reachability.h"
 #import "MobClick.h"
 
-#define UMENG_KEY @"51616d0a56240bd604004389"
 
 @implementation AppDelegate
 

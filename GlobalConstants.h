@@ -26,5 +26,6 @@
 #define kAppRedirectURI     @"http://"
 
 #define WEIXIN_APP_KEY  @"wxcf2ade6cb40cd0b5"
+#define UMENG_KEY @"51616d0a56240bd604004389"
 
 #endif

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GMGridView/GMGridView.h>
+#import "GMGridView.h"
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
 #import <RestKit/RestKit.h>

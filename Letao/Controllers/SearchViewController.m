@@ -33,11 +33,25 @@
 {
     [super viewDidLoad];
     
+    _searchTextFieldBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 226, 29)];
     UIImage* searchTextFieldImage = [UIImage strectchableImageName:@"tu_46-18.png"];
     [_searchTextFieldBackgroundView setImage:searchTextFieldImage];
+    [self.view addSubview:_searchTextFieldBackgroundView];
+    [_searchTextFieldBackgroundView release];
     
+    _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(55, 20, 182, 30)];
+    [_searchTextField setFont:[UIFont systemFontOfSize:14.0]];
+    [self.view addSubview:_searchTextField];
+    [_searchTextField release];
+    
+    _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_searchButton setFrame:CGRectMake(241, 15, 63, 29)];
+    [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+    [_searchButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
     UIImage* buttonBgImage = [UIImage strectchableImageName:@"tu_48.png"];
     [_searchButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
+    [_searchButton addTarget:self action:@selector(clickSearchButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_searchButton];
     
     NSArray* keywords = [self getKeywords];
     
@@ -90,7 +104,6 @@
 {
     _wordsView = nil;
     _searchTextFieldBackgroundView = nil;
-    _searchButton = nil;
     _searchTextField = nil;
 }
 

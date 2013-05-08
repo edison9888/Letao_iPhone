@@ -16,6 +16,6 @@
 @property(nonatomic, strong)UILabel *contentLabel;
 @property (nonatomic, strong) Comment *comment;
 
-- (void)setComment:(Comment *)comment;
+- (void)setComment:(Comment *)comment rowIndex:(int)rowIndex;
 + (CGFloat)heightForCell;
 @end

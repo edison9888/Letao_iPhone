@@ -128,6 +128,8 @@
     
     [self addDetailView];
     
+    [self addBuyAndShare];
+    
     [self addCommentSectionView];
         
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
@@ -492,7 +494,7 @@
 
     if ([_commentList count] > 0) {
         Comment *comment = [_commentList objectAtIndex:indexPath.row];
-        [cell setComment:comment];
+        [cell setComment:comment rowIndex:indexPath.row];
     }
     return cell;
 }
@@ -540,12 +542,15 @@
         _totalHeight += _helpLabel.frame.size.height;
         
     } else {
+        if (_helpLabel != nil) {
+            _totalHeight -= _helpLabel.frame.size.height;
+            [_helpLabel removeFromSuperview];
+        }
         [self.commentTableView setFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, size*[CommentCell heightForCell])];
         [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
         _totalHeight += size*[CommentCell heightForCell];
     }
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
-    [self addBuyAndShare];
 }
 
 - (void)addBuyAndShare
@@ -571,7 +576,8 @@
         [_buyButton setFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
         [_shareButton setFrame:CGRectMake(180,_totalHeight + 5, 100, 30)];
     }
-    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight + _shareButton.frame.size.height+10)];
+    _totalHeight = _totalHeight + _shareButton.frame.size.height+10;
+//    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
 }
 
 - (IBAction)buyButtonPressed {

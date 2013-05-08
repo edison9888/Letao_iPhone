@@ -36,10 +36,10 @@ NSString *dateFromISODateString(NSString *date)
     return dateString;
 }
 
-- (void)setComment:(Comment *)comment
+- (void)setComment:(Comment *)comment rowIndex:(int)rowIndex
 {
     _comment = comment;
-    self.authorLabel.text = _comment.author;
+    self.authorLabel.text = [NSString stringWithFormat:@"%d楼",rowIndex+1];//_comment.author;
     self.authorLabel.font = [UIFont systemFontOfSize:13];
     self.authorLabel.textColor = [UIColor darkGrayColor];
     self.authorLabel.backgroundColor = [UIColor clearColor];

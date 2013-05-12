@@ -7,6 +7,7 @@
 //
 
 #import "CommentCell.h"
+#import "LocaleUtils.h"
 
 @implementation CommentCell
 
@@ -39,7 +40,7 @@ NSString *dateFromISODateString(NSString *date)
 - (void)setComment:(Comment *)comment rowIndex:(int)rowIndex
 {
     _comment = comment;
-    self.authorLabel.text = [NSString stringWithFormat:@"%d楼",rowIndex+1];//_comment.author;
+    self.authorLabel.text = [NSString stringWithFormat:@"%d%@",rowIndex+1,NSLS(@"kFloor")];//_comment.author;
     self.authorLabel.font = [UIFont systemFontOfSize:13];
     self.authorLabel.textColor = [UIColor darkGrayColor];
     self.authorLabel.backgroundColor = [UIColor clearColor];

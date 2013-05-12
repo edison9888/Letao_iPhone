@@ -283,6 +283,7 @@
 		C6A8FDA116C2C3B200A5CE88 /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FD9F16C2C3B200A5CE88 /* point_pic3@2x.png */; };
 		C6A8FDA216C2C3B200A5CE88 /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */; };
 		C6A9E7C416D71156002BAD63 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */; };
+		C6BA0B01173A9DAA0017F69D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6BA0B03173A9DAA0017F69D /* Localizable.strings */; };
 		C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */; };
 		C6DA9C651732C85500C92BC2 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DA9C5C1732C84100C92BC2 /* libRestKit.a */; };
 		C6DA9C6E1732C8F600C92BC2 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DA9C6D1732C8CA00C92BC2 /* libGMGridView.a */; };
@@ -292,6 +293,7 @@
 		C6DED69A16F392BD006265C4 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6DED69816F392BD006265C4 /* separator@2x.png */; };
 		C6DED6A216F62DF4006265C4 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED6A016F62DF3006265C4 /* CommentViewController.m */; };
 		C6DED6A616F6EC1D006265C4 /* CommentService.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DED6A516F6EC1D006265C4 /* CommentService.m */; };
+		C6E0D9F4173A701300B1B2C3 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E0D9F3173A701300B1B2C3 /* CommentViewController.xib */; };
 		C6E5EAA9170BFF6600AA7283 /* text-list.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E5EAA8170BFF6600AA7283 /* text-list.png */; };
 		C6E5EAAE170C247000AA7283 /* ArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5EAAC170C247000AA7283 /* ArticleListViewController.m */; };
 		C6E5EAB2170C316E00AA7283 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5EAB1170C316E00AA7283 /* ArticleCell.m */; };
@@ -865,12 +867,14 @@
 		C6A8FDA016C2C3B200A5CE88 /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		C6A9E7C116D71156002BAD63 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
 		C6A9E7C216D71156002BAD63 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
+		C6BA0B02173A9DAA0017F69D /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C6BA0B04173A9DAE0017F69D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C6BA0B05173A9DAF0017F69D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToWeixinController.h; sourceTree = "<group>"; };
 		C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToWeixinController.m; sourceTree = "<group>"; };
 		C6DA9C531732C84100C92BC2 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Libraries/RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		C6DA9C681732C8CA00C92BC2 /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		C6DA9C9C1733DB6500C92BC2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		C6DA9C9D1733DB8A00C92BC2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C6DED69116F3447A006265C4 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		C6DED69216F3447A006265C4 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C6DED69416F34A60006265C4 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -881,6 +885,8 @@
 		C6DED6A016F62DF3006265C4 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		C6DED6A416F6EC1D006265C4 /* CommentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentService.h; sourceTree = "<group>"; };
 		C6DED6A516F6EC1D006265C4 /* CommentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentService.m; sourceTree = "<group>"; };
+		C6E0D9F3173A701300B1B2C3 /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
+		C6E0DA02173A952A00B1B2C3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C6E5EAA8170BFF6600AA7283 /* text-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-list.png"; sourceTree = "<group>"; };
 		C6E5EAAB170C247000AA7283 /* ArticleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleListViewController.h; sourceTree = "<group>"; };
 		C6E5EAAC170C247000AA7283 /* ArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleListViewController.m; sourceTree = "<group>"; };
@@ -1142,6 +1148,7 @@
 				C633B3F916D528EA00B28E58 /* Share */,
 				C6901C7916D09F1F009C7816 /* Favourite */,
 				C6387EF816CB44CD009229DF /* Brand */,
+				C6E0D9F2173A6F6300B1B2C3 /* Comment */,
 				C64AED6516BA1AC300363ED6 /* Item */,
 			);
 			path = Controllers;
@@ -1157,10 +1164,6 @@
 				C6A8FD9A16C2AC3800A5CE88 /* ItemDetailViewController.h */,
 				C6A8FD9B16C2AC3800A5CE88 /* ItemDetailViewController.m */,
 				C6A8FD9C16C2AC3800A5CE88 /* ItemDetailViewController.xib */,
-				C6DED69116F3447A006265C4 /* CommentCell.h */,
-				C6DED69216F3447A006265C4 /* CommentCell.m */,
-				C6DED69F16F62DF2006265C4 /* CommentViewController.h */,
-				C6DED6A016F62DF3006265C4 /* CommentViewController.m */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -1257,6 +1260,7 @@
 				C687D9F216B53B3100AB82A1 /* InfoPlist.strings */,
 				C687D9F516B53B3100AB82A1 /* main.m */,
 				C687D9F716B53B3100AB82A1 /* Letao-Prefix.pch */,
+				C6BA0B03173A9DAA0017F69D /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2091,6 +2095,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C6E0D9F2173A6F6300B1B2C3 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C6DED69116F3447A006265C4 /* CommentCell.h */,
+				C6DED69216F3447A006265C4 /* CommentCell.m */,
+				C6DED69F16F62DF2006265C4 /* CommentViewController.h */,
+				C6DED6A016F62DF3006265C4 /* CommentViewController.m */,
+				C6E0D9F3173A701300B1B2C3 /* CommentViewController.xib */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
 		C6E5EAAA170C240F00AA7283 /* Article */ = {
 			isa = PBXGroup;
 			children = (
@@ -2310,6 +2326,8 @@
 				C61E9EC3171D9AA700E1CDFC /* cell_sel_bg@2x.png in Resources */,
 				C61E9F0E17203BDE00E1CDFC /* tu_129@2x.png in Resources */,
 				C648B7D51726BEB6005119FB /* ArticleListViewController.xib in Resources */,
+				C6E0D9F4173A701300B1B2C3 /* CommentViewController.xib in Resources */,
+				C6BA0B01173A9DAA0017F69D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2566,7 +2584,7 @@
 			children = (
 				C687D9F316B53B3100AB82A1 /* en */,
 				C6DA9C9C1733DB6500C92BC2 /* zh-Hans */,
-				C6DA9C9D1733DB8A00C92BC2 /* zh-Hant */,
+				C6E0DA02173A952A00B1B2C3 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2578,6 +2596,16 @@
 				C687DBBB16B54BCD00AB82A1 /* zh-Hans */,
 			);
 			name = "NSDate+TKCategory.strings";
+			sourceTree = "<group>";
+		};
+		C6BA0B03173A9DAA0017F69D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6BA0B02173A9DAA0017F69D /* en */,
+				C6BA0B04173A9DAE0017F69D /* zh-Hans */,
+				C6BA0B05173A9DAF0017F69D /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

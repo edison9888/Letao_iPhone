@@ -21,6 +21,7 @@
 #import "WXApi.h"
 #import "DeviceDetection.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "LocaleUtils.h"
 
 @interface ItemDetailViewController ()
 {
@@ -120,7 +121,7 @@
     UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightBarView] autorelease];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 
-    self.title = @"详情";
+    self.title = NSLS(@"kDetail");
 
     self.view.backgroundColor = BG_COLOR;
     
@@ -154,10 +155,10 @@
     MBProgressHUD *HUD =[[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     if ([itemManager existItemInFavourites:self.item]) {
-        HUD.labelText = @"已经收藏过了！";
+        HUD.labelText = NSLS(@"kAlreadyStar");
     } else {
         [itemManager addItemIntoFavourites:self.item];
-        HUD.labelText = @"成功添加到收藏！";
+        HUD.labelText = NSLS(@"kSuccessStar");
         HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tick"]] autorelease];
     }
     HUD.mode = MBProgressHUDModeCustomView;
@@ -171,27 +172,27 @@
 
 - (void)clickShare:(id)sender
 {
-    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:@"请选择分享方式" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChooseToShare") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     
     int buttonIndex = 0;
     
-    [shareOptions addButtonWithTitle:@"分享到微信朋友圈"];
+    [shareOptions addButtonWithTitle:NSLS(@"kShareToWeixinTimeLine")];
     buttonIndexWeixinTimeline = buttonIndex;
     
     buttonIndex ++;
-    [shareOptions addButtonWithTitle:@"发送给微信好友"];
+    [shareOptions addButtonWithTitle:NSLS(@"kSendToWeixinFriend")];
     buttonIndexWeixinFriend = buttonIndex;
     
     buttonIndex ++;
-    [shareOptions addButtonWithTitle:@"分享到新浪微博"];
+    [shareOptions addButtonWithTitle:NSLS(@"kShareToSinaWeibo")];
     buttonIndexSinaWeibo = buttonIndex;
     
     buttonIndex ++;
-    [shareOptions addButtonWithTitle:@"通过邮件分享"];
+    [shareOptions addButtonWithTitle:NSLS(@"kShareViaEmail")];
     buttonIndexEmail = buttonIndex;
 
     buttonIndex ++;
-    [shareOptions addButtonWithTitle:@"取消"];
+    [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
     [shareOptions setCancelButtonIndex:buttonIndex];
     
     shareOptions.destructiveButtonIndex = 0;
@@ -229,12 +230,12 @@
 {
     if ([MFMailComposeViewController canSendMail] == NO)
     {
-        [UIUtils alert:@"您的手机还没设置邮件账户"];
+        [UIUtils alert:NSLS(@"kNoSetUserEmailAccount")];
         return;
     }
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
-    NSString* subject = [NSString stringWithFormat:@"套套分享"];
-    NSString* body = [NSString stringWithFormat:@"分享一款有趣的套套"];
+    NSString* subject = [NSString stringWithFormat:NSLS(@"kShareEmailTitle")];
+    NSString* body = [NSString stringWithFormat:NSLS(@"kShareEmailBody")];
     
     NSString* mime = nil;
     mime = @"image/png";
@@ -274,7 +275,7 @@
     [favButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [favButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [favButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
-    [favButton setTitle:@"喜欢" forState:UIControlStateNormal];
+    [favButton setTitle:NSLS(@"kLike") forState:UIControlStateNormal];
     [favButton setEnabled:YES];
     [favouritesView addSubview:favButton];
     [favButton release];
@@ -285,7 +286,7 @@
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [shareButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+    [shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
     [shareButton setEnabled:YES];
     [favouritesView addSubview:shareButton];
     [shareButton release];
@@ -346,7 +347,7 @@
         priceLabel.backgroundColor = [UIColor clearColor];
         priceLabel.font = [UIFont systemFontOfSize:14];
         priceLabel.textColor = DESCRIPTION_COLOR;
-        priceLabel.text =  [@"推荐报价" stringByAppendingFormat:@": %@",_item.price];;
+        priceLabel.text =  [NSLS(@"kRecommendPrice") stringByAppendingFormat:@": %@",_item.price];;
         [self.dataScrollView addSubview:priceLabel];
         _totalHeight += priceLabel.frame.size.height + padding;
         [priceLabel release];
@@ -409,7 +410,7 @@
     commentLabel.font = [UIFont systemFontOfSize:15];
     commentLabel.textColor = TITLE_COLOR;
     commentLabel.backgroundColor = [UIColor clearColor];        
-    commentLabel.text = @"相关评论";
+    commentLabel.text = NSLS(@"kComment");
     _totalHeight += commentLabel.frame.size.height + padding;
     [_dataScrollView addSubview:commentLabel];
     [commentLabel release];
@@ -512,7 +513,7 @@
     NSLog(@"Start load request...");
     MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.mode = MBProgressHUDModeIndeterminate;
-    HUD.labelText = @"正在加载中...";
+    HUD.labelText = NSLS(@"kLoading");
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
@@ -533,7 +534,7 @@
         _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
         _helpLabel.backgroundColor = [UIColor clearColor];
         _helpLabel.hidden = NO;
-        NSString* text = @"暂无相关评论";
+        NSString* text = NSLS(@"kNoComment");
         _helpLabel.numberOfLines = 0;
         _helpLabel.textAlignment = UITextAlignmentCenter;
         _helpLabel.text = text;
@@ -558,7 +559,7 @@
     if (_buyButton == nil) {
         _buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
         [_buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
-        [_buyButton setTitle:@"购买" forState:UIControlStateNormal];
+        [_buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
         [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -566,7 +567,7 @@
         
         _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + 5, 100, 30)];
         [_shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
-        [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
         [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];

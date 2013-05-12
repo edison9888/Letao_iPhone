@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Letao
+
+  Created by Kaibin on 13-5-8.
+  Copyright (c) 2013年 Kaibin. All rights reserved.
+*/
+
+"kFloor" = "楼";
+"kComment" = "相关评论";
+"kBuy" = "购买";
+"kShare" = "分享";
+"kLike" = "喜欢";
+"kLoading" = "正在加载...";
+"kNoComment" = "暂无评论";
+"kRecommendPrice"="推荐报价";
+"kDetail" = "详情";
+"kAlreadyStar" = "已经收藏过了";
+"kSuccessStar" = "收藏成功";
+"kCancel" = "取消";
+"kNoSetUserEmailAccount" = "您的手机还没设置邮件账户";
+"kChooseToShare" = "请选择分享方式";
+"kShareToWeixinTimeLine" = "分享到微信朋友圈";
+"kSendToWeixinFriend" = "发送给微信好友";
+"kShareToSinaWeibo" = "分享到新浪微博";
+"kShareViaEmail" = "通过邮件分享";
+"kShareEmailTitle" = "套套分享";
+"kShareEmailBody" = "分享一款有趣的套套";

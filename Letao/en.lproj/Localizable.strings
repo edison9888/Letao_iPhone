@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Letao
+
+  Created by Kaibin on 13-5-8.
+  Copyright (c) 2013年 Kaibin. All rights reserved.
+*/
+
+
+"kFloor" = " floor";
+"kComments" = "Comments";
+"kBuy" = "Buy";
+"kShare" = "Share";
+"kLike" = "Like";
+"kLoading" = "Loading...";
+"kNoComment" = "No comment";
+"kRecommendPrice" = "Recommend Price";
+"kDetail" = "Detail";
+"kAlreadyStar" = "Already star";
+"kSuccessStar" = "Star successfully";
+"kCancel" = "Cancel";
+"kNoSetUserEmailAccount" = "Your iPhone haven't set email account";
+"kChooseToShare" = "Please choose to share";
+"kShareToWeixinTimeLine" = "Weixin timeline";
+"kSendToWeixinFriend" = "Weixin friend";
+"kShareToSinaWeibo" = "Sina weibo";
+"kShareViaEmail" = "Email";
+"kShareEmailTitle" = "Share an condom";
+"kShareEmailBody" = "share an interesting condom";

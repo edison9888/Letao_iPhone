@@ -13,6 +13,7 @@
 #import "ItemService.h"
 #import "ItemViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "AdService.h"
 
 @interface SearchViewController ()
 
@@ -111,6 +112,20 @@
 {
     int top = _wordsView.frame.origin.y + 100;
     [self addBlankView:top currentResponder:_searchTextField];
+    
+    self.adView = [[AdService sharedService] createAdInView:self
+                                                      frame:CGRectMake(0, self.view.bounds.size.height-AD_BANNER_HEIGHT, AD_BANNER_WIDTH, AD_BANNER_HEIGHT)];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService sharedService] removeAdView:self.adView];
+    self.adView = nil;
+    self.adView = nil;
+    
+    [super viewDidDisappear:animated];
 }
 
 - (void)addBlankView:(CGFloat)top currentResponder:(UIView*)currentResponder
@@ -135,6 +150,8 @@
     [_searchTextFieldBackgroundView release]; _searchTextFieldBackgroundView = nil;
     [_searchButton release]; _searchButton = nil;
     [_searchTextField release]; _searchTextField = nil;
+    [_adView release]; _adView = nil;
+
     [super dealloc];
 }
 

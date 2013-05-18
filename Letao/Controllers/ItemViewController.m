@@ -18,6 +18,7 @@
 #import "GlobalConstants.h"
 #import "Brand.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "LocaleUtils.h"
 
 #define COUNT_EACH_FETCH 10
 
@@ -112,7 +113,7 @@
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     }
     
-    if ([self.title isEqualToString:@"结果"]) {
+    if ([self.title isEqualToString:NSLS(@"kResults")]) {
         UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
         [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];

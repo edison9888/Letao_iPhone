@@ -11,8 +11,9 @@
 #import "Item.h"
 #import "SlideImageView.h"
 #import <MessageUI/MessageUI.h>
+#import "AWActionSheet.h"
 
-@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface ItemDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate, AWActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(retain, nonatomic) IBOutlet UITableView *commentTableView;

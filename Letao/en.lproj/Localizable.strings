@@ -9,6 +9,7 @@
 
 "kFloor" = " floor";
 "kComments" = "Comments";
+"kResults" = "Results";
 "kBuy" = "Buy";
 "kShare" = "Share";
 "kLike" = "Like";
@@ -27,3 +28,4 @@
 "kShareViaEmail" = "Email";
 "kShareEmailTitle" = "Share an condom";
 "kShareEmailBody" = "share an interesting condom";
+"kNoFavouriteItem" = "click heart button in detail page to add";

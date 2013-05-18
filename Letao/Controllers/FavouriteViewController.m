@@ -17,6 +17,8 @@
 #import "ItemDetailViewController.h"
 #import "ItemManager.h"
 #import "UIBarButtonItemExt.h"
+#import "LocaleUtils.h"
+#import "AdService.h"
 
 @interface FavouriteViewController ()
 
@@ -67,7 +69,7 @@
     _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 275, 40)];
     _helpLabel.backgroundColor = [UIColor clearColor];
     _helpLabel.hidden = YES;
-    NSString* text = @"在详情页面右上角点击心形按钮收藏";
+    NSString* text = NSLS(@"kNoFavouriteItem");
     _helpLabel.numberOfLines = 0;
     _helpLabel.textAlignment = UITextAlignmentCenter;
     _helpLabel.text = text;
@@ -97,24 +99,10 @@
     if ([_data count] == 0) {
         _helpLabel.hidden = NO;
         self.navigationItem.rightBarButtonItem = nil;
-
+        self.adView = [[AdService sharedService] createAdInView:self
+                                                          frame:CGRectMake(0, self.view.bounds.size.height-AD_BANNER_HEIGHT, AD_BANNER_WIDTH, AD_BANNER_HEIGHT)];
     } else {
         _helpLabel.hidden = YES;
-        
-//        UIImage *buttonBackground = [UIImage imageNamed:@"BarButtonBackground"];
-//        // use cap insets that leave a 1x1 pixel area in the center of the image
-//        UIEdgeInsets capInsets = UIEdgeInsetsMake(15, 5, 14, 5);
-//        UIImage *stretchy = [buttonBackground resizableImageWithCapInsets:capInsets];
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        // this image should stretch to fill the button
-//        [button setBackgroundImage:stretchy forState:UIControlStateNormal];
-//        button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-//        [button setTitle:@"   Edit   " forState:UIControlStateNormal];
-//        [button sizeToFit];
-//        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
-//        UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
-//        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-        
         UIButton *actionButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
         [actionButton setImage:[UIImage imageNamed:@"action"] forState:UIControlStateNormal];
         [actionButton addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
@@ -123,11 +111,20 @@
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService sharedService] removeAdView:_adView];
+    self.adView = nil;
+    
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     _gmGridView = nil;
-    _helpLabel = nil;
-    _data = nil;
+    [_data release], _data = nil;
+    [_helpLabel release], _helpLabel = nil;
+    [_adView release], _adView = nil;
 }
 
 - (void)didReceiveMemoryWarning

@@ -13,6 +13,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ArticleService.h"
 #import "UIImage+Scale.h"
+#import "AdService.h"
 
 #define COUNT_EACH_FETCH 10
 
@@ -65,6 +66,21 @@
     _refreshFooterView = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.adView = [[AdService sharedService] createAdInView:self
+                                                      frame:CGRectMake(0, self.view.bounds.size.height-AD_BANNER_HEIGHT, AD_BANNER_WIDTH, AD_BANNER_HEIGHT)];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService sharedService] removeAdView:self.adView];
+    self.adView = nil;
+    [super viewDidDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -74,6 +90,7 @@
 - (void)dealloc
 {
     [_dataTableView release], _dataTableView = nil;
+    [_adView release], _adView = nil;
     [super dealloc];
 }
 

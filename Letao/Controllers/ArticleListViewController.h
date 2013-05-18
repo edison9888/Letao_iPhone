@@ -11,7 +11,6 @@
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
 
-
 @interface ArticleListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate>
 {
     BOOL _reloading;
@@ -24,8 +23,9 @@
 }
 
 @property (nonatomic, retain)IBOutlet UITableView *dataTableView;
-@property(nonatomic, assign) BOOL supportRefreshHeader;
-@property(nonatomic, assign) BOOL supportRefreshFooter;
+@property (nonatomic, assign) BOOL supportRefreshHeader;
+@property (nonatomic, assign) BOOL supportRefreshFooter;
+@property (nonatomic, retain) UIView* adView;
 
 #pragma mark: For pull down to refresh
 - (void)reloadTableViewDataSource;

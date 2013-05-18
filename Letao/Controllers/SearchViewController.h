@@ -17,6 +17,7 @@
 @property (retain, nonatomic) UITextField *searchTextField;
 @property (retain, nonatomic) UIView *wordsView;
 @property (nonatomic, retain) UIBlankView *blankView;
+@property (nonatomic, retain) UIView* adView;
 
 - (IBAction) clickSearchButton:(id)sender;
 

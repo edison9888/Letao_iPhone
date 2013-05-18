@@ -170,6 +170,13 @@
     }];
 }
 
+- (void)showAWSheet:(id)sender
+{
+    AWActionSheet *sheet = [[AWActionSheet alloc] initwithIconSheetDelegate:self ItemCount:[self numberOfItemsInActionSheet]];
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
 - (void)clickShare:(id)sender
 {
     UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChooseToShare") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
@@ -264,39 +271,6 @@
     [compose release];
 }
 
-- (void)addFavouriteView
-{
-    UIView *favouritesView = [[UIView alloc]initWithFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, 40)];
-    favouritesView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bottombg.png"]];
-    
-    UIButton *favButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, 5, 93, 29)];
-    [favButton addTarget:self action:@selector(clickFavourite:) forControlEvents:UIControlEventTouchUpInside];
-    favButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
-    [favButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [favButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [favButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
-    [favButton setTitle:NSLS(@"kLike") forState:UIControlStateNormal];
-    [favButton setEnabled:YES];
-    [favouritesView addSubview:favButton];
-    [favButton release];
-    
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width+30)/2, 5, 93, 29)];
-    [shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
-    shareButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"favorites.png"]];
-    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [shareButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 18, 0, 0)];
-    [shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
-    [shareButton setEnabled:YES];
-    [favouritesView addSubview:shareButton];
-    [shareButton release];
-
-    
-    [_dataScrollView addSubview:favouritesView];
-    [favouritesView release];
-    
-    _totalHeight += favouritesView.frame.size.height;
-}
 
 - (void)addDetailView
 {
@@ -561,7 +535,7 @@
         [_buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
         [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_buyButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
         [_buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [_dataScrollView addSubview:_buyButton];
         
@@ -569,8 +543,8 @@
         [_shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
         [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_shareButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [_shareButton addTarget:self action:@selector(clickShare:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+        [_shareButton addTarget:self action:@selector(showAWSheet:) forControlEvents:UIControlEventTouchUpInside];
         [_dataScrollView addSubview:_shareButton];
 
     } else {
@@ -619,6 +593,68 @@
     [UIUtils alert:msg];
     [self dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - AWActionSheet
+-(int)numberOfItemsInActionSheet
+{
+    return 4;
+}
+
+-(AWActionSheetCell *)cellForActionAtIndex:(NSInteger)index
+{
+    AWActionSheetCell* cell = [[[AWActionSheetCell alloc] init] autorelease];
+    if (index == 0) {
+        buttonIndexWeixinTimeline = index;
+        [[cell iconView] setImage:[UIImage imageNamed:@"wechat"]];
+        [[cell titleLabel] setText:NSLS(@"kShareToWeixinTimeLine")];
+    }
+    else if (index == 1) {
+        buttonIndexWeixinFriend = index;
+        [[cell iconView] setImage:[UIImage imageNamed:@"wechat_friend"]];
+        [[cell titleLabel] setText:NSLS(@"kSendToWeixinFriend")];
+    }
+    else if (index == 2) {
+        buttonIndexSinaWeibo = index;
+        [[cell iconView] setImage:[UIImage imageNamed:@"sina"]];
+        [[cell titleLabel] setText:NSLS(@"kShareToSinaWeibo")];
+    }
+    else if (index == 3) {
+        buttonIndexEmail = index;
+        [[cell iconView] setImage:[UIImage imageNamed:@"email"]];
+        [[cell titleLabel] setText:NSLS(@"kShareViaEmail")];
+    }
+        cell.index = index;
+    return cell;
+}
+
+-(void)DidTapOnItemAtIndex:(NSInteger)index
+{
+    NSLog(@"tap on %d",index);
+    if (index == buttonIndexWeixinTimeline){
+        ShareToWeixinController *controller = [[ShareToWeixinController alloc] initWithItem:_item];
+        [self.navigationController pushViewController:controller animated:YES];
+        controller.scene = WXSceneTimeline;
+        [controller release];
+        
+    }
+    else if (index == buttonIndexWeixinFriend){
+        ShareToWeixinController *controller = [[ShareToWeixinController alloc] initWithItem:_item];
+        controller.scene = WXSceneSession;
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+        
+    }
+    else if (index == buttonIndexSinaWeibo){
+        ShareToSinaController *controller = [[ShareToSinaController alloc] initWithItem:_item];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+    else if (index == buttonIndexEmail){
+        [self shareViaEmail];
+    }
+
+}
+
 
 
 @end

@@ -23,7 +23,8 @@
 @property(retain, nonatomic) NSMutableArray *commentList;
 @property(retain, nonatomic) UIButton *shareButton;
 @property(retain, nonatomic) UIButton *buyButton;
-
+@property(retain, nonatomic) UIButton *moreButton;
+@property(retain, nonatomic) UILabel *commentLabel;
 
 - (id)initWithItem:(Item*)item;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CommentService.h"
+#import "StringUtil.h"
 
 @implementation CommentService
 
@@ -69,5 +70,25 @@
     });
 
 }
+
+- (void)findCommentsWithItemId:(NSString*)item_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
+{
+    [self initObjectMap];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *startStr = [NSString stringWithInt:start];
+        NSString *countStr = [NSString stringWithInt:count];
+        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:item_id, @"item_id", startStr, @"start", countStr, @"count", nil];
+        RKObjectManager *objectManager = [RKObjectManager sharedManager];
+        RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/comments" queryParameters:queryParams];
+        
+        NSLog(@"url: %@", [url absoluteString]);
+        NSLog(@"resourcePath: %@", [url resourcePath]);
+        NSLog(@"query: %@", [url query]);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [url resourcePath], [url query]] delegate:delegate ];
+        });
+    });}
 
 @end

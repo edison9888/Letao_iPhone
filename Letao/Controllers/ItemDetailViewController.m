@@ -22,6 +22,9 @@
 #import "DeviceDetection.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "LocaleUtils.h"
+#import "MoreCommentListViewController.h"
+
+#define PADDING 5
 
 @interface ItemDetailViewController ()
 {
@@ -72,6 +75,8 @@
     [_commentList release], _commentList = nil;
     [_buyButton release], _buyButton = nil;
     [_shareButton release], _shareButton = nil;
+    [_commentLabel release], _commentLabel = nil;
+    [_moreButton release], _moreButton = nil;
     [super dealloc];
 }
 
@@ -83,6 +88,8 @@
     _commentList = nil;
     _shareButton = nil;
     _buyButton = nil;
+    _commentLabel = nil;
+    _moreButton = nil;
     _item = nil;
 }
 
@@ -140,8 +147,9 @@
 - (void)loadComments
 {
     [self.commentList removeAllObjects];
-    _totalHeight -= _commentTableView.frame.size.height;
-    [[CommentService sharedService] findCommentsWithItemId:_item._id delegate:self];
+//    _totalHeight -= _commentTableView.frame.size.height;
+    _totalHeight = _commentLabel.frame.origin.y + _commentLabel.frame.size.height;
+    [[CommentService sharedService] findCommentsWithItemId:_item._id start:0 count:1 delegate:self];
 }
 
 - (void)clickBack:(id)sender
@@ -274,7 +282,6 @@
 
 - (void)addDetailView
 {
-    float padding = 5;
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
     UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
@@ -287,7 +294,7 @@
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text =  [NSString stringWithFormat:(@" %@"),_item.title];
     [self.dataScrollView addSubview:titleLabel];
-    _totalHeight += titleLabel.frame.size.height + padding;
+    _totalHeight += titleLabel.frame.size.height + PADDING;
     [titleLabel release];
     
     NSString *subtitle = _item.subtitle;
@@ -298,7 +305,7 @@
         subtitleLabel.textColor = DESCRIPTION_COLOR;
         subtitleLabel.text =  subtitle;
         [self.dataScrollView addSubview:subtitleLabel];
-        _totalHeight += subtitleLabel.frame.size.height + padding;
+        _totalHeight += subtitleLabel.frame.size.height + PADDING;
         [subtitleLabel release];
     }
       
@@ -313,7 +320,7 @@
     descriptionLabel.textColor = DESCRIPTION_COLOR;
     descriptionLabel.text = description;
     [self.dataScrollView addSubview:descriptionLabel];
-    _totalHeight += descriptionLabel.frame.size.height + padding;
+    _totalHeight += descriptionLabel.frame.size.height + PADDING;
     [descriptionLabel release];
     
     if ([_item.price length] > 0) {
@@ -323,7 +330,7 @@
         priceLabel.textColor = DESCRIPTION_COLOR;
         priceLabel.text =  [NSLS(@"kRecommendPrice") stringByAppendingFormat:@": %@",_item.price];;
         [self.dataScrollView addSubview:priceLabel];
-        _totalHeight += priceLabel.frame.size.height + padding;
+        _totalHeight += priceLabel.frame.size.height + PADDING;
         [priceLabel release];
     }
     
@@ -335,7 +342,7 @@
         smooth_indexLabel.text =  smooth_index;
         smooth_indexLabel.textColor = DESCRIPTION_COLOR;
         [self.dataScrollView addSubview:smooth_indexLabel];
-        _totalHeight += smooth_indexLabel.frame.size.height + padding;
+        _totalHeight += smooth_indexLabel.frame.size.height + PADDING;
         [smooth_indexLabel release];
 
     }
@@ -350,7 +357,7 @@
     informationLabel.textColor = DESCRIPTION_COLOR;
     informationLabel.text = information;
     [self.dataScrollView addSubview:informationLabel];
-    _totalHeight += informationLabel.frame.size.height + padding;
+    _totalHeight += informationLabel.frame.size.height + PADDING;
     [informationLabel release];
     
     NSString *tips = _item.tips;
@@ -366,7 +373,7 @@
         tipsLabel.textColor = DESCRIPTION_COLOR;
         tipsLabel.text = tips;
         [self.dataScrollView addSubview:tipsLabel];
-        _totalHeight += tipsLabel.frame.size.height + padding;
+        _totalHeight += tipsLabel.frame.size.height + PADDING;
         [tipsLabel release];
     }
 }
@@ -379,24 +386,47 @@
     [_dataScrollView addSubview:bgView];
     [bgView release];
 
-    float padding = 5;
-    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
-    commentLabel.font = [UIFont systemFontOfSize:15];
-    commentLabel.textColor = TITLE_COLOR;
-    commentLabel.backgroundColor = [UIColor clearColor];        
-    commentLabel.text = NSLS(@"kComment");
-    _totalHeight += commentLabel.frame.size.height + padding;
-    [_dataScrollView addSubview:commentLabel];
-    [commentLabel release];
-        
+    _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
+    _commentLabel.font = [UIFont systemFontOfSize:15];
+    _commentLabel.textColor = TITLE_COLOR;
+    _commentLabel.backgroundColor = [UIColor clearColor];        
+    _commentLabel.text = NSLS(@"kComment");
+    _totalHeight += _commentLabel.frame.size.height;
+    [_dataScrollView addSubview:_commentLabel];
+    
     _commentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, 0)];
     _commentTableView.delegate = self;
     _commentTableView.dataSource = self;
     [_commentTableView setBackgroundColor:BG_COLOR];
     _commentTableView.bounces = NO;
+    _commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _commentTableView.scrollEnabled = NO;
-    
     [_dataScrollView addSubview:_commentTableView];
+}
+
+- (void)addMoreButton
+{
+    if (_moreButton == nil && [self.commentList count] > 0) {
+        _moreButton = [[UIButton alloc] initWithFrame:CGRectMake(20, _totalHeight, 280, 40)];
+        [_moreButton setBackgroundImage:[UIImage strectchableImageName:@"bottombg.png"] forState:UIControlStateNormal];
+        [_moreButton setTitle:NSLS(@"kMore") forState:UIControlStateNormal];
+        [_moreButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_moreButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_moreButton addTarget:self action:@selector(MoreButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [_dataScrollView addSubview:_moreButton];
+    } else {
+        [_moreButton setFrame:CGRectMake(20, _totalHeight, 280, 40)];
+    }
+    
+    _totalHeight = _totalHeight + _moreButton.frame.size.height;
+}
+
+- (void)MoreButtonPressed
+{
+    MoreCommentListViewController *controller = [[MoreCommentListViewController alloc] init];
+    controller.itemid = _item._id;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void)addComment:(id)sender
@@ -505,7 +535,7 @@
     NSInteger size = [_commentList count];
     if (size == 0 && _helpLabel == nil)
     {
-        _helpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)] autorelease];
+        _helpLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _totalHeight, 300, 30)];
         _helpLabel.backgroundColor = [UIColor clearColor];
         _helpLabel.hidden = NO;
         NSString* text = NSLS(@"kNoComment");
@@ -516,22 +546,19 @@
         [_dataScrollView addSubview:_helpLabel];
         _totalHeight += _helpLabel.frame.size.height;
         
-    } else {
-        if (_helpLabel != nil) {
-            _totalHeight -= _helpLabel.frame.size.height;
-            [_helpLabel removeFromSuperview];
-        }
+    } else if (size > 0){
+        [_helpLabel removeFromSuperview];
         [self.commentTableView setFrame:CGRectMake(0, _totalHeight, self.view.frame.size.width, size*[CommentCell heightForCell])];
-        [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
-        _totalHeight += size*[CommentCell heightForCell];
+        _totalHeight += self.commentTableView.frame.size.height + PADDING;
     }
-    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
+    [self addMoreButton];
+    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight + PADDING)];
 }
 
 - (void)addBuyAndShare
 {
     if (_buyButton == nil) {
-        _buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
+        _buyButton = [[UIButton alloc] initWithFrame:CGRectMake(40, _totalHeight + PADDING, 100, 30)];
         [_buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
         [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -539,7 +566,7 @@
         [_buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [_dataScrollView addSubview:_buyButton];
         
-        _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + 5, 100, 30)];
+        _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(180, _totalHeight + PADDING, 100, 30)];
         [_shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
         [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -548,14 +575,14 @@
         [_dataScrollView addSubview:_shareButton];
 
     } else {
-        [_buyButton setFrame:CGRectMake(40, _totalHeight + 5, 100, 30)];
-        [_shareButton setFrame:CGRectMake(180,_totalHeight + 5, 100, 30)];
+        [_buyButton setFrame:CGRectMake(40, _totalHeight + PADDING, 100, 30)];
+        [_shareButton setFrame:CGRectMake(180,_totalHeight + PADDING, 100, 30)];
     }
-    _totalHeight = _totalHeight + _shareButton.frame.size.height+10;
-//    [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
+    _totalHeight = _totalHeight + _shareButton.frame.size.height + PADDING*2;
 }
-
-- (IBAction)buyButtonPressed {
+ 
+- (void)buyButtonPressed
+{
     NSString *str;
     
     NSString *path = [_item.imageList objectAtIndex:0];;

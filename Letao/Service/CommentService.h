@@ -16,5 +16,6 @@
 
 - (void)postComment:(Comment*)comment delegate:(id<RKRequestDelegate>)delegate;
 - (void)findCommentsWithItemId:(NSString*)item_id delegate:(id<RKObjectLoaderDelegate>)delegate;
+- (void)findCommentsWithItemId:(NSString*)item_id start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
 
 @end

@@ -13,6 +13,7 @@
 #import "ItemViewController.h"
 #import "BrandDescriptionViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "LocaleUtils.h"
 
 @implementation BrandListViewController
 
@@ -90,7 +91,7 @@
     NSLog(@"Start load request...");
     MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.mode = MBProgressHUDModeIndeterminate;
-    HUD.labelText = @"正在加载中...";
+    HUD.labelText = NSLS(@"kLoading");
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects

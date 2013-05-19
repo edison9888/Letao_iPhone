@@ -307,6 +307,8 @@
 		C6CA1F0C1746621600E7B023 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CA1F0B1746621600E7B023 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C6CA1F111746648E00E7B023 /* LBSSDKLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CA1F0E1746648E00E7B023 /* LBSSDKLite.framework */; };
 		C6CA1F121746648F00E7B023 /* MobWin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CA1F0F1746648E00E7B023 /* MobWin.a */; };
+		C6CA1F1E1747768300E7B023 /* MoreCommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CA1F1C1747768200E7B023 /* MoreCommentListViewController.m */; };
+		C6CA1F1F1747768300E7B023 /* MoreCommentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6CA1F1D1747768200E7B023 /* MoreCommentListViewController.xib */; };
 		C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */; };
 		C6DA9C651732C85500C92BC2 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DA9C5C1732C84100C92BC2 /* libRestKit.a */; };
 		C6DA9C6E1732C8F600C92BC2 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DA9C6D1732C8CA00C92BC2 /* libGMGridView.a */; };
@@ -923,6 +925,9 @@
 		C6CA1F0E1746648E00E7B023 /* LBSSDKLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LBSSDKLite.framework; sourceTree = "<group>"; };
 		C6CA1F0F1746648E00E7B023 /* MobWin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MobWin.a; sourceTree = "<group>"; };
 		C6CA1F101746648E00E7B023 /* MobWinBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobWinBannerView.h; sourceTree = "<group>"; };
+		C6CA1F1B1747768200E7B023 /* MoreCommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreCommentListViewController.h; path = ../../MoreCommentListViewController.h; sourceTree = "<group>"; };
+		C6CA1F1C1747768200E7B023 /* MoreCommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreCommentListViewController.m; path = ../../MoreCommentListViewController.m; sourceTree = "<group>"; };
+		C6CA1F1D1747768200E7B023 /* MoreCommentListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreCommentListViewController.xib; path = ../../MoreCommentListViewController.xib; sourceTree = "<group>"; };
 		C6CD0AA7171AA4F100D7BBE3 /* ShareToWeixinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToWeixinController.h; sourceTree = "<group>"; };
 		C6CD0AA8171AA4F100D7BBE3 /* ShareToWeixinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToWeixinController.m; sourceTree = "<group>"; };
 		C6DA9C531732C84100C92BC2 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Libraries/RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
@@ -2234,6 +2239,9 @@
 		C6E0D9F2173A6F6300B1B2C3 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				C6CA1F1B1747768200E7B023 /* MoreCommentListViewController.h */,
+				C6CA1F1C1747768200E7B023 /* MoreCommentListViewController.m */,
+				C6CA1F1D1747768200E7B023 /* MoreCommentListViewController.xib */,
 				C6DED69116F3447A006265C4 /* CommentCell.h */,
 				C6DED69216F3447A006265C4 /* CommentCell.m */,
 				C6DED69F16F62DF2006265C4 /* CommentViewController.h */,
@@ -2472,6 +2480,7 @@
 				C60362FC1743B26F00B7242B /* wechat_friend@2x.png in Resources */,
 				C60362FD1743B26F00B7242B /* wechat@2x.png in Resources */,
 				C6CA1F051746611F00E7B023 /* DomobAdSDKBundle.bundle in Resources */,
+				C6CA1F1F1747768300E7B023 /* MoreCommentListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2691,6 +2700,7 @@
 				C6CD0AA9171AA4F100D7BBE3 /* ShareToWeixinController.m in Sources */,
 				C6BA0B1B173FEAE00017F69D /* AdService.m in Sources */,
 				C60362E81743A41400B7242B /* AWActionSheet.m in Sources */,
+				C6CA1F1E1747768300E7B023 /* MoreCommentListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

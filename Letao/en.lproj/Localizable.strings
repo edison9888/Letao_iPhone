@@ -9,11 +9,14 @@
 
 "kFloor" = " floor";
 "kComments" = "Comments";
+"kWriteComment" = "Write Comment";
+"kAllComments" = "Comments";
 "kResults" = "Results";
 "kBuy" = "Buy";
 "kShare" = "Share";
 "kLike" = "Like";
 "kLoading" = "Loading...";
+"kMore" = "More";
 "kNoComment" = "No comment";
 "kRecommendPrice" = "Recommend Price";
 "kDetail" = "Detail";

@@ -8,10 +8,13 @@
 
 "kFloor" = "楼";
 "kComment" = "相关评论";
+"kWriteComment" = "发帖";
+"kAllComments" = "所有评论";
 "kResults" = "结果";
 "kBuy" = "购买";
 "kShare" = "分享";
 "kLike" = "喜欢";
+"kMore" = "点击查看更多";
 "kLoading" = "正在加载...";
 "kNoComment" = "暂无评论";
 "kRecommendPrice"="推荐报价";

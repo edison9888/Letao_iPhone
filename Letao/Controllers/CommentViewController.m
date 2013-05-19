@@ -9,6 +9,7 @@
 #import "CommentViewController.h"
 #import "CommentService.h"
 #import "TimeUtils.h"
+#import "LocaleUtils.h"
 
 @implementation CommentViewController
 
@@ -34,7 +35,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"评论";
+    self.title = NSLS(@"kWriteComment");
     
     UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
     [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];

@@ -38,7 +38,7 @@
     [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     
-    self.textView = [[[UITextView alloc] initWithFrame:self.view.frame]autorelease]; 
+    self.textView = [[UITextView alloc] initWithFrame:self.view.frame]; 
 //    self.textView.delegate = self;
     self.textView.editable = NO;
     self.textView.textColor = [UIColor blackColor];

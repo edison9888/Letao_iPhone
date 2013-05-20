@@ -7,6 +7,8 @@
 //
 
 #import "ArticleDetailViewController.h"
+#import "LocaleUtils.h"
+#import "AdService.h"
 
 @interface ArticleDetailViewController ()
 
@@ -36,20 +38,22 @@
 {
     [super viewDidLoad];
 
-    self.title = @"详情";
+    self.title = NSLS(@"kDetail");
     
     UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
     [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+    _totalHeight += AD_MINI_BANNER_HEIGHT;
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
     UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     [_dataScrollView addSubview:bgView];
     [bgView release];
 
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 310, 30)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 310, 30)];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -80,6 +84,19 @@
 - (void)viewDidUnload
 {
     _article = nil;
+    _adView = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.adView = [[AdService sharedService] createAdInView:self
+                                                      frame:CGRectMake(0, 0, AD_BANNER_WIDTH, AD_MINI_BANNER_HEIGHT)];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService sharedService] removeAdView:self.adView];
+    [super viewDidDisappear:animated];
 }
 
 - (void)dealloc

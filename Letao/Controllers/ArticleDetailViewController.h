@@ -14,6 +14,7 @@
 @property (nonatomic, retain) Article *article;
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(assign, nonatomic) float totalHeight;
+@property (nonatomic, retain) UIView* adView;
 
 - (id)initWithArticle:(Article*)article;
 

@@ -40,7 +40,6 @@
 {
     self = [super init];
     if (self) {
-        _data = [[NSMutableArray alloc] init];
         _brand = brand;
     }
     _currentData = _data;

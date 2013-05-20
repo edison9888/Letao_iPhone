@@ -32,7 +32,7 @@
         self._id = [aDecoder decodeObjectForKey:@"_id"];
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.subtitle = [aDecoder decodeObjectForKey:@"subtitle"];
-        self.subtitle = [aDecoder decodeObjectForKey:@"buy_url"];
+        self.buy_url = [aDecoder decodeObjectForKey:@"buy_url"];
         self.information = [aDecoder decodeObjectForKey:@"information"];
         self.description = [aDecoder decodeObjectForKey:@"description"];
         self.tips = [aDecoder decodeObjectForKey:@"tips"];
@@ -40,5 +40,19 @@
         self.imageList = [aDecoder decodeObjectForKey:@"imageList"];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [_id release];
+    [title release];
+    [subtitle release];
+    [buy_url release];
+    [information release];
+    [description release];
+    [tips release];
+    [smooth_index release];
+    [imageList release];
+    [super dealloc];
 }
 @end

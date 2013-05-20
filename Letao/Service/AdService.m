@@ -75,8 +75,8 @@
                       publisherId:(NSString*)publisherId
                       frame:(CGRect)frame
 {
-    DMAdView *dmAdView = [[DMAdView alloc] initWithPublisherId:publisherId size:DOMOB_AD_SIZE_320x50];
-    [dmAdView setFrame:CGRectMake(frame.origin.x,frame.origin.y, DOMOB_AD_SIZE_320x50.width, DOMOB_AD_SIZE_320x50.height)];
+    DMAdView *dmAdView = [[DMAdView alloc] initWithPublisherId:publisherId size:CGSizeMake(frame.size.width,frame.size.height)];
+    [dmAdView setFrame:CGRectMake(frame.origin.x,frame.origin.y, frame.size.width, frame.size.height)];
     dmAdView.rootViewController = superViewContoller; 
     [superViewContoller.view addSubview:dmAdView]; 
     [dmAdView loadAd]; 
@@ -88,7 +88,12 @@
                       frame:(CGRect)frame
 {
     MobWinBannerView *adBanner = [MobWinBannerView instance];
-    adBanner.adSizeIdentifier = MobWINBannerSizeIdentifier320x50;
+    if (frame.size.height == 50) {
+        adBanner.adSizeIdentifier = MobWINBannerSizeIdentifier320x50;
+
+    } else if (frame.size.height == 25) {
+        adBanner.adSizeIdentifier = MobWINBannerSizeIdentifier320x25;
+    }
     [adBanner setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)];
     adBanner.rootViewController = superViewContoller;
     [superViewContoller.view addSubview:adBanner];

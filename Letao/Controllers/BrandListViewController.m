@@ -34,7 +34,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"国内",@"国外", nil]];
+    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLS(@"kDemostic"),NSLS(@"kForeign"), nil]];
     toggle.segmentedControlStyle = UISegmentedControlStyleBar;
     toggle.selectedSegmentIndex = 0;
     CGRect frame = toggle.frame;

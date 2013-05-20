@@ -14,6 +14,7 @@
 #import "ItemViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "AdService.h"
+#import "LocaleUtils.h"
 
 @interface SearchViewController ()
 
@@ -47,7 +48,7 @@
     
     _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_searchButton setFrame:CGRectMake(241, 15, 63, 29)];
-    [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+    [_searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     [_searchButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
     UIImage* buttonBgImage = [UIImage strectchableImageName:@"tu_48.png"];
     [_searchButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
@@ -106,6 +107,7 @@
     _wordsView = nil;
     _searchTextFieldBackgroundView = nil;
     _searchTextField = nil;
+    _adView = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -122,9 +124,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [[AdService sharedService] removeAdView:self.adView];
-    self.adView = nil;
-    self.adView = nil;
-    
     [super viewDidDisappear:animated];
 }
 

@@ -11,6 +11,11 @@
 "kWriteComment" = "发帖";
 "kAllComments" = "所有评论";
 "kResults" = "结果";
+"kSearch" = "搜索";
+"kBrand" = "品牌";
+"kStar" = "收藏";
+"kRecommend" = "精品";
+"kArticle" = "趣文";
 "kBuy" = "购买";
 "kShare" = "分享";
 "kLike" = "喜欢";
@@ -31,3 +36,9 @@
 "kShareEmailTitle" = "套套分享";
 "kShareEmailBody" = "分享一款有趣的套套";
 "kNoFavouriteItem" = "在详情页面右上角点击心形按钮收藏";
+"kTips" = "温馨提示";
+"kNoNetwork" = "网络连接失败,请查看网络是否连接正常！";
+"kShareToWeixinSuccessfully" = "已成功分享至微信";
+"kDemostic" = "国内";
+"kForeign" = "国外";
+

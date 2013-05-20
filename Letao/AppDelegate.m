@@ -17,7 +17,7 @@
 #import "ArticleListViewController.h"
 #import "Reachability.h"
 #import "MobClick.h"
-
+#import "LocaleUtils.h"
 
 @implementation AppDelegate
 
@@ -41,34 +41,34 @@
     NSMutableArray* controllers = [[NSMutableArray alloc] init];
     
     [UIUtils addViewController:[ItemViewController alloc]
-                     viewTitle:@"精品"
+                     viewTitle:NSLS(@"kRecommend")
                      viewImage:@"home"
                     hasNavController:YES
                     viewControllers:controllers];
     
     [UIUtils addViewController:[BrandListViewController alloc]
-                     viewTitle:@"品牌"
+                     viewTitle:NSLS(@"kBrand")
                      viewImage:@"cabinet"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
     
     [UIUtils addViewController:[FavouriteViewController alloc]
-                     viewTitle:@"收藏"
+                     viewTitle:NSLS(@"kStar")
                      viewImage:@"star"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
     
     [UIUtils addViewController:[SearchViewController alloc]
-                     viewTitle:@"搜索"
+                     viewTitle:NSLS(@"kSearch")
                      viewImage:@"magnify"
                     hasNavController:YES
                     hideNavigationBar:NO
                     viewControllers:controllers];
     
     [UIUtils addViewController:[ArticleListViewController alloc]
-                     viewTitle:@"趣文"
+                     viewTitle:NSLS(@"kArticle")
                      viewImage:@"text-list"
                     hasNavController:YES
                     hideNavigationBar:NO
@@ -101,7 +101,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"网络连接失败,请查看网络是否连接正常！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:NSLS(@"kTips") message:NSLS(@"kNoNetwork") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
@@ -178,7 +178,7 @@
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == WXSuccess){
-            [UIUtils alert:@"已成功分享至微信"];
+            [UIUtils alert:NSLS(@"kShareToWeixinSuccessfully")];
             NSLog(@"<onResp> weixin response success");
         }else {
             NSLog(@"<onResp> weixin response fail");

@@ -22,10 +22,12 @@
     NSMutableArray *_dataList;
 }
 
-@property (nonatomic, retain)IBOutlet UITableView *dataTableView;
+@property (nonatomic, retain) IBOutlet UITableView *dataTableView;
 @property (nonatomic, assign) BOOL supportRefreshHeader;
 @property (nonatomic, assign) BOOL supportRefreshFooter;
 @property (nonatomic, retain) UIView* adView;
+@property (nonatomic, copy) NSString* cat_id;
+
 
 #pragma mark: For pull down to refresh
 - (void)reloadTableViewDataSource;

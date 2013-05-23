@@ -8,6 +8,7 @@
 
 #import "ArticleService.h"
 #import "Article.h"
+#import "ArticleCategory.h"
 #import "StringUtil.h"
 
 @implementation ArticleService
@@ -39,7 +40,16 @@
     [objectManager.mappingProvider setMapping:articleMapping forKeyPath:@""];
 }
 
-- (void)findArticlesWithStart:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
+- (void)initCategoryMap
+{
+    //获取在AppDelegate中生成的第一个RKObjectManager对象
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    RKObjectMapping *articleMapping =[RKObjectMapping mappingForClass:[ArticleCategory class]];
+    [articleMapping mapKeyPathsToAttributes: @"cat_id", @"_id", @"cat_name", @"name", nil];
+    [objectManager.mappingProvider setMapping:articleMapping forKeyPath:@""];
+}
+
+- (void)findArticlesWithCategory:(NSString*)cat_id  start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate
 {
     //映射所需类对象
     [self initObjectMap];
@@ -47,9 +57,30 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *startStr = [NSString stringWithInt:start];
         NSString *countStr = [NSString stringWithInt:count];
-        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:startStr, @"start", countStr, @"count",nil];
+        NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:cat_id, @"cat_id", startStr, @"start", countStr, @"count",nil];
         RKObjectManager *objectManager = [RKObjectManager sharedManager];
         RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/articles" queryParameters:queryParams];
+        
+        NSLog(@"url: %@", [url absoluteString]);
+        NSLog(@"resourcePath: %@", [url resourcePath]);
+        NSLog(@"query: %@", [url query]);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [url resourcePath], [url query]] delegate:delegate ];
+        });
+    });
+}
+
+- (void)findArticleCategory:(id<RKObjectLoaderDelegate>)delegate
+{
+    //映射所需类对象
+    [self initCategoryMap];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        NSDictionary *queryParams = nil;
+        RKObjectManager *objectManager = [RKObjectManager sharedManager];
+        RKURL *url = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/article_cat" queryParameters:queryParams];
         
         NSLog(@"url: %@", [url absoluteString]);
         NSLog(@"resourcePath: %@", [url resourcePath]);

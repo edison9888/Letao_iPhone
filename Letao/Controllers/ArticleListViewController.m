@@ -14,6 +14,7 @@
 #import "ArticleService.h"
 #import "UIImage+Scale.h"
 #import "AdService.h"
+#import "LocaleUtils.h"
 
 #define COUNT_EACH_FETCH 10
 
@@ -31,6 +32,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLS(@"kArticle");
+    UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickBack:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+    
     _start = 0;
     [self loadDataFrom:_start count:COUNT_EACH_FETCH];
     
@@ -57,6 +64,11 @@
     }
     [_refreshFooterView refreshLastUpdatedDate];
 
+}
+
+- (void)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
@@ -97,7 +109,7 @@
 - (void)loadDataFrom:(int)start count:(int)count
 {
     NSLog(@"Load data from remote server");
-    [[ArticleService sharedService] findArticlesWithStart:_start count:COUNT_EACH_FETCH delegate:self];
+    [[ArticleService sharedService] findArticlesWithCategory:_cat_id start:_start count:COUNT_EACH_FETCH delegate:self];
     _supportRefreshHeader = YES;
     _supportRefreshFooter = YES;
 }
@@ -133,10 +145,10 @@
     [cell setArticle:article];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    UIImage *bg = [[UIImage imageNamed:@"cell_bg"] scaleToSize:CGSizeMake(320, [ArticleCell heightForCell])];
-    UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
-    cell.backgroundView = bgView;
-    [bgView release];
+//    UIImage *bg = [[UIImage imageNamed:@"cell_bg"] scaleToSize:CGSizeMake(320, [ArticleCell heightForCell])];
+//    UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
+//    cell.backgroundView = bgView;
+//    [bgView release];
 
     return cell;
 }

@@ -13,7 +13,8 @@
 
 +(ArticleService*)sharedService;
 
-- (void)findArticlesWithStart:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
+- (void)findArticlesWithCategory:(NSString*)cat_id  start:(int)start count:(int)count delegate:(id<RKObjectLoaderDelegate>)delegate;
 
+- (void)findArticleCategory:(id<RKObjectLoaderDelegate>)delegate;
 
 @end

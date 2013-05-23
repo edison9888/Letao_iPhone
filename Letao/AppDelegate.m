@@ -14,7 +14,7 @@
 #import "UIUtils.h"
 #import "GlobalConstants.h"
 #import "SearchViewController.h"
-#import "ArticleListViewController.h"
+#import "ArticleCategoryListViewController.h"
 #import "Reachability.h"
 #import "MobClick.h"
 #import "LocaleUtils.h"
@@ -67,7 +67,7 @@
                     hideNavigationBar:NO
                     viewControllers:controllers];
     
-    [UIUtils addViewController:[ArticleListViewController alloc]
+    [UIUtils addViewController:[ArticleCategoryListViewController alloc]
                      viewTitle:NSLS(@"kArticle")
                      viewImage:@"text-list"
                     hasNavController:YES

@@ -39,11 +39,13 @@
         UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
         self.backgroundView = bgView;
         [bgView release];
-    } else {
-        UIImage *bg = [[UIImage imageNamed:@"cell_bg"] scaleToSize:CGSizeMake(320, [ArticleCell heightForCell])];
-        UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
-        self.backgroundView = bgView;
-        [bgView release];
+    }
+    else {
+//        UIImage *bg = [[UIImage imageNamed:@"cell_bg"] scaleToSize:CGSizeMake(320, [ArticleCell heightForCell])];
+//        UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
+//        self.backgroundView = bgView;
+//        [bgView release];
+        self.backgroundView = nil;
     }
 }
 
@@ -51,7 +53,9 @@
 {
     CGSize nameSize = [article.title sizeWithFont:[UIFont boldSystemFontOfSize:15.0f] forWidth:200.0f lineBreakMode:UILineBreakModeTailTruncation];
     [self.titleLabel setFrame:CGRectMake( 5.0f, 5.0f, 300.0f, nameSize.height)];
-    NSString *title = [NSString stringWithFormat:@"【%@】%@",article.author,article.title];
+//    NSString *title = [NSString stringWithFormat:@"【%@】%@",article.author,article.title];
+    NSString *title = [NSString stringWithFormat:@"  %@", article.title];
+
     self.titleLabel.text = title;
     self.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -69,10 +73,10 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//	CGContextSetRGBFillColor(context, 0.05, 0.05, 0.15, 0.2);
-//	rect = CGRectMake(0, self.bounds.size.height - 4, self.bounds.size.width, 4);
-//	CGContextFillRect(context, rect);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetRGBFillColor(context, 0.05, 0.05, 0.15, 0.2);
+	rect = CGRectMake(0, self.bounds.size.height - 2, self.bounds.size.width, 4);
+	CGContextFillRect(context, rect);
 }
 
 + (CGFloat)heightForCell

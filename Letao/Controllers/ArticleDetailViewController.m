@@ -48,7 +48,7 @@
     _totalHeight += AD_MINI_BANNER_HEIGHT;
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
-    UIImage *bgImage = [UIImage imageNamed:@"section-bar2"];
+    UIImage *bgImage = [UIImage imageNamed:@"sectionbar"];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     [_dataScrollView addSubview:bgView];
     [bgView release];

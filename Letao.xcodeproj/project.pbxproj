@@ -304,6 +304,7 @@
 		C6BA0B2A173FF02F0017F69D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6BA0B29173FF02F0017F69D /* StoreKit.framework */; };
 		C6BA0B2C173FF07F0017F69D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6BA0B2B173FF07E0017F69D /* EventKit.framework */; };
 		C6BA0B2E173FF0910017F69D /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6BA0B2D173FF0900017F69D /* EventKitUI.framework */; };
+		C6C5CB31175787C900C16CBD /* sectionbar.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C5CB30175787C900C16CBD /* sectionbar.png */; };
 		C6CA1EDB1745351D00E7B023 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C687DA0C16B53B6A00AB82A1 /* CFNetwork.framework */; };
 		C6CA1EDD174535CB00E7B023 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CA1EDC174535CB00E7B023 /* MobileCoreServices.framework */; };
 		C6CA1F051746611F00E7B023 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C6CA1F031746611F00E7B023 /* DomobAdSDKBundle.bundle */; };
@@ -927,6 +928,7 @@
 		C6BA0B29173FF02F0017F69D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C6BA0B2B173FF07E0017F69D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		C6BA0B2D173FF0900017F69D /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		C6C5CB30175787C900C16CBD /* sectionbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectionbar.png; sourceTree = "<group>"; };
 		C6CA1EDC174535CB00E7B023 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C6CA1EFE1746611F00E7B023 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
 		C6CA1EFF1746611F00E7B023 /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
@@ -1158,6 +1160,7 @@
 		C64AE9B116B822A800363ED6 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C6C5CB30175787C900C16CBD /* sectionbar.png */,
 				C65DBA77174E6FA000073A0A /* article.png */,
 				C65DBA73174E6CC400073A0A /* star-icon.png */,
 				C60362F01743B26F00B7242B /* email@2x.png */,
@@ -2508,6 +2511,7 @@
 				C65DBA68174E58C800073A0A /* ArticleCategoryListViewController.xib in Resources */,
 				C65DBA74174E6CC400073A0A /* star-icon.png in Resources */,
 				C65DBA78174E6FA000073A0A /* article.png in Resources */,
+				C6C5CB31175787C900C16CBD /* sectionbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

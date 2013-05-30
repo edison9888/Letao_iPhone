@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Article.h"
+#import "PPViewController.h"
 
-@interface ArticleDetailViewController : UIViewController
+@interface ArticleDetailViewController : PPViewController
 
 @property (nonatomic, retain) Article *article;
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;

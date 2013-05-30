@@ -78,20 +78,22 @@
     _refreshFooterView = nil;
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
+- (void)viewDidAppear:(BOOL)animated
+{
 //    self.adView = [[AdService sharedService] createAdInView:self
 //                                                      frame:CGRectMake(0, self.view.bounds.size.height-AD_BANNER_HEIGHT, AD_BANNER_WIDTH, AD_BANNER_HEIGHT)];
-//    
-//    [super viewDidAppear:animated];
-//}
 //
-//- (void)viewDidDisappear:(BOOL)animated
-//{
+    [self hideTabBar];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
 //    [[AdService sharedService] removeAdView:self.adView];
 //    self.adView = nil;
-//    [super viewDidDisappear:animated];
-//}
+    [self showTabBar];
+    [super viewDidDisappear:animated];
+}
 
 - (void)didReceiveMemoryWarning
 {

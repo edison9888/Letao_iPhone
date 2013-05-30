@@ -9,6 +9,7 @@
 #import "ArticleDetailViewController.h"
 #import "LocaleUtils.h"
 #import "AdService.h"
+#import "AppDelegate.h"
 
 @interface ArticleDetailViewController ()
 
@@ -37,7 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.title = NSLS(@"kDetail");
     
     UIButton *backButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
@@ -89,6 +89,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self hideTabBar];
     self.adView = [[AdService sharedService] createAdInView:self
                                                       frame:CGRectMake(0, 0, AD_BANNER_WIDTH, AD_MINI_BANNER_HEIGHT)];
 }
@@ -96,6 +97,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [[AdService sharedService] removeAdView:self.adView];
+    [self showTabBar];
     [super viewDidDisappear:animated];
 }
 

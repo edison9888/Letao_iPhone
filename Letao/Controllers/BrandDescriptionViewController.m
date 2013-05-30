@@ -67,6 +67,18 @@
     self.textView = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self hideTabBar];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisAppear:(BOOL)animated
+{
+    [self showTabBar];
+    [self viewDidDisappear:animated];
+}
+
 - (void)dealloc
 {
     [self.brand release]; self.brand = nil;

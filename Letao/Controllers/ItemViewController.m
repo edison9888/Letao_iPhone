@@ -161,13 +161,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)didReceiveMemoryWarning

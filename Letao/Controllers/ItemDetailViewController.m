@@ -59,8 +59,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self loadComments];
-    self.hidesBottomBarWhenPushed = YES;
+    [self hideTabBar];
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self showTabBar];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

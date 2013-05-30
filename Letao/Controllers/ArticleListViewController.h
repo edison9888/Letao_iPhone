@@ -10,8 +10,9 @@
 #import <RestKit/RestKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
+#import "PPViewController.h"
 
-@interface ArticleListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate>
+@interface ArticleListViewController : PPViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, EGORefreshTableHeaderDelegate,EGORefreshTableFooterDelegate, UIScrollViewDelegate>
 {
     BOOL _reloading;
     EGORefreshTableHeaderView *_refreshHeaderView;

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GMGridView.h"
+#import "PPViewController.h"
 
-
-@interface FavouriteViewController : UIViewController<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewActionDelegate, GMGridViewTransformationDelegate>
+@interface FavouriteViewController : PPViewController<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewActionDelegate, GMGridViewTransformationDelegate>
 {
     GMGridView *_gmGridView;
 }

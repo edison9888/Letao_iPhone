@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Brand.h"
+#import "PPViewController.h"
 
-@interface BrandDescriptionViewController : UIViewController
+@interface BrandDescriptionViewController : PPViewController
 
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) Brand *brand;

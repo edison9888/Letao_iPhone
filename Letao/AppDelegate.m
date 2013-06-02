@@ -84,7 +84,7 @@
 
 - (void)configureAppearance
 {
-    UIImage *barImage = [UIImage imageNamed:@"bar-background"];
+    UIImage *barImage = [UIImage imageNamed:@"navigationbar_background"];
     [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     [[UIToolbar appearance] setBackgroundImage:barImage forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
 }

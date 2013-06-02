@@ -104,7 +104,7 @@
     } else {
         _helpLabel.hidden = YES;
         UIButton *actionButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
-        [actionButton setImage:[UIImage imageNamed:@"action"] forState:UIControlStateNormal];
+        [actionButton setImage:[UIImage imageNamed:@"Trash"] forState:UIControlStateNormal];
         [actionButton addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:actionButton] autorelease];
 

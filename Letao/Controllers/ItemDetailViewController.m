@@ -102,7 +102,7 @@
 //#define TITLE_COLOR [UIColor colorWithRed:37.0/255.0 green:66.0/255.0 blue:80/255.0 alpha:1.0]
 //#define DESCRIPTION_COLOR [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1.0]
 //#define BG_COLOR [UIColor colorWithRed:222/255.0 green:239/255.0 blue:247/255.0 alpha:1.0]
-#define TITLE_COLOR [UIColor blackColor]
+#define TITLE_COLOR [UIColor whiteColor]
 #define DESCRIPTION_COLOR [UIColor blackColor]
 #define BG_COLOR [UIColor colorWithWhite:1 alpha:0.3f]
 
@@ -289,7 +289,7 @@
 - (void)addDetailView
 {
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
-    UIImage *bgImage = [UIImage imageNamed:@"sectionbar"];
+    UIImage *bgImage = [UIImage imageNamed:@"tabbar_background"];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     [_dataScrollView addSubview:bgView];
     [bgView release];
@@ -387,7 +387,7 @@
 - (void)addCommentSectionView
 {
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, _totalHeight, 320, 30)];
-    UIImage *bgImage = [UIImage imageNamed:@"sectionbar"];
+    UIImage *bgImage = [UIImage imageNamed:@"tabbar_background"];
     bgView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     [_dataScrollView addSubview:bgView];
     [bgView release];

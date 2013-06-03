@@ -14,7 +14,7 @@
 #import "AWActionSheet.h"
 #import "PPViewController.h"
 
-@interface ItemDetailViewController : PPViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate, AWActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface ItemDetailViewController : PPViewController<UITableViewDataSource, UITableViewDelegate, RKObjectLoaderDelegate, UIActionSheetDelegate, AWActionSheetDelegate, MFMailComposeViewControllerDelegate, UIWebViewDelegate>
 
 @property(retain, nonatomic) IBOutlet UIScrollView *dataScrollView;
 @property(retain, nonatomic) IBOutlet UITableView *commentTableView;

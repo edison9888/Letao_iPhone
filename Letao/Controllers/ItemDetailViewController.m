@@ -23,6 +23,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "LocaleUtils.h"
 #import "MoreCommentListViewController.h"
+#import "BuyWebViewController.h"
 
 #define PADDING 5
 
@@ -147,7 +148,6 @@
     [self addCommentSectionView];
         
     [_dataScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _totalHeight)];
-    
 }
 
 - (void)loadComments
@@ -597,7 +597,11 @@
     } else {
         str = _item.buy_url;
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    
+    BuyWebViewController *webViewController = [[[BuyWebViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:webViewController animated:YES];
+    [webViewController openURL:str];
+    
 }
 
 #pragma mark - mail compose delegate

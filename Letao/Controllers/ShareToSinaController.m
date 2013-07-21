@@ -58,7 +58,8 @@
     
     if (![_sinaweiboManager.sinaweibo isAuthValid]) {
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
-        [_sinaweiboManager.sinaweibo logInInView:self.view];
+//        [_sinaweiboManager.sinaweibo logInInView:self.view];
+        [_sinaweiboManager.sinaweibo logIn];
     }
 }
 
@@ -228,6 +229,7 @@
     [[TKAlertCenter defaultCenter] postAlertWithMessage:@"发送成功"];
 
 }
+
 
 
 @end

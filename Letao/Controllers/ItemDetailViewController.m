@@ -153,7 +153,6 @@
 - (void)loadComments
 {
     [self.commentList removeAllObjects];
-//    _totalHeight -= _commentTableView.frame.size.height;
     _totalHeight = _commentLabel.frame.origin.y + _commentLabel.frame.size.height;
     [[CommentService sharedService] findCommentsWithItemId:_item._id start:0 count:1 delegate:self];
 }
@@ -295,7 +294,7 @@
     [bgView release];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _totalHeight, 310, 30)];
-    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = TITLE_COLOR;
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text =  [NSString stringWithFormat:(@" %@"),_item.title];
@@ -393,7 +392,7 @@
     [bgView release];
 
     _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 300, 30)];
-    _commentLabel.font = [UIFont systemFontOfSize:15];
+    _commentLabel.font = [UIFont systemFontOfSize:14];
     _commentLabel.textColor = TITLE_COLOR;
     _commentLabel.backgroundColor = [UIColor clearColor];        
     _commentLabel.text = NSLS(@"kComment");
@@ -568,7 +567,7 @@
         [_buyButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
         [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_buyButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+        [_buyButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [_buyButton addTarget:self action:@selector(buyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [_dataScrollView addSubview:_buyButton];
         
@@ -576,7 +575,7 @@
         [_shareButton setBackgroundImage:[UIImage strectchableImageName:@"tu_129.png"] forState:UIControlStateNormal];
         [_shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
         [_shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_shareButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+        [_shareButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [_shareButton addTarget:self action:@selector(showAWSheet:) forControlEvents:UIControlEventTouchUpInside];
         [_dataScrollView addSubview:_shareButton];
 

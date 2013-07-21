@@ -18,6 +18,7 @@
 #import "Reachability.h"
 #import "MobClick.h"
 #import "LocaleUtils.h"
+#import "SinaWeiboManager.h"
 
 @implementation AppDelegate
 
@@ -28,6 +29,11 @@
     [_tabBarController release];
     [_window release];
     [super dealloc];
+}
+
++ (AppDelegate*)getAppDelegate
+{
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 - (void)initTabViewControllers
@@ -91,11 +97,20 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return  [WXApi handleOpenURL:url delegate:self];
+    if ([url.absoluteString hasSuffix:@"sinaweibosso://login"]) {
+        return [[SinaWeiboManager sharedManager].sinaweibo handleOpenURL:url];
+    } else {
+        return  [WXApi handleOpenURL:url delegate:self];
+    }
 }
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return  [WXApi handleOpenURL:url delegate:self];
+    if ([url.absoluteString hasSuffix:@"sinaweibosso://login"]) {
+        return [[SinaWeiboManager sharedManager].sinaweibo handleOpenURL:url];
+    } else {
+        return  [WXApi handleOpenURL:url delegate:self];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

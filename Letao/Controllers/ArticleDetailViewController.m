@@ -54,7 +54,7 @@
     [bgView release];
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _totalHeight, 310, 30)];
-    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.text =  _article.title;

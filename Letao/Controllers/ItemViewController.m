@@ -403,7 +403,7 @@
     
     if (INTERFACE_IS_PHONE)
     {
-        label.font = [UIFont boldSystemFontOfSize:15];
+        label.font = [UIFont boldSystemFontOfSize:14];
     }
     else
     {

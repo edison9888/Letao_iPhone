@@ -49,7 +49,7 @@
     _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_searchButton setFrame:CGRectMake(241, 15, 63, 29)];
     [_searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
-    [_searchButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    [_searchButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
     UIImage* buttonBgImage = [UIImage strectchableImageName:@"tu_48.png"];
     [_searchButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [_searchButton addTarget:self action:@selector(clickSearchButton:) forControlEvents:UIControlEventTouchUpInside];

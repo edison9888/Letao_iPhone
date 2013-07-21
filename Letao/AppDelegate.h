@@ -18,5 +18,6 @@
 @property (strong, nonatomic) MainController *mainController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
++ (AppDelegate*)getAppDelegate;
 
 @end
